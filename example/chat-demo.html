@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chat Widget Demo</title>
+  <style>
+    .msg { padding: 8px; margin: 6px 0; border-radius: 4px; }
+    .msg.user { background: #e6f7ff; align-self: flex-end; }
+    .msg.assistant { background: #f6f6f8; }
+    .msg.typing .typing-dot { display:inline-block; width:6px;height:6px;background:#999;border-radius:50%;margin:0 2px;opacity:0.6 }
+    #chat { display:flex; flex-direction:column; height:300px; border:1px solid #ddd; padding:8px; overflow:auto }
+  </style>
+</head>
+<body>
+  <div id="chat-root">
+    <div data-chat-body id="chat" aria-live="polite" role="log"></div>
+    <textarea data-chat-input rows="2" style="width:100%" aria-label="Message"></textarea>
+    <button data-chat-send>Send</button>
+  </div>
+
+  <script type="module">
+    import { createChatWidget } from '/src/lib/chatWidget.js'; // adjust path if bundling
+
+    const root = document.getElementById('chat-root');
+
+    // Example: same-origin endpoints, bearer token provided
+    const widget = createChatWidget({
+      root,
+      endpoint: '/api/chat',
+      streamEndpoint: '/api/chat/stream',
+      wsEndpoint: '/ws/chat',
+      bearerToken: 'REPLACE_WITH_YOUR_TOKEN',
+      maxHistory: 30,
+      timeout: 30000,
+    });
+
+    // Programmatically add a message and send
+    // widget.addUserMessage('Hello');
+
+    // For testing without a streaming server, call widget.addUserMessage('Test')
+  </script>
+</body>
+</html>
