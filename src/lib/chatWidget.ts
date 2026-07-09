@@ -1,5 +1,5 @@
 // TypeScript chat widget with SSE-first streaming, WebSocket fallback, and fetch fallback.
-// Usage: createChatWidget({ root, systemPrompt, greeting, endpoint, streamEndpoint, wsEndpoint, maxHistory, timeout })
+// Usage: createChatWidget({ root, systemPrompt, greeting, endpoint, streamEndpoint, wsEndpoint, maxHistory, timeout, headers, credentials })
 
 type Role = "user" | "assistant" | "system";
 
@@ -17,6 +17,8 @@ interface CreateOptions {
   wsEndpoint?: string; // WebSocket URL for fallback
   maxHistory?: number;
   timeout?: number; // ms
+  headers?: Record<string, string>;
+  credentials?: RequestCredentials;
 }
 
 export function createChatWidget({
@@ -28,6 +30,8 @@ export function createChatWidget({
   wsEndpoint,
   maxHistory = 50,
   timeout = 30000,
+  headers,
+  credentials,
 }: CreateOptions) {
   const body = root.querySelector("[data-chat-body]") as HTMLElement | null;
   const input = root.querySelector("[data-chat-input]") as HTMLTextAreaElement | HTMLInputElement | null;
@@ -101,7 +105,8 @@ export function createChatWidget({
   }
 
   // Parse SSE event stream (text/event-stream) from a ReadableStream of Uint8Array
-  async function parseSSEStream(stream: ReadableStream<Uint8Array>, onChunk: (chunk: string) => void) {
+  // Returns true if a {done:true} marker was received
+  async function parseSSEStream(stream: ReadableStream<Uint8Array>, onChunk: (chunk: string) => void): Promise<boolean> {
     const reader = stream.getReader();
     const decoder = new TextDecoder();
     let buffer = "";
@@ -115,52 +120,105 @@ export function createChatWidget({
         while ((pos = buffer.indexOf("\n\n")) !== -1) {
           const raw = buffer.slice(0, pos);
           buffer = buffer.slice(pos + 2);
-          // parse event lines
+          // parse event lines and collect data: lines
           const lines = raw.split(/\r?\n/);
+          const dataLines: string[] = [];
+          const otherLines: string[] = [];
           for (const line of lines) {
-            if (line.startsWith("data:")) {
-              const data = line.slice(5).trim();
-              if (data) {
-                onChunk(data);
+            if (line.startsWith("data:")) dataLines.push(line.slice(5));
+            else if (line.trim() !== "") otherLines.push(line.trim());
+          }
+
+          if (dataLines.length > 0) {
+            const joined = dataLines.join("\n").trim();
+            if (joined) {
+              // try JSON parse for {chunk, done}
+              try {
+                const obj = JSON.parse(joined);
+                if (typeof obj === "string") onChunk(obj);
+                else if (obj && typeof (obj as any).chunk === "string") onChunk((obj as any).chunk);
+                else if (obj && (obj as any).text) onChunk(String((obj as any).text));
+                if (obj && (obj as any).done) return true;
+              } catch {
+                onChunk(joined);
+              }
+            }
+          } else if (otherLines.length > 0) {
+            // treat each non-empty line as NDJSON or plain chunk
+            for (const l of otherLines) {
+              try {
+                const obj = JSON.parse(l);
+                if (typeof obj === "string") onChunk(obj);
+                else if (obj && typeof (obj as any).chunk === "string") onChunk((obj as any).chunk);
+                else if (obj && (obj as any).text) onChunk(String((obj as any).text));
+                if (obj && (obj as any).done) return true;
+              } catch {
+                onChunk(l);
               }
             }
           }
         }
       }
+
       // flush remaining buffer
       if (buffer.trim()) {
         const lines = buffer.split(/\r?\n/);
         for (const line of lines) {
+          if (!line.trim()) continue;
           if (line.startsWith("data:")) {
             const data = line.slice(5).trim();
-            if (data) onChunk(data);
+            if (data) {
+              try {
+                const obj = JSON.parse(data);
+                if (typeof obj === "string") onChunk(obj);
+                else if (obj && typeof (obj as any).chunk === "string") onChunk((obj as any).chunk);
+                else if (obj && (obj as any).text) onChunk(String((obj as any).text));
+                if (obj && (obj as any).done) return true;
+              } catch {
+                onChunk(data);
+              }
+            }
+          } else {
+            // NDJSON style
+            try {
+              const obj = JSON.parse(line);
+              if (typeof obj === "string") onChunk(obj);
+              else if (obj && typeof (obj as any).chunk === "string") onChunk((obj as any).chunk);
+              else if (obj && (obj as any).text) onChunk(String((obj as any).text));
+              if (obj && (obj as any).done) return true;
+            } catch {
+              onChunk(line);
+            }
           }
         }
       }
+
+      return false;
     } finally {
-      // release lock if available
       try { reader.releaseLock(); } catch (e) { /* ignore */ }
     }
   }
 
   // Try streaming via fetch expecting text/event-stream (SSE-like via POST)
-  async function trySSEStreaming(messages: Message[], onChunk: (chunk: string) => void, signal: AbortSignal) {
+  async function trySSEStreaming(messages: Message[], onChunk: (chunk: string) => void, signal: AbortSignal): Promise<boolean> {
     const url = streamEndpoint || (endpoint.replace(/\/*$/, "") + "/stream");
-    const res = await fetch(url, {
+    const fetchOpts: RequestInit = {
       method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "text/event-stream" },
+      headers: Object.assign({ "Content-Type": "application/json", Accept: "text/event-stream" }, headers || {}),
       body: JSON.stringify({ system: systemPrompt, messages }),
       signal,
-    });
+      credentials,
+    };
+
+    const res = await fetch(url, fetchOpts);
 
     if (!res.ok) throw new Error(`SSE stream request failed: ${res.status} ${res.statusText}`);
 
-    const contentType = res.headers.get("content-type") || "";
+    const contentType = (res.headers.get("content-type") || "").toLowerCase();
     // treat as stream if content-type indicates event-stream or if body is a readable stream
     if (contentType.includes("text/event-stream") || !!(res.body && typeof (res.body as any).getReader === "function")) {
       if (!res.body) throw new Error("No response body for SSE stream");
-      await parseSSEStream(res.body, (data) => {
-        // data may be JSON or plain text; try JSON parse for {chunk, done}
+      const doneSeen = await parseSSEStream(res.body, (data) => {
         try {
           const obj = JSON.parse(data);
           if (typeof obj === "string") onChunk(obj);
@@ -170,7 +228,7 @@ export function createChatWidget({
           onChunk(data);
         }
       });
-      return true;
+      return !!doneSeen;
     }
 
     // Not a stream
@@ -186,6 +244,7 @@ export function createChatWidget({
       // if wsEndpoint is relative, convert to ws/wss based on current location
       try {
         const parsed = new URL(wsEndpoint, location.href);
+        // build ws/wss based on page protocol
         if (parsed.protocol === 'http:') parsed.protocol = 'ws:';
         else if (parsed.protocol === 'https:') parsed.protocol = 'wss:';
         url = parsed.toString();
@@ -199,6 +258,8 @@ export function createChatWidget({
       } catch (err) {
         return resolve(false);
       }
+
+      let gotChunk = false;
 
       const onAbort = () => {
         if (ws && ws.readyState === WebSocket.OPEN) ws.close();
@@ -231,14 +292,15 @@ export function createChatWidget({
           // server may send JSON frames or plain text
           try {
             const obj = JSON.parse(data);
-            if (obj && typeof (obj as any).chunk === "string") onChunk((obj as any).chunk);
-            else if (typeof obj === "string") onChunk(obj as unknown as string);
-            else if (obj && (obj as any).text) onChunk(String((obj as any).text));
+            if (obj && typeof (obj as any).chunk === "string") { gotChunk = true; onChunk((obj as any).chunk); }
+            else if (typeof obj === "string") { gotChunk = true; onChunk(obj as unknown as string); }
+            else if (obj && (obj as any).text) { gotChunk = true; onChunk(String((obj as any).text)); }
             if (obj && (obj as any).done) {
               cleanup();
               resolve(true);
             }
           } catch {
+            gotChunk = true;
             onChunk(data);
           }
         } catch (err) {
@@ -253,19 +315,22 @@ export function createChatWidget({
 
       ws.onclose = () => {
         cleanup();
-        resolve(true);
+        // success only if we received at least one chunk
+        resolve(gotChunk);
       };
     });
   }
 
   // Fallback non-streaming POST
   async function nonStreamingPost(messages: Message[], signal: AbortSignal) {
-    const res = await fetch(endpoint, {
+    const fetchOpts: RequestInit = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: Object.assign({ "Content-Type": "application/json" }, headers || {}),
       body: JSON.stringify({ system: systemPrompt, messages }),
       signal,
-    });
+      credentials,
+    };
+    const res = await fetch(endpoint, fetchOpts);
     if (!res.ok) throw new Error(`Request failed: ${res.status} ${res.statusText}`);
     const data = await res.json().catch(async () => {
       const text = await res.text().catch(() => "");
