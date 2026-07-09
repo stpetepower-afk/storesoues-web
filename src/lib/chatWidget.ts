@@ -29,9 +29,9 @@ export function createChatWidget({
   maxHistory = 50,
   timeout = 30000,
 }: CreateOptions) {
-  const body = root.querySelector("[data-chat-body]") as HTMLElement;
-  const input = root.querySelector("[data-chat-input]") as HTMLTextAreaElement | HTMLInputElement;
-  const sendBtn = root.querySelector("[data-chat-send]") as HTMLButtonElement;
+  const body = root.querySelector("[data-chat-body]") as HTMLElement | null;
+  const input = root.querySelector("[data-chat-input]") as HTMLTextAreaElement | HTMLInputElement | null;
+  const sendBtn = root.querySelector("[data-chat-send]") as HTMLButtonElement | null;
 
   if (!body || !input || !sendBtn) {
     throw new Error("createChatWidget: root must contain [data-chat-body], [data-chat-input], and [data-chat-send]");
@@ -138,7 +138,8 @@ export function createChatWidget({
         }
       }
     } finally {
-      reader.releaseLock();
+      // release lock if available
+      try { reader.releaseLock(); } catch (e) { /* ignore */ }
     }
   }
 
@@ -156,15 +157,15 @@ export function createChatWidget({
 
     const contentType = res.headers.get("content-type") || "";
     // treat as stream if content-type indicates event-stream or if body is a readable stream
-    if (contentType.includes("text/event-stream") || !!(res.body && typeof res.body.getReader === "function")) {
+    if (contentType.includes("text/event-stream") || !!(res.body && typeof (res.body as any).getReader === "function")) {
       if (!res.body) throw new Error("No response body for SSE stream");
       await parseSSEStream(res.body, (data) => {
         // data may be JSON or plain text; try JSON parse for {chunk, done}
         try {
           const obj = JSON.parse(data);
           if (typeof obj === "string") onChunk(obj);
-          else if (obj && typeof obj.chunk === "string") onChunk(obj.chunk);
-          else if (obj && obj.text) onChunk(String(obj.text));
+          else if (obj && typeof (obj as any).chunk === "string") onChunk((obj as any).chunk);
+          else if (obj && (obj as any).text) onChunk(String((obj as any).text));
         } catch {
           onChunk(data);
         }
@@ -178,16 +179,18 @@ export function createChatWidget({
 
   // Try WebSocket streaming: connect, send init message, listen for 'message' events
   function tryWebSocketStreaming(messages: Message[], onChunk: (chunk: string) => void, signal: AbortSignal): Promise<boolean> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       if (!wsEndpoint) return resolve(false);
 
       let url = wsEndpoint;
-      // if wsEndpoint is relative, convert to ws/wss
+      // if wsEndpoint is relative, convert to ws/wss based on current location
       try {
         const parsed = new URL(wsEndpoint, location.href);
+        if (parsed.protocol === 'http:') parsed.protocol = 'ws:';
+        else if (parsed.protocol === 'https:') parsed.protocol = 'wss:';
         url = parsed.toString();
       } catch (e) {
-        // ignore
+        // ignore and use wsEndpoint as-is
       }
 
       let ws: WebSocket | null = null;
@@ -218,7 +221,7 @@ export function createChatWidget({
       ws.onopen = () => {
         // send init
         const init = { type: "init", system: systemPrompt, messages };
-        ws!.send(JSON.stringify(init));
+        try { ws!.send(JSON.stringify(init)); } catch (e) { /* ignore send errors */ }
       };
 
       ws.onmessage = (ev) => {
@@ -228,10 +231,10 @@ export function createChatWidget({
           // server may send JSON frames or plain text
           try {
             const obj = JSON.parse(data);
-            if (obj && typeof obj.chunk === "string") onChunk(obj.chunk);
-            else if (typeof obj === "string") onChunk(obj);
-            else if (obj && obj.text) onChunk(String(obj.text));
-            if (obj && obj.done) {
+            if (obj && typeof (obj as any).chunk === "string") onChunk((obj as any).chunk);
+            else if (typeof obj === "string") onChunk(obj as unknown as string);
+            else if (obj && (obj as any).text) onChunk(String((obj as any).text));
+            if (obj && (obj as any).done) {
               cleanup();
               resolve(true);
             }
@@ -325,13 +328,13 @@ export function createChatWidget({
       } else {
         history.push({ role: "assistant", content: assistantEl.textContent || "" });
       }
-    } catch (err) {
+    } catch (err: any) {
       if (assistantEl && assistantEl.parentNode) assistantEl.remove();
       const fallback = "I'm having trouble connecting right now — please try again in a moment.";
-      addMessage("assistant", err?.message ? `${fallback} (${err.message})` : fallback);
+      addMessage("assistant", err && err.message ? `${fallback} (${String(err.message)})` : fallback);
     } finally {
       clearTimeout(timer);
-      controller.abort();
+      try { controller.abort(); } catch (e) { /* ignore */ }
       setSending(false);
     }
   }
