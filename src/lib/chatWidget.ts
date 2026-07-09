@@ -1,5 +1,5 @@
 // TypeScript chat widget with SSE-first streaming, WebSocket fallback, and fetch fallback.
-// Usage: createChatWidget({ root, systemPrompt, greeting, endpoint, streamEndpoint, wsEndpoint, maxHistory, timeout, headers, credentials })
+// Usage: createChatWidget({ root, systemPrompt, greeting, endpoint, streamEndpoint, wsEndpoint, maxHistory, timeout, headers, credentials, bearerToken })
 
 type Role = "user" | "assistant" | "system";
 
@@ -19,6 +19,7 @@ interface CreateOptions {
   timeout?: number; // ms
   headers?: Record<string, string>;
   credentials?: RequestCredentials;
+  bearerToken?: string; // convenience helper: sets Authorization header for fetch and includes token in WS init
 }
 
 export function createChatWidget({
@@ -32,6 +33,7 @@ export function createChatWidget({
   timeout = 30000,
   headers,
   credentials,
+  bearerToken,
 }: CreateOptions) {
   const body = root.querySelector("[data-chat-body]") as HTMLElement | null;
   const input = root.querySelector("[data-chat-input]") as HTMLTextAreaElement | HTMLInputElement | null;
@@ -202,9 +204,15 @@ export function createChatWidget({
   // Try streaming via fetch expecting text/event-stream (SSE-like via POST)
   async function trySSEStreaming(messages: Message[], onChunk: (chunk: string) => void, signal: AbortSignal): Promise<boolean> {
     const url = streamEndpoint || (endpoint.replace(/\/*$/, "") + "/stream");
+
+    // merge headers and apply bearerToken if provided (but only if Authorization not already set)
+    const mergedHeaders: Record<string, string> = Object.assign({}, headers || {});
+    const hasAuth = Object.keys(mergedHeaders).some((k) => k.toLowerCase() === 'authorization');
+    if (!hasAuth && bearerToken) mergedHeaders['Authorization'] = `Bearer ${bearerToken}`;
+
     const fetchOpts: RequestInit = {
       method: "POST",
-      headers: Object.assign({ "Content-Type": "application/json", Accept: "text/event-stream" }, headers || {}),
+      headers: Object.assign({ "Content-Type": "application/json", Accept: "text/event-stream" }, mergedHeaders || {}),
       body: JSON.stringify({ system: systemPrompt, messages }),
       signal,
       credentials,
@@ -247,6 +255,7 @@ export function createChatWidget({
         // build ws/wss based on page protocol
         if (parsed.protocol === 'http:') parsed.protocol = 'ws:';
         else if (parsed.protocol === 'https:') parsed.protocol = 'wss:';
+
         url = parsed.toString();
       } catch (e) {
         // ignore and use wsEndpoint as-is
@@ -280,8 +289,9 @@ export function createChatWidget({
       signal.addEventListener("abort", onAbort);
 
       ws.onopen = () => {
-        // send init
-        const init = { type: "init", system: systemPrompt, messages };
+        // send init; include bearerToken in init frame instead of query param to avoid leaking tokens in URLs/logs
+        const init: any = { type: "init", system: systemPrompt, messages };
+        if (bearerToken) init.auth = { type: 'bearer', token: bearerToken };
         try { ws!.send(JSON.stringify(init)); } catch (e) { /* ignore send errors */ }
       };
 
@@ -323,9 +333,13 @@ export function createChatWidget({
 
   // Fallback non-streaming POST
   async function nonStreamingPost(messages: Message[], signal: AbortSignal) {
+    const mergedHeaders: Record<string, string> = Object.assign({}, headers || {});
+    const hasAuth = Object.keys(mergedHeaders).some((k) => k.toLowerCase() === 'authorization');
+    if (!hasAuth && bearerToken) mergedHeaders['Authorization'] = `Bearer ${bearerToken}`;
+
     const fetchOpts: RequestInit = {
       method: "POST",
-      headers: Object.assign({ "Content-Type": "application/json" }, headers || {}),
+      headers: Object.assign({ "Content-Type": "application/json" }, mergedHeaders || {}),
       body: JSON.stringify({ system: systemPrompt, messages }),
       signal,
       credentials,
