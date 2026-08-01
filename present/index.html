@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1" />
+  <title>Hallelujah ONE™ — Presentation</title>
+  <meta name="description" content="Hallelujah ONE™ boardroom presentation — a fullscreen, touch-driven deck." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" href="../src/styles/tokens.css" />
+  <link rel="stylesheet" href="../src/styles/base.css" />
+  <link rel="stylesheet" href="../src/styles/components.css" />
+  <link rel="stylesheet" href="../src/styles/present.css" />
+</head>
+<body>
+  <div class="deck" data-deck-root>
+    <div class="deck__brand">
+      <span class="deck__mark" aria-hidden="true">H1</span>
+      <span>Hallelujah&nbsp;ONE™</span>
+    </div>
+    <div class="deck__counter" data-deck-counter aria-hidden="true"></div>
+
+    <div data-deck-stage role="region" aria-label="Presentation slides" aria-live="polite"></div>
+
+    <!-- Thumb tap zones for iPad -->
+    <button class="deck__tap deck__tap--prev" data-deck-tapprev aria-label="Previous slide"></button>
+    <button class="deck__tap deck__tap--next" data-deck-tapnext aria-label="Next slide"></button>
+
+    <p class="deck__hint" data-deck-hint>Swipe, tap the edges, or use ← → · press F for fullscreen</p>
+
+    <div class="deck__dots" data-deck-dots role="tablist" aria-label="Slides"></div>
+
+    <div class="deck__controls">
+      <button class="deck__btn" data-deck-prev aria-label="Previous slide">‹</button>
+      <button class="deck__btn" data-deck-fs aria-label="Toggle fullscreen">⛶</button>
+      <button class="deck__btn" data-deck-next aria-label="Next slide">›</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { mountDeck } from "./present.js";
+    mountDeck(document.querySelector("[data-deck-root]"));
+  </script>
+</body>
+</html>
