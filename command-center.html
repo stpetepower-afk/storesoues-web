@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#070a12" />
+  <meta name="theme-color" content="#030508" />
 
-  <title>Command Center — Hallelujah ONE™</title>
-  <meta name="description" content="The Hallelujah ONE™ intelligence layer — an operational command center with demo and live operating modes, program metrics, data-source connections, and an AI Chief of Staff." />
+  <title>Command Center v2.0 — Lunar Intelligence · Hallelujah ONE™</title>
+  <meta name="description" content="Hallelujah ONE™ Command Center v2.0 — a lunar-intelligence, cyber-kinetic executive dashboard aligning operations with natural cycles: live moon phase, 13-month calendar, ecosystem telemetry, deadlines, and the capital war room." />
   <link rel="canonical" href="https://hallelujah-one.netlify.app/command-center.html" />
 
   <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
   <link rel="apple-touch-icon" href="/assets/img/favicon.svg" />
-  <link rel="mask-icon" href="/assets/img/favicon.svg" color="#7c6cff" />
+  <link rel="mask-icon" href="/assets/img/favicon.svg" color="#00f0ff" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Hallelujah ONE™" />
-  <meta property="og:title" content="Command Center — Hallelujah ONE™" />
-  <meta property="og:description" content="Operational metrics, program funnel, data-source connections, and an AI Chief of Staff — with clearly labeled demo and live modes." />
+  <meta property="og:title" content="Command Center v2.0 — Lunar Intelligence · Hallelujah ONE™" />
+  <meta property="og:description" content="A lunar-intelligence, cyber-kinetic executive dashboard for the Hallelujah ONE™ ecosystem." />
   <meta property="og:url" content="https://hallelujah-one.netlify.app/command-center.html" />
   <meta property="og:image" content="https://hallelujah-one.netlify.app/assets/img/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -24,109 +24,143 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://hallelujah-one.netlify.app/assets/img/og-image.png" />
 
-  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/command-center.css" />
 </head>
 <body>
   <div id="loader" aria-hidden="true">
     <div style="text-align:center">
-      <img class="loader-mark" src="/assets/img/favicon.svg" alt="" />
-      <div class="loader-bar"><i></i></div>
-      <div class="loader-word">Command Center</div>
+      <img class="lm" src="/assets/img/favicon.svg" alt="" />
+      <div class="bar"><i></i></div>
+      <div class="word">Lunar Node · Booting</div>
     </div>
   </div>
 
-  <nav class="nav">
-    <div class="wrap nav-inner">
-      <a class="brand" href="/">
-        <img class="mark" src="/assets/img/favicon.svg" alt="" />
-        <span>Hallelujah&nbsp;ONE<span class="tm">™</span></span>
+  <div class="field" aria-hidden="true"></div>
+
+  <!-- HUD nav -->
+  <nav class="hud-nav">
+    <div class="hud-nav-inner">
+      <a class="hud-brand" href="/">
+        <span class="beacon"><i></i><b></b></span>
+        <span class="title">HALLELUJAH_ONE <span>:: LUNAR_NODE_01</span></span>
       </a>
-      <div class="nav-links">
-        <a class="home" href="/">Home</a>
-        <a href="/digital-twin.html">Digital Twin</a>
-        <a href="/command-center.html">Command Center</a>
-        <a class="cta" href="/#ask">Partner With Us</a>
+      <div class="hud-nav-right">
+        <div class="hud-links">
+          <a href="/">Home</a>
+          <a href="/digital-twin.html">Twin</a>
+          <a href="/command-center.html" class="on">Command</a>
+        </div>
+        <span class="chip demo desk" title="Metrics are illustrative demo values, not live production data">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2 2"/></svg>
+          DEMO_ENV
+        </span>
+        <div class="mode" role="tablist" aria-label="Operating mode">
+          <button data-mode="demo" class="on">Demo</button>
+          <button data-mode="live">Live</button>
+        </div>
+        <span class="chip alert" id="coc-chip">HUD_COC: — DAYS</span>
       </div>
     </div>
   </nav>
 
-  <header class="hero" style="padding-bottom:20px">
-    <div class="wrap">
-      <span class="eyebrow reveal">Intelligence layer</span>
-      <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
-        <h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">Command Center</h1>
-        <div class="mode-switch" role="tablist" aria-label="Operating mode">
-          <button data-mode="demo" class="on">Demo</button>
-          <button data-mode="live">Live Operations</button>
+  <main class="stack">
+
+    <!-- Lunar badge + Chief banner -->
+    <section class="panel accent chief-banner reveal">
+      <div class="orb"></div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;justify-content:space-between">
+        <div class="lunar-badge" id="lunar-badge" style="flex:none"></div>
+      </div>
+      <div style="margin-top:18px">
+        <div class="chief-head">
+          <span class="lbl">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></svg>
+            AI_CHIEF_OF_STAFF // LUNAR_INTELLIGENCE_STREAM
+          </span>
+          <span class="ts" id="chief-ts">TIMESTAMP: —</span>
+        </div>
+        <p class="stream" id="chief-stream">Booting lunar intelligence stream…</p>
+        <div class="chief-line" id="chief-line"></div>
+      </div>
+    </section>
+
+    <!-- Telemetry grid -->
+    <section class="grid g4" id="kpis" aria-label="Ecosystem telemetry"></section>
+
+    <!-- Calendar / deadlines / war room -->
+    <section class="grid g13">
+      <div class="panel reveal">
+        <div class="ptitle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+          13-MONTH MASTER CALENDAR
+        </div>
+        <div id="calendar" style="margin-top:14px"></div>
+        <div class="foot" id="cal-foot">CYCLE: YEAR 1 — FOUNDATION</div>
+      </div>
+
+      <div class="panel reveal">
+        <div class="ptitle alert">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>
+          CRITICAL_PRESSURE_POINTS
+        </div>
+        <div id="deadlines" style="margin-top:14px;display:flex;flex-direction:column;gap:12px"></div>
+        <div class="insight" style="margin-top:14px">
+          <div class="k">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+            <span id="insight-k">LUNAR INSIGHT</span>
+          </div>
+          <p id="insight-p">Align deadlines with the lunar cycle. Full moon: completion energy.</p>
         </div>
       </div>
-      <p class="lead reveal" style="margin-top:14px">How we measure everything — one screen for operations, funding, and community impact.</p>
-      <div id="mode-banner" class="mode-banner demo reveal" style="margin-top:22px"></div>
-    </div>
-  </header>
 
-  <section style="padding-bottom:24px">
-    <div class="wrap">
-      <div class="grid grid-4" id="kpis"><!-- injected --></div>
-    </div>
-  </section>
-
-  <section style="padding-bottom:24px">
-    <div class="wrap">
-      <div class="grid grid-2" style="grid-template-columns:1fr 1fr">
-        <div class="card reveal">
-          <h3 style="margin-bottom:6px">Program funnel</h3>
-          <p style="color:var(--muted);font-size:0.9rem;margin:0 0 14px">Crisis → stability → training → income.</p>
-          <div id="funnel"><!-- injected --></div>
+      <div class="panel reveal" style="grid-column:span 1">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+          <div class="ptitle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7.5h.01M7 17h.01"/></svg>
+            CAPITAL_WAR_ROOM // FUNDING_PIPELINE
+          </div>
+          <span class="chip">TARGET: $2,400,000</span>
         </div>
-        <div class="card reveal">
-          <h3 style="margin-bottom:6px">Data sources</h3>
-          <p style="color:var(--muted);font-size:0.9rem;margin:0 0 14px">Connect these to move from demo to live operations.</p>
-          <div id="sources"><!-- injected --></div>
+        <div class="tbl-wrap" style="margin-top:14px">
+          <table class="wr">
+            <thead>
+              <tr><th>Funder Entity</th><th>Opportunity</th><th>Target</th><th>Status</th><th style="text-align:right">Deadline</th></tr>
+            </thead>
+            <tbody id="warroom"></tbody>
+          </table>
+        </div>
+        <div class="wr-foot">
+          <span>ETHOS: SERVICE • DIGNITY • ECONOMIC MOBILITY</span>
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:5px;height:5px;border-radius:50%;background:var(--cyan);display:inline-block" class="anim-pulse"></span> WISDOM_LAYER_ACTIVE</span>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section style="padding-bottom:24px">
-    <div class="wrap">
-      <h3 class="reveal" style="margin-bottom:14px">AI Chief of Staff</h3>
-      <div class="card chat reveal" id="chief">
-        <div class="chat-head"><span class="dot"></span> <strong>Chief of Staff</strong> <span style="color:var(--faint);font-size:0.82rem">· demo mode</span></div>
+    <!-- AI Chief of Staff — interactive -->
+    <section class="panel reveal" style="padding:0">
+      <div class="chat" id="chief-chat">
+        <div class="chat-head"><span class="beacon2"></span> CHIEF_OF_STAFF // INTERACTIVE_UPLINK · DEMO_MODE</div>
         <div class="chat-body" data-chat-body></div>
         <div class="chat-input-row">
-          <input data-chat-input type="text" placeholder="Ask about residents, revenue, funding, mobility…" />
+          <input data-chat-input type="text" placeholder="Query: residents, revenue, funding, mobility, lunar…" aria-label="Message the Chief of Staff" />
           <button data-chat-send aria-label="Send">↑</button>
         </div>
       </div>
-      <p style="color:var(--faint);font-size:0.85rem;margin-top:12px">Demo responses are scripted. In live operations this connects to your data sources and AI Chief of Staff prompts.</p>
-    </div>
-  </section>
+    </section>
 
-  <!-- Partnership ask -->
-  <section class="section" id="ask" style="padding-top:40px">
-    <div class="wrap">
-      <div class="card reveal" style="padding:clamp(28px,4vw,52px);background:var(--grad-soft);border-color:var(--line-strong)">
-        <p class="eyebrow">Where you fit</p>
-        <h2>Fund a working system, not a slide.</h2>
-        <p class="lead" style="margin-top:14px">This command center becomes the reporting backbone of the partnership — transparent metrics, clear funding alignment, measurable impact.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:stpetepower@gmail.com?subject=Hallelujah%20ONE%20Partnership">Start the conversation</a>
-          <a class="btn btn-ghost" href="/digital-twin.html">Explore the ecosystem</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  </main>
 
-  <footer class="footer">
-    <div class="wrap footer-inner">
-      <div class="brand" style="font-size:0.95rem"><img class="mark" src="/assets/img/favicon.svg" alt="" style="width:22px;height:22px" /> Hallelujah&nbsp;ONE™</div>
-      <div>A human empowerment operating system · St. Petersburg, FL</div>
-      <div>© <span data-year>2026</span> Hallelujah Ministries</div>
+  <footer class="hud-foot">
+    <div>SYSTEM_VERSION: 2.0.0 // PROTOCOL: HALLELUJAH_ONE_LUNAR</div>
+    <div class="lit-links">
+      <span class="cyan">LUNAR_NODE_ACTIVE</span>
+      <span>|</span>
+      <span id="foot-phase" class="cyan">— PHASE</span>
+      <span>|</span>
+      <span id="foot-month">13-MONTH CALENDAR: —</span>
     </div>
   </footer>
 
-  <script src="/assets/js/site.js"></script>
   <script type="module" src="/assets/js/command-center.js"></script>
 </body>
 </html>
