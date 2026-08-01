@@ -112,6 +112,24 @@ what we are building toward."*
 
 ---
 
+## Context, momentum & funding — confidence-flagged
+
+The stakeholder story is stronger with context and momentum — but every partnership and
+funding claim is stated at its true confidence level so the package stays credible under a
+foundation officer's read. **Do not upgrade these labels without confirmation.**
+
+| Element | How to state it | Confidence |
+|---------|-----------------|------------|
+| **Gas Plant District** ($8.1B redevelopment) | "Adjacent to the Gas Plant District" — public context / location advantage | ✅ Public record |
+| **NACA · FCLF · CRUTs** | "Targeted, high-impact funding pathways — actively pursued" | 🟡 In pursuit — **not committed** |
+| **Tesla Supercharger-class charging** | "A proposed community charging anchor" | 🟡 Proposed infrastructure |
+| **"Institution, not a program"** | Framing spine — the project is a permanent community institution | ✅ Our own framing |
+
+Every deliverable that names these carries a **CONFIDENCE KEY**: *public context · targeted
+pathways in pursuit · proposed infrastructure — not committed funding.*
+
+---
+
 ## Positioning language (use on every deliverable)
 
 > *Conceptual visualization of proposed development. Final design, engineering, and
