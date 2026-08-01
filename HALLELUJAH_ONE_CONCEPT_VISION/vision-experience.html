@@ -3,185 +3,322 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hallelujah ONE™ — The Vision · 3548 5th Ave S</title>
-<meta name="description" content="A four-unit sustainable workforce housing community integrated with mobility, food, technology, and human empowerment. St. Petersburg, FL.">
+<title>HALLELUJAH ONE™ — 概念 / The Vision · 3548 5th Ave S</title>
+<meta name="description" content="A Human Empowerment Operating System. Housing + Mobility + Technology + Community + Opportunity. St. Petersburg, FL.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-  @keyframes fadeInUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
-  @keyframes pulseDot{0%,100%{opacity:1;}50%{opacity:0.35;}}
-  @keyframes drift{0%{transform:translate(0,0);}50%{transform:translate(-14px,-10px);}100%{transform:translate(0,0);}}
+  :root{
+    --bg:#0B0B0C; --bg2:#0F0F11; --surface:#141416;
+    --ink:#F4F4F2; --muted:rgba(244,244,242,0.52); --faint:rgba(244,244,242,0.30);
+    --line:rgba(244,244,242,0.12); --line2:rgba(244,244,242,0.06);
+    --sig:#FF3242; --sig-dim:rgba(255,50,66,0.14);
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+  @keyframes lineGrow{from{transform:scaleX(0);}to{transform:scaleX(1);}}
   html{scroll-behavior:smooth;}
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:#1B1712;font-family:'Jost',sans-serif;color:#FAF4E8;overflow-x:hidden;line-height:1.6;}
-  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500;line-height:1.1;}
-  .accent{color:#C6A15B;}
-  ::selection{background:#C6A15B;color:#1B1712;}
-  ::-webkit-scrollbar{width:8px;}
-  ::-webkit-scrollbar-thumb{background:rgba(198,161,91,0.4);border-radius:4px;}
+  body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk','Zen Kaku Gothic New',sans-serif;overflow-x:hidden;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  ::selection{background:var(--sig);color:#0B0B0C;}
+  ::-webkit-scrollbar{width:7px;}
+  ::-webkit-scrollbar-track{background:var(--bg);}
+  ::-webkit-scrollbar-thumb{background:rgba(244,244,242,0.18);}
+  .jp{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:400;}
+  .mono{font-family:'Space Mono',monospace;}
 
-  /* Reveal-on-scroll */
-  .reveal{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s ease;}
+  /* fixed technical chrome */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;
+    padding:16px clamp(18px,4vw,44px);mix-blend-mode:difference;pointer-events:none;}
+  .topbar .id{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#fff;}
+  .progress{position:fixed;top:0;left:0;height:2px;background:var(--sig);z-index:70;width:0;transition:width .1s linear;}
+  .vlabel{position:fixed;right:14px;bottom:24px;z-index:55;writing-mode:vertical-rl;font-family:'Space Mono',monospace;
+    font-size:10.5px;letter-spacing:0.32em;text-transform:uppercase;color:var(--faint);}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);}
   .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal.d1{transition-delay:.08s;}.reveal.d2{transition-delay:.16s;}.reveal.d3{transition-delay:.24s;}.reveal.d4{transition-delay:.32s;}
 
-  /* Scene shell */
-  .scene{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,9vw,140px) clamp(24px,7vw,110px);overflow:hidden;}
-  .scene-num{font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#C6A15B;font-weight:600;margin-bottom:22px;}
-  .scene h2{font-style:italic;font-size:clamp(34px,6vw,72px);max-width:16ch;margin-bottom:26px;}
-  .scene p.lead{font-size:clamp(17px,2vw,21px);max-width:56ch;color:rgba(250,244,232,0.78);}
-  .narration{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,3vw,34px);color:#E4CD9A;max-width:22ch;margin-top:34px;}
+  /* section shell */
+  section{position:relative;padding:clamp(70px,11vh,150px) clamp(20px,6vw,110px);border-top:1px solid var(--line2);}
+  .grid-bg{position:absolute;inset:0;z-index:0;pointer-events:none;
+    background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);
+    background-size:64px 64px;mask-image:radial-gradient(ellipse 90% 80% at 50% 40%,#000 30%,transparent 100%);}
+  .wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto;}
 
-  /* Placeholder art panel — real render drops in via background-image */
-  .art{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;}
-  .art::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(27,23,20,0.94) 0%,rgba(27,23,20,0.7) 45%,rgba(27,23,20,0.5) 100%);}
-  .grid-tex{position:absolute;inset:0;z-index:-1;opacity:0.5;
-    background-image:repeating-linear-gradient(0deg,rgba(198,161,91,0.05) 0 1px,transparent 1px 46px),repeating-linear-gradient(90deg,rgba(198,161,91,0.05) 0 1px,transparent 1px 46px);}
-  .glow{position:absolute;border-radius:50%;filter:blur(80px);z-index:-1;animation:drift 14s ease-in-out infinite;}
+  /* index eyebrow row */
+  .ey{display:flex;align-items:baseline;gap:16px;margin-bottom:30px;}
+  .ey .num{font-family:'Space Mono',monospace;font-size:12px;color:var(--sig);letter-spacing:0.1em;}
+  .ey .lbl{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);}
+  .ey .lbl.jp{font-family:'Zen Kaku Gothic New',sans-serif;letter-spacing:0.2em;font-size:12px;color:var(--faint);}
+  .ey::before{content:"";flex:0 0 26px;height:1px;background:var(--sig);transform-origin:left;}
 
-  /* Placeholder chip shown until a real render is dropped in */
-  .plchip{position:absolute;bottom:24px;right:24px;z-index:3;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(250,244,232,0.42);border:1px solid rgba(198,161,91,0.28);border-radius:999px;padding:7px 14px;background:rgba(27,23,20,0.55);}
+  h2{font-weight:500;font-size:clamp(30px,5.2vw,62px);line-height:1.04;letter-spacing:-0.02em;max-width:19ch;}
+  h2 em{font-style:normal;color:var(--sig);}
+  .lead{font-size:clamp(16px,1.7vw,20px);font-weight:300;color:var(--muted);max-width:60ch;margin-top:26px;}
 
-  /* ---- HERO ---- */
-  .hero{text-align:center;align-items:center;text-align:center;background:radial-gradient(ellipse 1000px 640px at 50% 12%,rgba(198,161,91,0.16),transparent 60%),linear-gradient(160deg,#1B1712 0%,#241C14 55%,#1B1712 100%);}
-  .hero .live-pill{display:inline-flex;align-items:center;gap:10px;padding:9px 18px;border:1px solid rgba(198,161,91,0.4);border-radius:999px;margin-bottom:34px;}
-  .hero .live-pill .dot{width:8px;height:8px;border-radius:50%;background:#7FD79A;animation:pulseDot 1.8s ease-in-out infinite;}
-  .hero .live-pill span{font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(250,244,232,0.85);}
-  .hero h1{font-style:italic;font-size:clamp(42px,8vw,104px);max-width:14ch;margin:0 auto 26px;}
-  .hero p.sub{font-size:clamp(17px,2.2vw,22px);max-width:50ch;margin:0 auto 14px;color:rgba(250,244,232,0.74);}
-  .hero .addr{font-size:12.5px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;margin-top:20px;}
-  .scroll-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(250,244,232,0.5);}
-  .scroll-cue::after{content:"";display:block;width:1px;height:34px;margin:12px auto 0;background:linear-gradient(rgba(198,161,91,0.7),transparent);}
+  /* ---------- HERO ---------- */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;border-top:none;
+    background:radial-gradient(120% 90% at 80% 10%,rgba(255,50,66,0.10),transparent 55%),var(--bg);}
+  .hero .kanji{position:absolute;right:clamp(-10px,2vw,60px);top:8%;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:300;
+    font-size:clamp(160px,34vw,440px);line-height:.8;color:rgba(244,244,242,0.045);z-index:1;user-select:none;}
+  .hero .wrap{z-index:3;}
+  .hero .tag{display:inline-flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:38px;animation:fadeUp .8s ease both;}
+  .hero .tag .dot{width:7px;height:7px;background:var(--sig);border-radius:50%;animation:blink 1.6s ease-in-out infinite;}
+  .hero h1{font-weight:600;font-size:clamp(46px,11vw,150px);line-height:0.92;letter-spacing:-0.04em;animation:fadeUp .9s ease .05s both;}
+  .hero h1 .tm{font-size:0.28em;vertical-align:super;color:var(--muted);font-weight:400;letter-spacing:0;}
+  .hero .sub{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:400;font-size:clamp(15px,2vw,22px);color:var(--ink);margin-top:26px;letter-spacing:0.02em;animation:fadeUp .9s ease .15s both;}
+  .hero .os{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:30px;animation:fadeUp .9s ease .25s both;}
+  .hero .os span{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.06em;color:var(--muted);}
+  .hero .os span b{color:var(--ink);font-weight:400;}
+  .hero .os .plus{color:var(--sig);}
+  .hero .meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:52px;padding-top:22px;border-top:1px solid var(--line);animation:fadeUp .9s ease .35s both;}
+  .hero .meta div{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);}
+  .hero .meta b{display:block;color:var(--ink);font-weight:400;font-size:13px;margin-top:5px;letter-spacing:0.04em;}
 
-  /* ---- FEELING STRIP ---- */
-  .feel{background:#FAF4E8;color:#1B1712;padding:clamp(70px,10vw,130px) clamp(24px,7vw,110px);text-align:center;}
-  .feel .eyebrow{font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#C6A15B;font-weight:600;margin-bottom:22px;}
-  .feel h2{font-style:italic;font-size:clamp(30px,4.5vw,52px);max-width:20ch;margin:0 auto 50px;}
-  .feel-words{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;max-width:900px;margin:0 auto;}
-  .feel-words span{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.6vw,30px);padding:10px 26px;border:1px solid rgba(198,161,91,0.5);border-radius:999px;}
-  .feel .notline{margin-top:44px;font-size:14px;color:rgba(27,23,20,0.55);letter-spacing:0.02em;}
-  .feel .notline b{color:#1B1712;font-weight:600;}
+  /* ---------- THE WHY ---------- */
+  .why{background:var(--bg2);}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,80px);margin-top:52px;}
+  .card{border:1px solid var(--line);padding:clamp(24px,3vw,40px);background:rgba(255,255,255,0.012);position:relative;}
+  .card .ctitle{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sig);margin-bottom:24px;}
+  .card.resp .ctitle{color:var(--ink);}
+  .barrier{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--line2);font-size:15px;font-weight:300;color:var(--muted);}
+  .barrier:last-child{border-bottom:none;}
+  .barrier .bx{font-family:'Space Mono',monospace;font-size:11px;color:var(--faint);}
+  .resp .rlead{font-size:16px;font-weight:300;color:var(--muted);margin-bottom:26px;}
+  .osline{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;}
+  .osline .pill{border:1px solid var(--line);padding:9px 16px;font-size:13.5px;letter-spacing:0.02em;}
+  .osline .pl{color:var(--sig);font-family:'Space Mono',monospace;}
+  .node{margin-top:56px;padding:26px 30px;border-left:2px solid var(--sig);background:var(--sig-dim);}
+  .node .jp{font-size:13px;color:var(--sig);letter-spacing:0.2em;margin-bottom:8px;}
+  .node p{font-size:clamp(18px,2.4vw,26px);font-weight:400;line-height:1.35;}
+  .node p b{color:var(--sig);font-weight:500;}
 
-  /* ---- PHILOSOPHY ---- */
-  .philo{background:linear-gradient(160deg,#221B14,#1B1712);text-align:center;align-items:center;}
-  .philo .flow{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center;align-items:center;margin-top:20px;font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3.2vw,38px);font-style:italic;}
-  .philo .flow .arrow{color:#C6A15B;font-style:normal;font-size:0.7em;}
-  .bridge{margin-top:56px;font-size:clamp(15px,1.8vw,18px);color:rgba(250,244,232,0.66);letter-spacing:0.04em;}
-  .bridge b{color:#E4CD9A;font-weight:500;}
+  /* ---------- SCENE (image panels) ---------- */
+  .scene{min-height:92vh;display:flex;align-items:flex-end;overflow:hidden;}
+  .scene .art{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;}
+  .scene .art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,12,0.96) 0%,rgba(11,11,12,0.72) 42%,rgba(11,11,12,0.34) 100%),linear-gradient(0deg,rgba(11,11,12,0.9),transparent 55%);}
+  .scene .wrap{padding-bottom:10px;}
+  .scene .narr{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:300;font-size:clamp(20px,3vw,34px);line-height:1.3;color:var(--ink);max-width:24ch;margin-top:24px;}
+  .scene .narr b{color:var(--sig);font-weight:500;}
+  .plchip{position:absolute;bottom:18px;right:18px;z-index:3;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);border:1px solid var(--line);padding:6px 12px;background:rgba(11,11,12,0.6);}
+  .scene .kside{position:absolute;left:clamp(-4px,1vw,24px);top:14%;writing-mode:vertical-rl;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:300;font-size:clamp(38px,7vw,84px);color:rgba(244,244,242,0.06);z-index:1;letter-spacing:0.1em;}
 
-  /* ---- CLOSING ---- */
-  .closing{text-align:center;align-items:center;background:radial-gradient(ellipse 900px 600px at 50% 60%,rgba(198,161,91,0.18),transparent 65%),#161310;}
-  .closing .mark{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,7vw,86px);font-weight:600;letter-spacing:0.02em;}
-  .closing .tm{font-size:clamp(14px,1.8vw,18px);letter-spacing:0.16em;text-transform:uppercase;color:#C6A15B;margin-top:18px;}
-  .closing .sub2{font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(250,244,232,0.6);margin-top:10px;}
+  /* ---------- ROADMAP ---------- */
+  .road{background:var(--bg2);}
+  .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px;border:1px solid var(--line);}
+  .phase{padding:clamp(24px,3vw,38px);border-right:1px solid var(--line);position:relative;}
+  .phase:last-child{border-right:none;}
+  .phase.now{background:var(--sig-dim);}
+  .phase .pn{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.18em;color:var(--sig);}
+  .phase.mid .pn,.phase.late .pn{color:var(--faint);}
+  .phase h3{font-weight:500;font-size:clamp(19px,2vw,24px);margin:16px 0 4px;letter-spacing:-0.01em;}
+  .phase .yr{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);margin-bottom:22px;}
+  .phase ul{list-style:none;}
+  .phase li{font-size:14px;font-weight:300;color:var(--muted);padding:8px 0;border-top:1px solid var(--line2);display:flex;gap:10px;}
+  .phase li::before{content:"→";color:var(--sig);opacity:.7;}
+  .phase.now li::before{content:"✓";}
+  @media(max-width:760px){.phases{grid-template-columns:1fr;}.phase{border-right:none;border-bottom:1px solid var(--line);}.phase:last-child{border-bottom:none;}}
 
-  /* ---- DISCLAIMER ---- */
-  footer{background:#120F0C;padding:38px clamp(24px,7vw,110px);text-align:center;}
-  footer p{font-size:12.5px;line-height:1.7;color:rgba(250,244,232,0.5);max-width:70ch;margin:0 auto;font-style:italic;}
-  footer .brand{margin-top:18px;font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:0.04em;color:rgba(250,244,232,0.7);}
+  /* ---------- PHILOSOPHY ---------- */
+  .philo{text-align:center;background:radial-gradient(90% 70% at 50% 50%,rgba(255,50,66,0.07),transparent 60%),var(--bg);}
+  .philo .wrap{max-width:1000px;}
+  .philo h2{margin:0 auto;max-width:22ch;}
+  .flow{display:flex;flex-wrap:wrap;gap:8px 8px;justify-content:center;align-items:center;margin-top:44px;}
+  .flow .st{font-family:'Space Mono',monospace;font-size:clamp(13px,1.6vw,17px);letter-spacing:0.06em;padding:11px 20px;border:1px solid var(--line);}
+  .flow .ar{color:var(--sig);font-family:'Space Mono',monospace;}
+  .bridge{margin-top:44px;font-family:'Space Mono',monospace;font-size:clamp(12px,1.5vw,15px);letter-spacing:0.08em;color:var(--muted);}
+  .bridge b{color:var(--ink);}
+
+  /* ---------- CLOSING ---------- */
+  .closing{min-height:96vh;display:flex;align-items:center;justify-content:center;text-align:center;
+    background:radial-gradient(80% 60% at 50% 60%,rgba(255,50,66,0.16),transparent 60%),#08080A;}
+  .closing .kanji{position:absolute;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:300;font-size:clamp(200px,42vw,560px);color:rgba(244,244,242,0.04);z-index:0;line-height:.8;}
+  .closing .wrap{z-index:2;}
+  .closing .mark{font-weight:700;font-size:clamp(40px,9vw,120px);letter-spacing:-0.04em;line-height:.95;}
+  .closing .mark .tm{font-size:0.24em;vertical-align:super;font-weight:400;color:var(--muted);}
+  .closing .lc{margin-top:22px;font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(15px,2vw,20px);color:var(--sig);letter-spacing:0.16em;}
+  .closing .os2{margin-top:8px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);}
+  .closing .key{margin-top:46px;padding-top:26px;border-top:1px solid var(--line);font-weight:300;font-size:clamp(16px,2.1vw,22px);color:var(--ink);max-width:30ch;margin-left:auto;margin-right:auto;}
+
+  footer{background:#08080A;padding:34px clamp(20px,6vw,110px);text-align:center;border-top:1px solid var(--line);}
+  footer p{font-family:'Space Mono',monospace;font-size:11px;line-height:1.7;color:var(--faint);max-width:78ch;margin:0 auto;letter-spacing:0.02em;}
+  footer .b2{margin-top:16px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;}
+
+  @media(max-width:760px){.cols{grid-template-columns:1fr;}.hero .kanji{top:auto;bottom:4%;}}
 </style>
 </head>
 <body>
 
-<!-- HERO / SCENE 1: ARRIVAL -->
-<section class="scene hero">
-  <div class="glow" style="width:360px;height:360px;background:rgba(198,161,91,0.22);top:8%;left:12%;"></div>
-  <div class="glow" style="width:300px;height:300px;background:rgba(127,215,154,0.10);bottom:14%;right:14%;animation-delay:-6s;"></div>
-  <div class="grid-tex"></div>
-  <span class="live-pill"><span class="dot"></span><span>The Vision · Conceptual</span></span>
-  <h1>Welcome to the future&nbsp;of&nbsp;community.</h1>
-  <p class="sub">A four-unit sustainable workforce housing community — integrated with mobility, food, technology, and human empowerment.</p>
-  <p class="addr">Hallelujah ONE™ · 3548 5th Ave S · St. Petersburg, FL</p>
-  <div class="scroll-cue">Walk in</div>
-</section>
+<div class="progress" id="prog"></div>
+<div class="topbar">
+  <div class="id">HALLELUJAH ONE™</div>
+  <div class="id">概念 / CONCEPT · v1.0</div>
+</div>
+<div class="vlabel">3548 5TH AVE S · ST. PETERSBURG FL</div>
 
-<!-- SCENE 2: HUMAN EXPERIENCE -->
-<section class="scene">
-  <div class="art" style="background-image:url('03_COMMUNITY_EXPERIENCE/Courtyard.jpg'), radial-gradient(circle at 30% 30%,rgba(198,161,91,0.30),transparent 55%), linear-gradient(150deg,#2A2118,#1B1712);"></div>
-  <div class="grid-tex"></div>
-  <div class="glow" style="width:420px;height:420px;background:rgba(198,161,91,0.14);top:20%;left:55%;"></div>
-  <div class="reveal">
-    <p class="scene-num">Scene 02 · The Human Experience</p>
-    <h2>The project is about people, not buildings.</h2>
-    <p class="lead">Children playing in the courtyard. Neighbors gathering in the garden. Veterans, families, seniors, and workforce residents — home. Technology working quietly in the background, dignity in the foreground.</p>
-  </div>
-  <span class="plchip">Render drops in → 03_COMMUNITY_EXPERIENCE / Courtyard</span>
-</section>
-
-<!-- FEELING STRIP -->
-<section class="feel">
-  <p class="eyebrow reveal">What you should feel</p>
-  <h2 class="reveal">Not apartments. Not construction. Not real estate.</h2>
-  <div class="feel-words reveal">
-    <span>Dignity</span><span>Belonging</span><span>Sustainability</span>
-    <span>Safety</span><span>Opportunity</span><span>Community</span>
-  </div>
-  <p class="notline reveal">Most early-stage projects show spreadsheets and zoning maps. <b>But people fund what they can see.</b></p>
-</section>
-
-<!-- SCENE 3: THE PLACE (architecture + sustainability) -->
-<section class="scene">
-  <div class="art" style="background-image:url('01_MASTER_RENDERING/Site Vision 4K.jpg'), radial-gradient(circle at 70% 40%,rgba(198,161,91,0.28),transparent 50%), linear-gradient(160deg,#241C14,#1B1712 70%);"></div>
-  <div class="grid-tex"></div>
-  <div class="reveal">
-    <p class="scene-num">Scene 03 · The Place</p>
-    <h2>Coastal Florida modern, built to give back.</h2>
-    <p class="lead">Two-story residences with private entrances and balconies. A solar roof and green-roof elements. Rain gardens, native landscaping, fruit trees, and community garden beds. Luxury affordable-housing principles — attainable, never institutional.</p>
-  </div>
-  <span class="plchip">Render drops in → 01_MASTER_RENDERING / Site Vision 4K</span>
-</section>
-
-<!-- SCENE 4: ECONOMIC MOBILITY -->
-<section class="scene">
-  <div class="art" style="background-image:radial-gradient(circle at 25% 70%,rgba(127,215,154,0.16),transparent 55%), linear-gradient(150deg,#1F1810,#1B1712);"></div>
-  <div class="grid-tex"></div>
-  <div class="glow" style="width:380px;height:380px;background:rgba(198,161,91,0.16);bottom:10%;left:8%;"></div>
-  <div class="reveal">
-    <p class="scene-num">Scene 04 · Economic Mobility</p>
-    <h2>Not just housing. A pathway forward.</h2>
-    <p class="lead">EV charging and a future autonomous-vehicle zone. Community transportation access. A digital learning area and shared community resources. The infrastructure of opportunity, woven into where people live.</p>
-    <p class="narration">"Not just housing. A pathway forward."</p>
-  </div>
-  <span class="plchip">Render drops in → 05_VIDEO / Economic Mobility frame</span>
-</section>
-
-<!-- PHILOSOPHY -->
-<section class="scene philo">
-  <div class="grid-tex"></div>
-  <div class="reveal">
-    <p class="scene-num">The Living Compass™</p>
-    <h2 style="font-style:italic;">A Human Empowerment Operating System.</h2>
-    <div class="flow">
-      <span>Observe</span><span class="arrow">→</span>
-      <span>Imagine</span><span class="arrow">→</span>
-      <span>Build</span><span class="arrow">→</span>
-      <span>Measure</span><span class="arrow">→</span>
-      <span>Improve</span>
+<!-- 00 · HERO -->
+<section class="hero">
+  <div class="grid-bg"></div>
+  <div class="kanji jp">一</div>
+  <div class="wrap">
+    <span class="tag"><span class="dot"></span>Concept Visualization · Not Construction Documents</span>
+    <h1>HALLELUJAH&nbsp;ONE<span class="tm">™</span></h1>
+    <p class="sub">希望 &nbsp;— A Human Empowerment Operating System.</p>
+    <div class="os">
+      <span><b>Housing</b></span><span class="plus">+</span>
+      <span><b>Mobility</b></span><span class="plus">+</span>
+      <span><b>Technology</b></span><span class="plus">+</span>
+      <span><b>Community</b></span><span class="plus">+</span>
+      <span><b>Opportunity</b></span>
     </div>
-    <p class="bridge">Vision → Emotion → Partnership → Funding → Execution.<br><b>The visualization is the bridge.</b></p>
+    <div class="meta">
+      <div>Site<b>3548 5th Ave S</b></div>
+      <div>City<b>St. Petersburg, FL</b></div>
+      <div>Node 01<b>Sustainable Fourplex</b></div>
+      <div>Status<b>Vision · Stakeholder Briefing</b></div>
+    </div>
   </div>
 </section>
 
-<!-- CLOSING -->
-<section class="scene closing">
-  <div class="glow" style="width:500px;height:500px;background:rgba(198,161,91,0.18);top:30%;left:50%;transform:translateX(-50%);"></div>
-  <div class="reveal">
-    <div class="mark">HALLELUJAH ONE™</div>
-    <div class="tm">The Living Compass™</div>
-    <div class="sub2">Human Empowerment Operating System</div>
+<!-- 01 · THE WHY -->
+<section class="why">
+  <div class="wrap">
+    <div class="ey reveal"><span class="num">01</span><span class="lbl">The Why</span><span class="lbl jp">課題と応答</span></div>
+    <h2 class="reveal d1">The fourplex is not the project. It is the <em>first physical node.</em></h2>
+    <div class="cols">
+      <div class="card chal reveal d2">
+        <div class="ctitle">Challenge — Interconnected Barriers</div>
+        <div class="barrier"><span class="bx">01</span>Housing affordability</div>
+        <div class="barrier"><span class="bx">02</span>Transportation access</div>
+        <div class="barrier"><span class="bx">03</span>Workforce mobility</div>
+        <div class="barrier"><span class="bx">04</span>Digital access</div>
+        <div class="barrier"><span class="bx">05</span>Economic opportunity</div>
+      </div>
+      <div class="card resp reveal d3">
+        <div class="ctitle">Response — An Integrated System</div>
+        <p class="rlead">HALLELUJAH ONE™ answers them together, not one at a time.</p>
+        <div class="osline">
+          <span class="pill">Housing</span><span class="pl">+</span>
+          <span class="pill">Mobility</span><span class="pl">+</span>
+          <span class="pill">Technology</span><span class="pl">+</span>
+          <span class="pill">Community</span><span class="pl">+</span>
+          <span class="pill">Opportunity</span>
+        </div>
+      </div>
+    </div>
+    <div class="node reveal d2">
+      <div class="jp">起点 · ORIGIN NODE</div>
+      <p>Monday's site is where it begins — <b>one node in a system built to scale.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · THE PLACE / ARRIVAL -->
+<section class="scene">
+  <div class="art" style="background-image:url('01_MASTER_RENDERING/Site Vision 4K.jpg'), radial-gradient(circle at 72% 34%,rgba(255,50,66,0.16),transparent 46%), linear-gradient(135deg,#16161A,#0B0B0C 72%);"></div>
+  <div class="kside jp">到着</div>
+  <div class="wrap">
+    <div class="ey reveal"><span class="num">02</span><span class="lbl">Arrival · The Place</span><span class="lbl jp">到着</span></div>
+    <h2 class="reveal d1">Coastal Florida modern, built to give back.</h2>
+    <p class="narr reveal d2">"Welcome to a new vision of community — where sustainable housing, technology, and human opportunity <b>come together.</b>"</p>
+  </div>
+  <span class="plchip">→ 01_MASTER_RENDERING / Site Vision 4K</span>
+</section>
+
+<!-- 03 · HUMAN EXPERIENCE -->
+<section class="scene">
+  <div class="art" style="background-image:url('03_COMMUNITY_EXPERIENCE/Gathering Space.jpg'), radial-gradient(circle at 28% 40%,rgba(255,50,66,0.14),transparent 50%), linear-gradient(120deg,#18181C,#0B0B0C);"></div>
+  <div class="kside jp">尊厳</div>
+  <div class="wrap">
+    <div class="ey reveal"><span class="num">03</span><span class="lbl">Human Experience</span><span class="lbl jp">尊厳 · Dignity</span></div>
+    <h2 class="reveal d1">Every detail designed around <em>dignity.</em></h2>
+    <p class="narr reveal d2">"Homes are not just structures. They are foundations for families, veterans, workers, and neighbors <b>to thrive.</b>"</p>
+  </div>
+  <span class="plchip">→ 03_COMMUNITY_EXPERIENCE / Gathering Space</span>
+</section>
+
+<!-- 04 · ECONOMIC MOBILITY -->
+<section class="scene">
+  <div class="art" style="background-image:radial-gradient(circle at 24% 66%,rgba(255,50,66,0.13),transparent 52%), linear-gradient(120deg,#141418,#0B0B0C);"></div>
+  <div class="kside jp">道</div>
+  <div class="wrap">
+    <div class="ey reveal"><span class="num">04</span><span class="lbl">Economic Mobility</span><span class="lbl jp">道 · The Path</span></div>
+    <h2 class="reveal d1">Not just housing. <em>A pathway forward.</em></h2>
+    <p class="narr reveal d2">"Connected mobility, digital resources, and community support — moving people from survival <b>toward stability.</b>"</p>
+  </div>
+  <span class="plchip">→ 05_VIDEO / Economic Mobility frame</span>
+</section>
+
+<!-- 05 · ROADMAP -->
+<section class="road">
+  <div class="wrap">
+    <div class="ey reveal"><span class="num">05</span><span class="lbl">Concept Evolution Roadmap</span><span class="lbl jp">発展の道筋</span></div>
+    <h2 class="reveal d1">Ambition, held to a <em>responsible</em> process.</h2>
+    <div class="phases">
+      <div class="phase now reveal d1">
+        <div class="pn">PHASE 01 · 2026</div>
+        <h3>Concept Visualization</h3>
+        <div class="yr">You are here</div>
+        <ul><li>Community vision</li><li>Stakeholder alignment</li><li>Funding conversations</li></ul>
+      </div>
+      <div class="phase mid reveal d2">
+        <div class="pn">PHASE 02 · 2026–2027</div>
+        <h3>Professional Design</h3>
+        <div class="yr">Development</div>
+        <ul><li>Architect engagement</li><li>Engineering studies</li><li>Site refinement</li><li>Cost validation</li></ul>
+      </div>
+      <div class="phase late reveal d3">
+        <div class="pn">PHASE 03 · FUTURE</div>
+        <h3>Implementation</h3>
+        <div class="yr">Execution</div>
+        <ul><li>Construction documents</li><li>Permitting</li><li>Development execution</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · PHILOSOPHY -->
+<section class="philo">
+  <div class="grid-bg"></div>
+  <div class="wrap">
+    <div class="ey reveal" style="justify-content:center;"><span class="num">06</span><span class="lbl">The Living Compass™</span><span class="lbl jp">羅針盤</span></div>
+    <h2 class="reveal d1" style="margin-inline:auto;">An operating system for how a community moves forward.</h2>
+    <div class="flow reveal d2">
+      <span class="st">OBSERVE</span><span class="ar">→</span>
+      <span class="st">IMAGINE</span><span class="ar">→</span>
+      <span class="st">BUILD</span><span class="ar">→</span>
+      <span class="st">MEASURE</span><span class="ar">→</span>
+      <span class="st">IMPROVE</span>
+    </div>
+    <p class="bridge reveal d3">VISION → EMOTION → PARTNERSHIP → FUNDING → EXECUTION &nbsp;·&nbsp; <b>the visualization is the bridge.</b></p>
+  </div>
+</section>
+
+<!-- 07 · CLOSING -->
+<section class="closing">
+  <div class="kanji jp">光</div>
+  <div class="wrap">
+    <div class="mark reveal">HALLELUJAH ONE<span class="tm">™</span></div>
+    <div class="lc jp reveal d1">The Living Compass™ · 羅針盤</div>
+    <div class="os2 reveal d1">Human Empowerment Operating System</div>
+    <p class="key reveal d2">"This is not a construction document. It is a window into what we are building toward."</p>
   </div>
 </section>
 
 <footer>
   <p>Conceptual visualization of proposed development. Final design, engineering, and construction documents will be developed through professional architectural and engineering processes during project advancement.</p>
-  <p class="brand">Hallelujah Ministries · A Storehouse For Every Need</p>
+  <p class="b2">Hallelujah Ministries · A Storehouse For Every Need</p>
 </footer>
 
 <script>
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  },{threshold:0.18});
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.16});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const prog=document.getElementById('prog');
+  const onScroll=()=>{const h=document.documentElement;const p=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(p*100)+'%';};
+  document.addEventListener('scroll',onScroll,{passive:true});onScroll();
 </script>
 
 </body>

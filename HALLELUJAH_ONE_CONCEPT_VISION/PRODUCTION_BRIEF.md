@@ -22,6 +22,23 @@ The emotional narrative comes first, before a single asset is generated.
 
 **Not:** apartments · construction · real estate.
 
+### Art direction — visual language (important)
+
+The graphic treatment is **modern Japanese / Tokyo design-forward** — *not* a traditional
+ministry look. Reference points: SANAA, Kengo Kuma, MUJI, a Japanese architecture monograph.
+
+| Do | Avoid |
+|----|-------|
+| Near-black canvas, crisp off-white type | Gold / cream "luxury ministry" palette |
+| One signal accent (red) used sparingly | Ornate serifs, script fonts |
+| Grotesk sans + monospace technical labels | Decorative flourishes |
+| Hairline grids, index numbering (01–07), generous negative space | Dense, busy layouts |
+| Restrained kanji accents with intent (希望 hope · 道 path · 光 light · 羅針盤 compass) | Random decorative characters |
+
+This applies to the **deck, the experience page, and all motion titles/graphics.**
+The **architectural renders themselves stay photoreal** (per the Meshy prompt) — the modern
+language lives in the framing, typography, titles, and layout around them.
+
 ---
 
 ## Phase 1 — Generate the concept model (Days 1–2)
@@ -110,6 +127,17 @@ HALLELUJAH ONE™
 The Living Compass™
 Human Empowerment Operating System
 ```
+
+### Voiceover script — v1.0 (elevated)
+
+Warm, measured, unhurried. One voice.
+
+| Time | Scene | Voiceover |
+|------|-------|-----------|
+| 0:00–0:15 | Arrival | *"Welcome to a new vision of community. A place where sustainable housing, technology, and human opportunity come together."* |
+| 0:15–0:45 | Human Experience | *"Here, every detail is designed around dignity. Homes are not just structures — they are foundations for families, veterans, workers, and neighbors to thrive."* |
+| 0:45–1:15 | Economic Mobility | *"Beyond housing, this is a pathway forward. Connected mobility, digital resources, and community support create opportunities for people to move from survival toward stability."* |
+| 1:15–1:30 | Closing | *"HALLELUJAH ONE™. The Living Compass™. A Human Empowerment Operating System designed to help communities navigate toward a better future."* |
 
 ---
 

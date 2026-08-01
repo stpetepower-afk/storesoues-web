@@ -35,6 +35,14 @@ Everything here serves that one goal: helping a stakeholder *walk into the futur
 
 The project is about **people**, not buildings.
 
+### Visual language — Tokyo modern, not traditional ministry
+
+The graphic treatment is deliberately **modern Japanese / design-forward** (SANAA · Kengo
+Kuma · MUJI): near-black canvas, crisp grotesk type, one signal-red accent, hairline grids,
+index numbering, restrained kanji accents, and generous negative space. **No** gold-and-serif
+"luxury ministry" look. The architectural renders stay photoreal; the modern language lives
+in the framing, typography, and layout around them. Full spec in `PRODUCTION_BRIEF.md`.
+
 ---
 
 ## Folder structure
@@ -49,7 +57,8 @@ HALLELUJAH_ONE_CONCEPT_VISION/
 ├── 03_COMMUNITY_EXPERIENCE/   ← garden / courtyard / gathering space
 ├── 04_INTERIOR/               ← living room / kitchen / bedroom
 ├── 05_VIDEO/                  ← the 60–90 sec vision walkthrough
-└── 06_PRESENTATION/           ← the final vision deck
+├── 06_PRESENTATION/           ← the final vision deck
+└── 07_PROJECT_FOUNDATION/     ← the notes serious partners read after the emotion
 ```
 
 Each folder contains a `README.md` describing exactly what asset belongs there,
@@ -68,6 +77,38 @@ so anyone on the team can drop the right file in the right place.
 | — · Package & present | Monday | Vision deck + experience page | — |
 
 Full step-by-step in [`PRODUCTION_BRIEF.md`](./PRODUCTION_BRIEF.md).
+
+---
+
+## The narrative arc (built into the experience page)
+
+The stakeholder page moves through a deliberate sequence:
+
+1. **Hero** — HALLELUJAH ONE™, the operating-system framing.
+2. **The Why (Mission Context)** — the interconnected barriers (housing, transportation,
+   workforce, digital, opportunity) and the integrated response. *The fourplex is the first
+   physical node, not the whole project.*
+3. **The Place · Arrival** → **Human Experience** → **Economic Mobility** — the emotional journey.
+4. **Concept Evolution Roadmap** — Phase 1 (2026) → Phase 2 (2026–27) → Phase 3, so ambition
+   is held to a responsible process.
+5. **The Living Compass™** — Observe → Imagine → Build → Measure → Improve.
+6. **Closing** — the brand mark and the key line: *"This is not a construction document. It is
+   a window into what we are building toward."*
+
+---
+
+## Monday presentation flow (15 minutes)
+
+| Time | Segment |
+|------|---------|
+| 0–2 min | Vision statement |
+| 2–4 min | 90-second cinematic walkthrough |
+| 4–8 min | Renderings and spaces |
+| 8–12 min | The Human Empowerment Operating System |
+| 12–15 min | Partnership opportunity and next steps |
+
+**The key phrase for Monday:** *"This is not a construction document. This is a window into
+what we are building toward."*
 
 ---
 
