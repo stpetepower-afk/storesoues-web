@@ -1,0 +1,13 @@
+{
+  "name": "hallelujah-one-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hallelujah ONE™ — a human empowerment operating system. Front door, Digital Twin, and Command Center.",
+  "scripts": {
+    "og": "node scripts/render-og.mjs",
+    "serve": "npx serve ."
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}

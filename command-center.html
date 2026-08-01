@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#070a12" />
+
+  <title>Command Center — Hallelujah ONE™</title>
+  <meta name="description" content="The Hallelujah ONE™ intelligence layer — an operational command center with demo and live operating modes, program metrics, data-source connections, and an AI Chief of Staff." />
+  <link rel="canonical" href="https://hallelujah-one.netlify.app/command-center.html" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+  <link rel="apple-touch-icon" href="/assets/img/favicon.svg" />
+  <link rel="mask-icon" href="/assets/img/favicon.svg" color="#7c6cff" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Hallelujah ONE™" />
+  <meta property="og:title" content="Command Center — Hallelujah ONE™" />
+  <meta property="og:description" content="Operational metrics, program funnel, data-source connections, and an AI Chief of Staff — with clearly labeled demo and live modes." />
+  <meta property="og:url" content="https://hallelujah-one.netlify.app/command-center.html" />
+  <meta property="og:image" content="https://hallelujah-one.netlify.app/assets/img/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://hallelujah-one.netlify.app/assets/img/og-image.png" />
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+  <div id="loader" aria-hidden="true">
+    <div style="text-align:center">
+      <img class="loader-mark" src="/assets/img/favicon.svg" alt="" />
+      <div class="loader-bar"><i></i></div>
+      <div class="loader-word">Command Center</div>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/">
+        <img class="mark" src="/assets/img/favicon.svg" alt="" />
+        <span>Hallelujah&nbsp;ONE<span class="tm">™</span></span>
+      </a>
+      <div class="nav-links">
+        <a class="home" href="/">Home</a>
+        <a href="/digital-twin.html">Digital Twin</a>
+        <a href="/command-center.html">Command Center</a>
+        <a class="cta" href="/#ask">Partner With Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="padding-bottom:20px">
+    <div class="wrap">
+      <span class="eyebrow reveal">Intelligence layer</span>
+      <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+        <h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">Command Center</h1>
+        <div class="mode-switch" role="tablist" aria-label="Operating mode">
+          <button data-mode="demo" class="on">Demo</button>
+          <button data-mode="live">Live Operations</button>
+        </div>
+      </div>
+      <p class="lead reveal" style="margin-top:14px">How we measure everything — one screen for operations, funding, and community impact.</p>
+      <div id="mode-banner" class="mode-banner demo reveal" style="margin-top:22px"></div>
+    </div>
+  </header>
+
+  <section style="padding-bottom:24px">
+    <div class="wrap">
+      <div class="grid grid-4" id="kpis"><!-- injected --></div>
+    </div>
+  </section>
+
+  <section style="padding-bottom:24px">
+    <div class="wrap">
+      <div class="grid grid-2" style="grid-template-columns:1fr 1fr">
+        <div class="card reveal">
+          <h3 style="margin-bottom:6px">Program funnel</h3>
+          <p style="color:var(--muted);font-size:0.9rem;margin:0 0 14px">Crisis → stability → training → income.</p>
+          <div id="funnel"><!-- injected --></div>
+        </div>
+        <div class="card reveal">
+          <h3 style="margin-bottom:6px">Data sources</h3>
+          <p style="color:var(--muted);font-size:0.9rem;margin:0 0 14px">Connect these to move from demo to live operations.</p>
+          <div id="sources"><!-- injected --></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-bottom:24px">
+    <div class="wrap">
+      <h3 class="reveal" style="margin-bottom:14px">AI Chief of Staff</h3>
+      <div class="card chat reveal" id="chief">
+        <div class="chat-head"><span class="dot"></span> <strong>Chief of Staff</strong> <span style="color:var(--faint);font-size:0.82rem">· demo mode</span></div>
+        <div class="chat-body" data-chat-body></div>
+        <div class="chat-input-row">
+          <input data-chat-input type="text" placeholder="Ask about residents, revenue, funding, mobility…" />
+          <button data-chat-send aria-label="Send">↑</button>
+        </div>
+      </div>
+      <p style="color:var(--faint);font-size:0.85rem;margin-top:12px">Demo responses are scripted. In live operations this connects to your data sources and AI Chief of Staff prompts.</p>
+    </div>
+  </section>
+
+  <!-- Partnership ask -->
+  <section class="section" id="ask" style="padding-top:40px">
+    <div class="wrap">
+      <div class="card reveal" style="padding:clamp(28px,4vw,52px);background:var(--grad-soft);border-color:var(--line-strong)">
+        <p class="eyebrow">Where you fit</p>
+        <h2>Fund a working system, not a slide.</h2>
+        <p class="lead" style="margin-top:14px">This command center becomes the reporting backbone of the partnership — transparent metrics, clear funding alignment, measurable impact.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:stpetepower@gmail.com?subject=Hallelujah%20ONE%20Partnership">Start the conversation</a>
+          <a class="btn btn-ghost" href="/digital-twin.html">Explore the ecosystem</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="brand" style="font-size:0.95rem"><img class="mark" src="/assets/img/favicon.svg" alt="" style="width:22px;height:22px" /> Hallelujah&nbsp;ONE™</div>
+      <div>A human empowerment operating system · St. Petersburg, FL</div>
+      <div>© <span data-year>2026</span> Hallelujah Ministries</div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/site.js"></script>
+  <script type="module" src="/assets/js/command-center.js"></script>
+</body>
+</html>
