@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hallelujah ONE™ — Command Center</title>
+  <meta name="description" content="The Hallelujah ONE™ Command Center — live operating dashboard for the ecosystem." />
+  <link rel="stylesheet" href="../src/styles/tokens.css" />
+  <link rel="stylesheet" href="../src/styles/base.css" />
+  <link rel="stylesheet" href="../src/styles/components.css" />
+  <link rel="stylesheet" href="../src/styles/dashboard.css" />
+</head>
+<body>
+  <div class="dash" data-dash-root>
+    <header class="dash__bar">
+      <div class="dash__brand">
+        <span class="dash__mark" aria-hidden="true">H1</span>
+        <span>Hallelujah&nbsp;ONE™ <span style="color:var(--text-subtle);font-weight:var(--weight-medium)">· Command Center</span></span>
+      </div>
+      <span class="dash__live" aria-label="System status: live">Live</span>
+      <span class="dash__clock" data-dash-clock aria-hidden="true"></span>
+    </header>
+
+    <main class="dash__main" data-dash-main>
+      <noscript>
+        <p style="padding: var(--space-6); background: var(--surface); border-radius: var(--radius-lg);">
+          This dashboard needs JavaScript enabled to render its live modules.
+        </p>
+      </noscript>
+    </main>
+
+    <footer class="dash__footer">
+      <p><strong>Hallelujah ONE™ Command Center</strong> · v1.0 · Elevated Clarity. Data is JSON-backed in <code>dashboard/data.js</code>; countdowns compute live from deadline dates.</p>
+      <p style="margin-top: var(--space-2);">Seed → Scale → National Expansion.</p>
+    </footer>
+  </div>
+
+  <script type="module">
+    import { mountDashboard } from "./dashboard.js";
+    mountDashboard(document.querySelector("[data-dash-root]"));
+  </script>
+</body>
+</html>

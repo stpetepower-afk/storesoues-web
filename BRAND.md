@@ -17,6 +17,8 @@ Command Center dashboard, and partner handoff materials — should build on.
 | `src/styles/base.css` | Reset + default typography and layout helpers (`.container`, `.eyebrow`, `.lead`). |
 | `src/styles/components.css` | Reusable UI: buttons, cards, badges, and the chat widget skin. |
 | `brand/index.html` | **Living brand guidelines** — a viewable showcase of the whole system, with the real chat widget running on-brand. |
+| `src/styles/dashboard.css` | Command Center dashboard styles (used by `dashboard/`). |
+| `dashboard/` | **Command Center Dashboard (v1.0)** built on this system — see `dashboard/README.md`. |
 
 Open `brand/index.html` in a browser (see below) to see it all in context.
 
