@@ -1,0 +1,11 @@
+{
+  "_meta": { "status": "LIVE-EMPTY", "note": "The Career Launch Mentor MVP measurement loop. These start at zero honestly and grow with each REAL resident served. Do not pre-fill with estimated outcomes." },
+  "phase": "Phase 1 — MVP (0–90 days)",
+  "metrics": [
+    { "id": "enrolled", "label": "Residents Enrolled", "value": 0, "target": 10 },
+    { "id": "assessments", "label": "Assessments Completed", "value": 0, "target": 10 },
+    { "id": "placements", "label": "Job Placements", "value": 0, "target": null, "rateLabel": "Placement rate target 75%" },
+    { "id": "retention", "label": "90-Day Retention", "value": null, "target": 85, "unit": "%" }
+  ],
+  "outcomes": []
+}

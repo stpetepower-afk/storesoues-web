@@ -5,6 +5,7 @@
     { "id": "funder-brief", "name": "Funder Brief", "icon": "brief", "desc": "Turn dashboard data into a one-page briefing for a funder or government meeting.", "invoke": "funder-brief" },
     { "id": "partner-outreach", "name": "Partner Outreach", "icon": "mail", "desc": "Draft warm, specific outreach and follow-up emails to CRM partners. You review and send.", "invoke": "partner-outreach" },
     { "id": "impact-report", "name": "Impact Report", "icon": "chart", "desc": "Generate honest impact and outcome reports for boards, funders, and grant reporting.", "invoke": "impact-report" },
-    { "id": "loop-briefing", "name": "Loop Briefing", "icon": "loop", "desc": "AI Chief of Staff briefing in the six-part Loop format: state, signals, pattern, action, outcome, learning.", "invoke": "loop-briefing" }
+    { "id": "loop-briefing", "name": "Loop Briefing", "icon": "loop", "desc": "AI Chief of Staff briefing in the six-part Loop format: state, signals, pattern, action, outcome, learning.", "invoke": "loop-briefing" },
+    { "id": "career-mentor", "name": "AI Career Launch Mentor", "icon": "briefcase", "desc": "The MVP first heartbeat: resident career assessment, pathway mapping, and resume review — with a real measurement loop.", "invoke": "career-mentor" }
   ]
 }

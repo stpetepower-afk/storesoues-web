@@ -156,6 +156,19 @@ function renderFunnel(residents) {
     .join("");
 }
 
+/* ---------- Career Launch Mentor (MVP) ---------- */
+function renderCareer(data) {
+  $("#career-stats").innerHTML = data.metrics
+    .map((m) => {
+      const val = m.value === null ? "—" : m.value + (m.unit === "%" ? "%" : "");
+      const sub = m.target != null ? `target ${m.target}${m.unit === "%" ? "%" : ""}` : (m.rateLabel || "");
+      return `<div class="loop-stat"><div class="v">${val}</div><div class="l">${m.label}</div><div class="n">${sub}</div></div>`;
+    })
+    .join("");
+  $("#career-note").textContent =
+    `${data.phase}. These start at zero and grow with each real resident served — the honest measurement loop that proves the model. Serve the first resident with /career-mentor to move a number off zero.`;
+}
+
 /* ---------- Loop Intelligence ---------- */
 function renderLoops(data) {
   $("#loop-stats").innerHTML = data.headline
@@ -218,12 +231,13 @@ function mountChat(org) {
 /* ---------- boot ---------- */
 (async function boot() {
   try {
-    const [org, metrics, residents, funding, partners, deadlines, h3o, skills, loops] = await Promise.all([
+    const [org, metrics, residents, funding, partners, deadlines, h3o, skills, loops, career] = await Promise.all([
       load("org"), load("metrics"), load("residents"), load("funding"),
-      load("partners"), load("deadlines"), load("h3o"), load("skills"), load("loops"),
+      load("partners"), load("deadlines"), load("h3o"), load("skills"), load("loops"), load("career"),
     ]);
     renderHeader(org);
     renderKpis(metrics);
+    renderCareer(career);
     renderFunding(funding);
     renderDonut(residents);
     renderDeadlines(deadlines);
