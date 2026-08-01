@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="630" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7c6cff"/>
+      <stop offset="0.5" stop-color="#b58bff"/>
+      <stop offset="1" stop-color="#e8c46a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.82" cy="0.1" r="0.9">
+      <stop offset="0" stop-color="#7c6cff" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#7c6cff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.06" cy="0.95" r="0.8">
+      <stop offset="0" stop-color="#e8c46a" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#e8c46a" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      text { font-family: -apple-system, "SF Pro Display", "Segoe UI", Helvetica, Arial, sans-serif; }
+    </style>
+  </defs>
+  <rect width="1200" height="630" fill="#070a12"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <!-- mark -->
+  <g transform="translate(96,150)">
+    <rect width="120" height="120" rx="28" fill="#0b1020" stroke="rgba(255,255,255,0.08)"/>
+    <circle cx="60" cy="60" r="40" fill="none" stroke="url(#g)" stroke-width="4.5" opacity="0.55"/>
+    <path d="M60 28 L60 92" stroke="url(#g)" stroke-width="11" stroke-linecap="round"/>
+    <path d="M43 45 L60 28 L77 45" fill="none" stroke="url(#g)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="60" cy="92" r="7" fill="#e8c46a"/>
+  </g>
+
+  <text x="240" y="200" font-size="34" letter-spacing="8" fill="#e8c46a" font-weight="600">HALLELUJAH ONE™</text>
+
+  <text x="94" y="360" font-size="82" font-weight="700" fill="#f4f7fd">A human empowerment</text>
+  <text x="94" y="452" font-size="82" font-weight="700" fill="url(#g)">operating system.</text>
+
+  <text x="96" y="536" font-size="30" fill="#9aa6c2">Experience · Intelligence · Execution — St. Petersburg, FL</text>
+
+  <rect x="96" y="566" width="1008" height="2" fill="rgba(255,255,255,0.1)"/>
+</svg>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#070a12" />
+
+  <title>Digital Twin Experience v0.1 — Hallelujah ONE™</title>
+  <meta name="description" content="An interactive map of the Hallelujah ONE™ ecosystem — Mac House Campus, Wellness Oasis, Training Center, H3O Enterprise, Mobility Hub, and the AI Command Center, plus the St. Petersburg community network." />
+  <link rel="canonical" href="https://hallelujah-one.netlify.app/digital-twin.html" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+  <link rel="apple-touch-icon" href="/assets/img/favicon.svg" />
+  <link rel="mask-icon" href="/assets/img/favicon.svg" color="#7c6cff" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Hallelujah ONE™" />
+  <meta property="og:title" content="Digital Twin Experience v0.1 — Hallelujah ONE™" />
+  <meta property="og:description" content="Click through the living ecosystem: campus zones, community partners, mission, impact, metrics, and funding alignment." />
+  <meta property="og:url" content="https://hallelujah-one.netlify.app/digital-twin.html" />
+  <meta property="og:image" content="https://hallelujah-one.netlify.app/assets/img/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://hallelujah-one.netlify.app/assets/img/og-image.png" />
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+  <div id="loader" aria-hidden="true">
+    <div style="text-align:center">
+      <img class="loader-mark" src="/assets/img/favicon.svg" alt="" />
+      <div class="loader-bar"><i></i></div>
+      <div class="loader-word">Digital Twin</div>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/">
+        <img class="mark" src="/assets/img/favicon.svg" alt="" />
+        <span>Hallelujah&nbsp;ONE<span class="tm">™</span></span>
+      </a>
+      <div class="nav-links">
+        <a class="home" href="/">Home</a>
+        <a href="/digital-twin.html">Digital Twin</a>
+        <a href="/command-center.html">Command Center</a>
+        <a class="cta" href="/#ask">Partner With Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="padding-bottom:24px">
+    <div class="wrap">
+      <span class="eyebrow reveal">Experience layer</span>
+      <h1 class="reveal" style="font-size:clamp(2.2rem,5vw,3.4rem)">Digital Twin Experience <span class="grad-text">v0.1</span></h1>
+      <p class="lead reveal" style="margin-top:16px">Tap any point in the ecosystem to open its mission, impact, partners, metrics, and funding alignment. Or run the guided walkthrough — the same story you'll tell in the boardroom.</p>
+    </div>
+  </header>
+
+  <section style="padding-bottom:clamp(64px,9vw,120px)">
+    <div class="wrap">
+      <div class="twin">
+        <!-- Interactive stage -->
+        <div class="stage" id="stage">
+          <span class="badge-live"><span class="dot"></span> St. Petersburg ecosystem view</span>
+          <svg class="links" id="links" aria-hidden="true"></svg>
+          <!-- nodes injected by JS -->
+        </div>
+
+        <!-- Detail panel -->
+        <div class="card panel" id="panel"><!-- injected --></div>
+      </div>
+
+      <!-- Guided tour -->
+      <div class="tourbar">
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <span class="pill gold">Guided walkthrough</span>
+          <div class="tour-steps" id="tour-steps" aria-hidden="true"></div>
+        </div>
+        <div style="display:flex;gap:12px">
+          <button class="btn btn-ghost" id="tour-prev">← Back</button>
+          <button class="btn btn-primary" id="tour-next">Next stop →</button>
+        </div>
+      </div>
+
+      <p style="color:var(--faint);font-size:0.88rem;margin-top:22px">
+        <span class="pill" style="border-color:rgba(232,196,106,0.35);color:var(--gold)">Demo environment</span>
+        Metrics shown are illustrative. Live figures connect through the
+        <a href="/command-center.html" style="color:var(--indigo-soft)">Command Center</a>.
+        This is a v0.1 web experience — the pathway toward a full 3D / Unreal build.
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="brand" style="font-size:0.95rem"><img class="mark" src="/assets/img/favicon.svg" alt="" style="width:22px;height:22px" /> Hallelujah&nbsp;ONE™</div>
+      <div>A human empowerment operating system · St. Petersburg, FL</div>
+      <div>© <span data-year>2026</span> Hallelujah Ministries</div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/digital-twin.js"></script>
+</body>
+</html>
