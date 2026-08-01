@@ -1,7 +1,11 @@
-# Hallelujah ONE — Command Center
+# Hallelujah ONE — The Living Compass
 
-An economic mobility operating system dashboard for St. Petersburg, FL.
+**Human empowerment operating system** for St. Petersburg, FL.
 Housing stability · workforce mobility · economic independence.
+
+- **Repository:** `hallelujah-one`
+- **Public preview:** `hallelujah-one.netlify.app`
+- **Command Center:** the operational dashboard in this repo (`npm run dev`).
 
 ## Run it
 

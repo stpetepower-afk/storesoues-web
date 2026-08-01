@@ -1,8 +1,8 @@
 {
-  "name": "hallelujah-one-command-center",
+  "name": "hallelujah-one",
   "version": "0.2.0",
   "private": true,
-  "description": "Hallelujah ONE Command Center — economic mobility operating system dashboard.",
+  "description": "Hallelujah ONE — The Living Compass. Human empowerment operating system: housing stability, workforce mobility, economic independence.",
   "type": "commonjs",
   "scripts": {
     "dev": "node server.js",
