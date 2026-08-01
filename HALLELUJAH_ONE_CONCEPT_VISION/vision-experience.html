@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hallelujah ONE™ — The Vision · 3548 5th Ave S</title>
+<meta name="description" content="A four-unit sustainable workforce housing community integrated with mobility, food, technology, and human empowerment. St. Petersburg, FL.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes pulseDot{0%,100%{opacity:1;}50%{opacity:0.35;}}
+  @keyframes drift{0%{transform:translate(0,0);}50%{transform:translate(-14px,-10px);}100%{transform:translate(0,0);}}
+  html{scroll-behavior:smooth;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#1B1712;font-family:'Jost',sans-serif;color:#FAF4E8;overflow-x:hidden;line-height:1.6;}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500;line-height:1.1;}
+  .accent{color:#C6A15B;}
+  ::selection{background:#C6A15B;color:#1B1712;}
+  ::-webkit-scrollbar{width:8px;}
+  ::-webkit-scrollbar-thumb{background:rgba(198,161,91,0.4);border-radius:4px;}
+
+  /* Reveal-on-scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* Scene shell */
+  .scene{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,9vw,140px) clamp(24px,7vw,110px);overflow:hidden;}
+  .scene-num{font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#C6A15B;font-weight:600;margin-bottom:22px;}
+  .scene h2{font-style:italic;font-size:clamp(34px,6vw,72px);max-width:16ch;margin-bottom:26px;}
+  .scene p.lead{font-size:clamp(17px,2vw,21px);max-width:56ch;color:rgba(250,244,232,0.78);}
+  .narration{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,3vw,34px);color:#E4CD9A;max-width:22ch;margin-top:34px;}
+
+  /* Placeholder art panel — real render drops in via background-image */
+  .art{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;}
+  .art::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(27,23,20,0.94) 0%,rgba(27,23,20,0.7) 45%,rgba(27,23,20,0.5) 100%);}
+  .grid-tex{position:absolute;inset:0;z-index:-1;opacity:0.5;
+    background-image:repeating-linear-gradient(0deg,rgba(198,161,91,0.05) 0 1px,transparent 1px 46px),repeating-linear-gradient(90deg,rgba(198,161,91,0.05) 0 1px,transparent 1px 46px);}
+  .glow{position:absolute;border-radius:50%;filter:blur(80px);z-index:-1;animation:drift 14s ease-in-out infinite;}
+
+  /* Placeholder chip shown until a real render is dropped in */
+  .plchip{position:absolute;bottom:24px;right:24px;z-index:3;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(250,244,232,0.42);border:1px solid rgba(198,161,91,0.28);border-radius:999px;padding:7px 14px;background:rgba(27,23,20,0.55);}
+
+  /* ---- HERO ---- */
+  .hero{text-align:center;align-items:center;text-align:center;background:radial-gradient(ellipse 1000px 640px at 50% 12%,rgba(198,161,91,0.16),transparent 60%),linear-gradient(160deg,#1B1712 0%,#241C14 55%,#1B1712 100%);}
+  .hero .live-pill{display:inline-flex;align-items:center;gap:10px;padding:9px 18px;border:1px solid rgba(198,161,91,0.4);border-radius:999px;margin-bottom:34px;}
+  .hero .live-pill .dot{width:8px;height:8px;border-radius:50%;background:#7FD79A;animation:pulseDot 1.8s ease-in-out infinite;}
+  .hero .live-pill span{font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(250,244,232,0.85);}
+  .hero h1{font-style:italic;font-size:clamp(42px,8vw,104px);max-width:14ch;margin:0 auto 26px;}
+  .hero p.sub{font-size:clamp(17px,2.2vw,22px);max-width:50ch;margin:0 auto 14px;color:rgba(250,244,232,0.74);}
+  .hero .addr{font-size:12.5px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;margin-top:20px;}
+  .scroll-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(250,244,232,0.5);}
+  .scroll-cue::after{content:"";display:block;width:1px;height:34px;margin:12px auto 0;background:linear-gradient(rgba(198,161,91,0.7),transparent);}
+
+  /* ---- FEELING STRIP ---- */
+  .feel{background:#FAF4E8;color:#1B1712;padding:clamp(70px,10vw,130px) clamp(24px,7vw,110px);text-align:center;}
+  .feel .eyebrow{font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#C6A15B;font-weight:600;margin-bottom:22px;}
+  .feel h2{font-style:italic;font-size:clamp(30px,4.5vw,52px);max-width:20ch;margin:0 auto 50px;}
+  .feel-words{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;max-width:900px;margin:0 auto;}
+  .feel-words span{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.6vw,30px);padding:10px 26px;border:1px solid rgba(198,161,91,0.5);border-radius:999px;}
+  .feel .notline{margin-top:44px;font-size:14px;color:rgba(27,23,20,0.55);letter-spacing:0.02em;}
+  .feel .notline b{color:#1B1712;font-weight:600;}
+
+  /* ---- PHILOSOPHY ---- */
+  .philo{background:linear-gradient(160deg,#221B14,#1B1712);text-align:center;align-items:center;}
+  .philo .flow{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center;align-items:center;margin-top:20px;font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3.2vw,38px);font-style:italic;}
+  .philo .flow .arrow{color:#C6A15B;font-style:normal;font-size:0.7em;}
+  .bridge{margin-top:56px;font-size:clamp(15px,1.8vw,18px);color:rgba(250,244,232,0.66);letter-spacing:0.04em;}
+  .bridge b{color:#E4CD9A;font-weight:500;}
+
+  /* ---- CLOSING ---- */
+  .closing{text-align:center;align-items:center;background:radial-gradient(ellipse 900px 600px at 50% 60%,rgba(198,161,91,0.18),transparent 65%),#161310;}
+  .closing .mark{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,7vw,86px);font-weight:600;letter-spacing:0.02em;}
+  .closing .tm{font-size:clamp(14px,1.8vw,18px);letter-spacing:0.16em;text-transform:uppercase;color:#C6A15B;margin-top:18px;}
+  .closing .sub2{font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(250,244,232,0.6);margin-top:10px;}
+
+  /* ---- DISCLAIMER ---- */
+  footer{background:#120F0C;padding:38px clamp(24px,7vw,110px);text-align:center;}
+  footer p{font-size:12.5px;line-height:1.7;color:rgba(250,244,232,0.5);max-width:70ch;margin:0 auto;font-style:italic;}
+  footer .brand{margin-top:18px;font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:0.04em;color:rgba(250,244,232,0.7);}
+</style>
+</head>
+<body>
+
+<!-- HERO / SCENE 1: ARRIVAL -->
+<section class="scene hero">
+  <div class="glow" style="width:360px;height:360px;background:rgba(198,161,91,0.22);top:8%;left:12%;"></div>
+  <div class="glow" style="width:300px;height:300px;background:rgba(127,215,154,0.10);bottom:14%;right:14%;animation-delay:-6s;"></div>
+  <div class="grid-tex"></div>
+  <span class="live-pill"><span class="dot"></span><span>The Vision · Conceptual</span></span>
+  <h1>Welcome to the future&nbsp;of&nbsp;community.</h1>
+  <p class="sub">A four-unit sustainable workforce housing community — integrated with mobility, food, technology, and human empowerment.</p>
+  <p class="addr">Hallelujah ONE™ · 3548 5th Ave S · St. Petersburg, FL</p>
+  <div class="scroll-cue">Walk in</div>
+</section>
+
+<!-- SCENE 2: HUMAN EXPERIENCE -->
+<section class="scene">
+  <div class="art" style="background-image:url('03_COMMUNITY_EXPERIENCE/Courtyard.jpg'), radial-gradient(circle at 30% 30%,rgba(198,161,91,0.30),transparent 55%), linear-gradient(150deg,#2A2118,#1B1712);"></div>
+  <div class="grid-tex"></div>
+  <div class="glow" style="width:420px;height:420px;background:rgba(198,161,91,0.14);top:20%;left:55%;"></div>
+  <div class="reveal">
+    <p class="scene-num">Scene 02 · The Human Experience</p>
+    <h2>The project is about people, not buildings.</h2>
+    <p class="lead">Children playing in the courtyard. Neighbors gathering in the garden. Veterans, families, seniors, and workforce residents — home. Technology working quietly in the background, dignity in the foreground.</p>
+  </div>
+  <span class="plchip">Render drops in → 03_COMMUNITY_EXPERIENCE / Courtyard</span>
+</section>
+
+<!-- FEELING STRIP -->
+<section class="feel">
+  <p class="eyebrow reveal">What you should feel</p>
+  <h2 class="reveal">Not apartments. Not construction. Not real estate.</h2>
+  <div class="feel-words reveal">
+    <span>Dignity</span><span>Belonging</span><span>Sustainability</span>
+    <span>Safety</span><span>Opportunity</span><span>Community</span>
+  </div>
+  <p class="notline reveal">Most early-stage projects show spreadsheets and zoning maps. <b>But people fund what they can see.</b></p>
+</section>
+
+<!-- SCENE 3: THE PLACE (architecture + sustainability) -->
+<section class="scene">
+  <div class="art" style="background-image:url('01_MASTER_RENDERING/Site Vision 4K.jpg'), radial-gradient(circle at 70% 40%,rgba(198,161,91,0.28),transparent 50%), linear-gradient(160deg,#241C14,#1B1712 70%);"></div>
+  <div class="grid-tex"></div>
+  <div class="reveal">
+    <p class="scene-num">Scene 03 · The Place</p>
+    <h2>Coastal Florida modern, built to give back.</h2>
+    <p class="lead">Two-story residences with private entrances and balconies. A solar roof and green-roof elements. Rain gardens, native landscaping, fruit trees, and community garden beds. Luxury affordable-housing principles — attainable, never institutional.</p>
+  </div>
+  <span class="plchip">Render drops in → 01_MASTER_RENDERING / Site Vision 4K</span>
+</section>
+
+<!-- SCENE 4: ECONOMIC MOBILITY -->
+<section class="scene">
+  <div class="art" style="background-image:radial-gradient(circle at 25% 70%,rgba(127,215,154,0.16),transparent 55%), linear-gradient(150deg,#1F1810,#1B1712);"></div>
+  <div class="grid-tex"></div>
+  <div class="glow" style="width:380px;height:380px;background:rgba(198,161,91,0.16);bottom:10%;left:8%;"></div>
+  <div class="reveal">
+    <p class="scene-num">Scene 04 · Economic Mobility</p>
+    <h2>Not just housing. A pathway forward.</h2>
+    <p class="lead">EV charging and a future autonomous-vehicle zone. Community transportation access. A digital learning area and shared community resources. The infrastructure of opportunity, woven into where people live.</p>
+    <p class="narration">"Not just housing. A pathway forward."</p>
+  </div>
+  <span class="plchip">Render drops in → 05_VIDEO / Economic Mobility frame</span>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="scene philo">
+  <div class="grid-tex"></div>
+  <div class="reveal">
+    <p class="scene-num">The Living Compass™</p>
+    <h2 style="font-style:italic;">A Human Empowerment Operating System.</h2>
+    <div class="flow">
+      <span>Observe</span><span class="arrow">→</span>
+      <span>Imagine</span><span class="arrow">→</span>
+      <span>Build</span><span class="arrow">→</span>
+      <span>Measure</span><span class="arrow">→</span>
+      <span>Improve</span>
+    </div>
+    <p class="bridge">Vision → Emotion → Partnership → Funding → Execution.<br><b>The visualization is the bridge.</b></p>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="scene closing">
+  <div class="glow" style="width:500px;height:500px;background:rgba(198,161,91,0.18);top:30%;left:50%;transform:translateX(-50%);"></div>
+  <div class="reveal">
+    <div class="mark">HALLELUJAH ONE™</div>
+    <div class="tm">The Living Compass™</div>
+    <div class="sub2">Human Empowerment Operating System</div>
+  </div>
+</section>
+
+<footer>
+  <p>Conceptual visualization of proposed development. Final design, engineering, and construction documents will be developed through professional architectural and engineering processes during project advancement.</p>
+  <p class="brand">Hallelujah Ministries · A Storehouse For Every Need</p>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:0.18});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
