@@ -156,6 +156,28 @@ function renderFunnel(residents) {
     .join("");
 }
 
+/* ---------- Command Skills ---------- */
+const SKILL_ICONS = {
+  doc: "M6 2h9l5 5v15H6zM14 2v6h6",
+  brief: "M4 7h16v13H4zM9 7V4h6v3",
+  mail: "M3 6h18v12H3zM3 6l9 7 9-7",
+  chart: "M4 20V10M10 20V4M16 20v-8M22 20H2",
+};
+function renderSkills(data) {
+  $("#skills-grid").innerHTML = data.skills
+    .map(
+      (s) => `<div class="skill">
+        <div class="s-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${SKILL_ICONS[s.icon] || SKILL_ICONS.doc}"/></svg></div>
+        <div>
+          <div class="s-name">${s.name}</div>
+          <div class="s-desc">${s.desc}</div>
+          <span class="s-invoke">/${s.invoke}</span>
+        </div>
+      </div>`
+    )
+    .join("");
+}
+
 /* ---------- AI Chief of Staff ---------- */
 function mountChat(org) {
   createChatWidget({
@@ -173,9 +195,9 @@ function mountChat(org) {
 /* ---------- boot ---------- */
 (async function boot() {
   try {
-    const [org, metrics, residents, funding, partners, deadlines, h3o] = await Promise.all([
+    const [org, metrics, residents, funding, partners, deadlines, h3o, skills] = await Promise.all([
       load("org"), load("metrics"), load("residents"), load("funding"),
-      load("partners"), load("deadlines"), load("h3o"),
+      load("partners"), load("deadlines"), load("h3o"), load("skills"),
     ]);
     renderHeader(org);
     renderKpis(metrics);
@@ -185,6 +207,7 @@ function mountChat(org) {
     renderPartners(partners);
     renderH3O(h3o);
     renderFunnel(residents);
+    renderSkills(skills);
     mountChat(org);
   } catch (e) {
     document.querySelector(".main").insertAdjacentHTML(
