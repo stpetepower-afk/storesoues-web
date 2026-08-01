@@ -1,0 +1,303 @@
+/**
+ * Hallelujah ONE™ — Components
+ * Reusable UI primitives built on the design tokens. Depends on tokens.css.
+ * Includes styling for the chat widget in src/lib/chatWidget.js (it renders
+ * .msg / .msg.user / .msg.assistant / .msg.typing with .typing-dot children,
+ * and reads [data-chat-body] / [data-chat-input] / [data-chat-send]).
+ */
+
+/* ======================================================================
+ * Buttons
+ * =================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.7em 1.4em;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out),
+              background-color var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out);
+}
+.btn:active { transform: translateY(1px); }
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background: var(--brand-primary);
+  color: var(--text-on-brand);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover {
+  background: var(--brand-primary-hover);
+  box-shadow: var(--shadow-md);
+  color: var(--text-on-brand);
+}
+
+.btn-accent {
+  background: var(--gradient-warm);
+  color: var(--text-on-accent);
+  box-shadow: var(--shadow-sm);
+}
+.btn-accent:hover {
+  box-shadow: var(--shadow-md);
+  color: var(--text-on-accent);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--brand-primary);
+  border-color: var(--border-strong);
+}
+.btn-ghost:hover {
+  background: var(--brand-primary-soft);
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+/* ======================================================================
+ * Cards
+ * =================================================================== */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out);
+}
+.card--interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-2);
+}
+.card__body {
+  color: var(--text-muted);
+}
+
+/* ======================================================================
+ * Badges / pills
+ * =================================================================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0.35em 0.8em;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  border-radius: var(--radius-pill);
+  background: var(--brand-primary-soft);
+  color: var(--brand-primary);
+}
+.badge--accent {
+  background: var(--gold-100);
+  color: var(--gold-700);
+}
+.badge--blue {
+  background: var(--blue-50);
+  color: var(--blue-600);
+}
+
+/* ======================================================================
+ * Chat widget (pairs with src/lib/chatWidget.js)
+ * =================================================================== */
+.chat-widget {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 26rem;
+  height: 32rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.chat-widget__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: var(--gradient-earth);
+  color: var(--text-on-brand);
+}
+.chat-widget__header h3 {
+  color: var(--text-on-brand);
+  font-size: var(--text-md);
+  margin: 0;
+}
+.chat-widget__status {
+  font-size: var(--text-xs);
+  opacity: 0.85;
+  color: var(--text-on-brand);
+}
+.chat-widget__avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.15);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+}
+
+/* Message log */
+[data-chat-body],
+.chat-widget__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background: var(--bg-subtle);
+  scroll-behavior: smooth;
+}
+
+.msg {
+  max-width: 82%;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  box-shadow: var(--shadow-sm);
+  animation: msg-in var(--duration-normal) var(--ease-out);
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+.msg.assistant {
+  align-self: flex-start;
+  background: var(--surface);
+  color: var(--text);
+  border-bottom-left-radius: var(--radius-sm);
+}
+.msg.user {
+  align-self: flex-end;
+  background: var(--brand-primary);
+  color: var(--text-on-brand);
+  border-bottom-right-radius: var(--radius-sm);
+}
+
+/* Typing indicator */
+.msg.typing {
+  align-self: flex-start;
+  display: inline-flex;
+  gap: 0.3rem;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+}
+.typing-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: var(--radius-pill);
+  background: var(--text-subtle);
+  animation: typing-bounce 1.2s infinite ease-in-out;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+/* Composer */
+.chat-widget__composer {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+[data-chat-input],
+.chat-widget__input {
+  flex: 1;
+  padding: 0.65em 1em;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  background: var(--bg);
+  color: var(--text);
+  font-size: var(--text-sm);
+  transition: border-color var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
+}
+[data-chat-input]:focus,
+.chat-widget__input:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  box-shadow: var(--focus-ring);
+}
+[data-chat-input]:disabled { opacity: 0.6; }
+
+[data-chat-send],
+.chat-widget__send {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  padding: 0.65em 1.1em;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--brand-primary);
+  color: var(--text-on-brand);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+}
+[data-chat-send]:hover:not(:disabled),
+.chat-widget__send:hover:not(:disabled) {
+  background: var(--brand-primary-hover);
+}
+[data-chat-send]:disabled,
+.chat-widget__send:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+[data-chat-send].sending {
+  position: relative;
+  color: transparent;
+}
+[data-chat-send].sending::after {
+  content: "";
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: var(--radius-pill);
+  animation: spin 0.7s linear infinite;
+}
+
+/* ======================================================================
+ * Animations
+ * =================================================================== */
+@keyframes msg-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30%           { transform: translateY(-0.3rem); opacity: 1; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

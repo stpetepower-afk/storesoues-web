@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hallelujah ONE™ — Visual Identity</title>
+  <meta name="description" content="The Elevated Clarity visual system for Hallelujah ONE™ — colors, typography, and components." />
+  <link rel="stylesheet" href="../src/styles/tokens.css" />
+  <link rel="stylesheet" href="../src/styles/base.css" />
+  <link rel="stylesheet" href="../src/styles/components.css" />
+  <style>
+    /* Page-local layout for the guidelines document only. */
+    .hero {
+      padding: var(--space-9) 0 var(--space-8);
+      background:
+        radial-gradient(120% 90% at 80% -10%, color-mix(in srgb, var(--gold-200) 45%, transparent), transparent 60%),
+        radial-gradient(120% 90% at 0% 110%, color-mix(in srgb, var(--green-500) 22%, transparent), transparent 55%),
+        var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero h1 { font-size: clamp(2.5rem, 6vw, var(--text-5xl)); }
+    .section { padding: var(--space-8) 0; border-bottom: 1px solid var(--border); }
+    .section__head { max-width: var(--container-text); margin-bottom: var(--space-6); }
+    .grid { display: grid; gap: var(--space-4); }
+    .grid--3 { grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+    .grid--4 { grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); }
+
+    .swatch { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+    .swatch__chip { height: 6rem; }
+    .swatch__meta { padding: var(--space-3) var(--space-4); background: var(--surface); }
+    .swatch__name { font-weight: var(--weight-semibold); font-size: var(--text-sm); }
+    .swatch__hex { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted); text-transform: uppercase; }
+
+    .ramp { display: flex; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+    .ramp > span { flex: 1; height: 3.5rem; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 0.3rem; font-family: var(--font-mono); font-size: 0.6rem; }
+    .ramp__label { font-size: var(--text-sm); font-weight: var(--weight-semibold); margin: 0 0 var(--space-2); }
+
+    .type-row { padding: var(--space-4) 0; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-4); }
+    .type-row__meta { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted); min-width: 9rem; }
+
+    .row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+    .gradient-tile { height: 6rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); display: flex; align-items: flex-end; padding: var(--space-3); color: #fff; font-weight: var(--weight-semibold); font-size: var(--text-sm); }
+
+    .principles { display: grid; gap: var(--space-4); grid-template-columns: 1fr 1fr; }
+    @media (max-width: 40rem) { .principles { grid-template-columns: 1fr; } }
+    .do   { border-left: 4px solid var(--success); }
+    .dont { border-left: 4px solid var(--danger); }
+    .do h4::before   { content: "✓ "; color: var(--success); }
+    .dont h4::before { content: "✕ "; color: var(--danger); }
+
+    .theme-toggle { position: fixed; top: var(--space-4); right: var(--space-4); z-index: 10; }
+    .demo-stage { display: flex; justify-content: center; padding: var(--space-4); background: var(--bg-muted); border-radius: var(--radius-xl); }
+    footer.page { padding: var(--space-8) 0; color: var(--text-muted); font-size: var(--text-sm); }
+  </style>
+</head>
+<body>
+  <button class="btn btn-ghost theme-toggle" id="themeToggle" aria-label="Toggle color theme">🌗 Theme</button>
+
+  <header class="hero">
+    <div class="container">
+      <p class="eyebrow">Hallelujah ONE™ · Visual Identity</p>
+      <h1>Elevated Clarity</h1>
+      <p class="lead" style="margin-top: var(--space-4);">
+        Warm, earthy, human-centered, aspirational. A studio-quality system
+        built to feel like the future it represents — and to stay consistent
+        from Seed to Scale to National Expansion.
+      </p>
+      <div class="row" style="margin-top: var(--space-6);">
+        <span class="badge">Deep Greens</span>
+        <span class="badge badge--accent">Warm Golds</span>
+        <span class="badge badge--blue">Rich Blues</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- PRINCIPLES -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">01 — Direction</p>
+          <h2>Not cookie-cutter</h2>
+          <p class="lead">Every choice earns its place. We build for warmth and dignity, not for the template.</p>
+        </div>
+        <div class="principles">
+          <div class="card do">
+            <h4>What we create</h4>
+            <p class="card__body">Studio-quality renderings, human-centered layouts, a custom brand identity, clean and elegant data, cinematic storytelling.</p>
+          </div>
+          <div class="card dont">
+            <h4>What we avoid</h4>
+            <p class="card__body">Generic stock photos, uncanny AI art, forgettable templates, cluttered dashboards, rushed and amateur video.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOR -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">02 — Color</p>
+          <h2>A warm, earthy palette</h2>
+          <p class="lead">Greens ground the campus, gold is the point of light, blue is the horizon of trust. Neutrals stay warm — never cold gray.</p>
+        </div>
+
+        <div class="grid grid--4" style="margin-bottom: var(--space-7);">
+          <div class="swatch">
+            <div class="swatch__chip" style="background: var(--green-700);"></div>
+            <div class="swatch__meta"><div class="swatch__name">Primary · Deep Green</div><div class="swatch__hex">#1b4332</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: var(--gold-300);"></div>
+            <div class="swatch__meta"><div class="swatch__name">Accent · Warm Gold</div><div class="swatch__hex">#e0b84c</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: var(--blue-400);"></div>
+            <div class="swatch__meta"><div class="swatch__name">Secondary · Rich Blue</div><div class="swatch__hex">#2a6f97</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: var(--sand-50); border-bottom: 1px solid var(--border);"></div>
+            <div class="swatch__meta"><div class="swatch__name">Ground · Warm Paper</div><div class="swatch__hex">#fdfbf7</div></div>
+          </div>
+        </div>
+
+        <div class="grid" style="gap: var(--space-5);">
+          <div>
+            <p class="ramp__label">Green</p>
+            <div class="ramp">
+              <span style="background:var(--green-100)">100</span><span style="background:var(--green-300)">300</span>
+              <span style="background:var(--green-500);color:#fff">500</span><span style="background:var(--green-700);color:#fff">700</span>
+              <span style="background:var(--green-900);color:#fff">900</span>
+            </div>
+          </div>
+          <div>
+            <p class="ramp__label">Gold</p>
+            <div class="ramp">
+              <span style="background:var(--gold-100)">100</span><span style="background:var(--gold-200)">200</span>
+              <span style="background:var(--gold-300)">300</span><span style="background:var(--gold-400)">400</span>
+              <span style="background:var(--gold-600);color:#fff">600</span>
+            </div>
+          </div>
+          <div>
+            <p class="ramp__label">Blue</p>
+            <div class="ramp">
+              <span style="background:var(--blue-100)">100</span><span style="background:var(--blue-300)">300</span>
+              <span style="background:var(--blue-400);color:#fff">400</span><span style="background:var(--blue-500);color:#fff">500</span>
+              <span style="background:var(--blue-700);color:#fff">700</span>
+            </div>
+          </div>
+          <div>
+            <p class="ramp__label">Warm neutral</p>
+            <div class="ramp">
+              <span style="background:var(--sand-100)">100</span><span style="background:var(--sand-300)">300</span>
+              <span style="background:var(--sand-500);color:#fff">500</span><span style="background:var(--ink-800);color:#fff">800</span>
+              <span style="background:var(--ink-900);color:#fff">900</span>
+            </div>
+          </div>
+        </div>
+
+        <h4 style="margin: var(--space-7) 0 var(--space-4);">Signature gradients</h4>
+        <div class="grid grid--3">
+          <div class="gradient-tile" style="background: var(--gradient-warm);">Warm</div>
+          <div class="gradient-tile" style="background: var(--gradient-earth);">Earth</div>
+          <div class="gradient-tile" style="background: var(--gradient-dawn);">Dawn</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">03 — Typography</p>
+          <h2>Clean, modern, premium</h2>
+          <p class="lead">Montserrat for display confidence, Inter for high-readability text, with graceful fallback to SF Pro on Apple platforms.</p>
+        </div>
+        <div>
+          <div class="type-row"><span class="type-row__meta">Display / 4xl / 600</span><span style="font-family: var(--font-display); font-size: var(--text-4xl); font-weight: 600; letter-spacing: var(--tracking-tight);">A future worth building</span></div>
+          <div class="type-row"><span class="type-row__meta">Heading / 2xl / 600</span><span style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 600;">Warm, human-centered, aspirational</span></div>
+          <div class="type-row"><span class="type-row__meta">Lead / md / 400</span><span class="lead" style="max-width:none;">Every visual product is designed to feel like the future it represents.</span></div>
+          <div class="type-row"><span class="type-row__meta">Body / base / 400</span><span style="max-width: 34rem;">Body copy stays comfortable and legible, generous in line height, warm in color. The system is designed to read cleanly at every scale — from a single card to a full ecosystem walkthrough.</span></div>
+          <div class="type-row"><span class="type-row__meta">Eyebrow / sm / caps</span><span class="eyebrow">Seed → Scale → National Expansion</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPONENTS -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">04 — Components</p>
+          <h2>Building blocks</h2>
+          <p class="lead">Soft, layered shadows like studio lighting. Pill buttons, rounded cards, warm surfaces.</p>
+        </div>
+
+        <h4 style="margin-bottom: var(--space-4);">Buttons</h4>
+        <div class="row" style="margin-bottom: var(--space-7);">
+          <button class="btn btn-primary">Primary action</button>
+          <button class="btn btn-accent">Accent action</button>
+          <button class="btn btn-ghost">Ghost action</button>
+          <button class="btn btn-primary" disabled>Disabled</button>
+        </div>
+
+        <h4 style="margin-bottom: var(--space-4);">Cards</h4>
+        <div class="grid grid--3">
+          <article class="card card--interactive">
+            <h3 class="card__title">Mac House</h3>
+            <p class="card__body">The campus experience — warm sunlight, lush landscaping, a wellness oasis.</p>
+          </article>
+          <article class="card card--interactive">
+            <h3 class="card__title">Mobility Division</h3>
+            <p class="card__body">Clean, modern fleet and charging infrastructure. Human-centered transit.</p>
+          </article>
+          <article class="card card--interactive">
+            <h3 class="card__title">Career Launch</h3>
+            <p class="card__body">Bright, technology-enabled classrooms and an approachable AI academy.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAT WIDGET -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">05 — In context</p>
+          <h2>The assistant, on-brand</h2>
+          <p class="lead">The Hallelujah Ministries chat widget wearing the Elevated Clarity system. Friendly and human-centered — not robotic.</p>
+        </div>
+        <div class="demo-stage">
+          <div class="chat-widget" id="chatRoot">
+            <div class="chat-widget__header">
+              <div class="chat-widget__avatar">H1</div>
+              <div>
+                <h3>Hallelujah ONE™ Assistant</h3>
+                <div class="chat-widget__status">● Online — here to help</div>
+              </div>
+            </div>
+            <div data-chat-body></div>
+            <div class="chat-widget__composer">
+              <input data-chat-input type="text" placeholder="Ask about the ecosystem…" aria-label="Message" />
+              <button data-chat-send class="chat-widget__send">Send</button>
+            </div>
+          </div>
+        </div>
+        <p style="margin-top: var(--space-4); color: var(--text-muted); font-size: var(--text-sm);">
+          The demo above runs the real widget from <code>src/lib/chatWidget.js</code> with a local echo endpoint so it works without a backend.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page">
+    <div class="container">
+      <p><strong>Hallelujah ONE™</strong> — Elevated Clarity visual system. Tokens live in <code>src/styles/tokens.css</code>.</p>
+      <p style="margin-top: var(--space-2);">Seed → Scale → National Expansion.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { createChatWidget } from "../src/lib/chatWidget.js";
+
+    // Theme toggle — respects and overrides the OS preference in both directions.
+    const root = document.documentElement;
+    const toggle = document.getElementById("themeToggle");
+    const initial = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    root.setAttribute("data-theme", initial);
+    toggle.addEventListener("click", () => {
+      root.setAttribute("data-theme", root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+    });
+
+    // A tiny local endpoint so the demo works with no backend: intercept the
+    // widget's fetch("/api/chat") and echo a warm, on-brand reply.
+    const realFetch = window.fetch.bind(window);
+    window.fetch = async (url, opts) => {
+      if (typeof url === "string" && url.endsWith("/api/chat")) {
+        const { messages } = JSON.parse(opts.body);
+        const last = messages[messages.length - 1]?.content ?? "";
+        await new Promise((r) => setTimeout(r, 700));
+        return new Response(
+          JSON.stringify({ text: `Thanks for asking about “${last}.” This is a design preview — the live assistant connects to the real ecosystem.` }),
+          { status: 200, headers: { "Content-Type": "application/json" } }
+        );
+      }
+      return realFetch(url, opts);
+    };
+
+    createChatWidget({
+      root: document.getElementById("chatRoot"),
+      systemPrompt: "You are the Hallelujah ONE assistant.",
+      greeting: "Welcome to Hallelujah ONE™. Ask me about Mac House, Mobility, Career Launch, or H3O™.",
+    });
+  </script>
+</body>
+</html>

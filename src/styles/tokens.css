@@ -1,0 +1,252 @@
+/**
+ * Hallelujah ONE™ — Visual Identity Tokens
+ * Direction: "Elevated Clarity" — warm, earthy, human-centered, aspirational.
+ *
+ * This file is the single source of truth for the brand. Every color, type
+ * scale, spacing step, radius, and shadow used across the ecosystem's web
+ * surfaces should reference a token here rather than a raw value, so the whole
+ * experience stays consistent as it scales: Seed → Scale → National Expansion.
+ *
+ * Palette anchors:
+ *   - Deep greens  → growth, place, the campus (primary)
+ *   - Warm golds   → warmth, dignity, celebration (accent)
+ *   - Rich blues   → trust, calm, the horizon (secondary)
+ *   - Warm neutrals→ paper-like grounds, never cold gray
+ */
+
+:root {
+  /* ---------------------------------------------------------------------
+   * 1. Core palette — raw ramps (do not use these directly in components;
+   *    reference the semantic tokens in section 2 instead).
+   * ------------------------------------------------------------------ */
+
+  /* Deep green — primary */
+  --green-50:  #eef4ef;
+  --green-100: #d6e5da;
+  --green-200: #adc9b5;
+  --green-300: #7fa98c;
+  --green-400: #4f8563;
+  --green-500: #2d6a4f;
+  --green-600: #1f5039;
+  --green-700: #1b4332;
+  --green-800: #133226;
+  --green-900: #0c2118;
+
+  /* Warm gold — accent */
+  --gold-50:  #fbf6e9;
+  --gold-100: #f6ebc8;
+  --gold-200: #ecd68d;
+  --gold-300: #e0b84c;
+  --gold-400: #cc9f2f;
+  --gold-500: #b3871f;
+  --gold-600: #8f6a17;
+  --gold-700: #6d5012;
+
+  /* Rich blue — secondary */
+  --blue-50:  #eaf1f6;
+  --blue-100: #cdddea;
+  --blue-200: #9cbdd6;
+  --blue-300: #5f92b8;
+  --blue-400: #2a6f97;
+  --blue-500: #1d5478;
+  --blue-600: #17415d;
+  --blue-700: #122f43;
+
+  /* Warm neutrals — grounds & ink (tinted warm, never true gray) */
+  --sand-50:  #fdfbf7; /* paper */
+  --sand-100: #f7f2e9;
+  --sand-200: #ece3d4;
+  --sand-300: #d9ccb6;
+  --sand-400: #b8a88d;
+  --sand-500: #8f8069;
+  --sand-600: #6a5d4a;
+  --sand-700: #473e31;
+  --ink-800:  #2b2721;
+  --ink-900:  #1a1712;
+
+  /* Signal colors (kept warm-leaning to fit the system) */
+  --success: #2d6a4f;
+  --warning: #cc9f2f;
+  --danger:  #a23a2e;
+  --info:    #2a6f97;
+
+  /* ---------------------------------------------------------------------
+   * 2. Semantic tokens — this is what components should reference.
+   * ------------------------------------------------------------------ */
+
+  /* Brand */
+  --brand-primary:       var(--green-700);
+  --brand-primary-hover: var(--green-600);
+  --brand-primary-soft:  var(--green-50);
+  --brand-accent:        var(--gold-300);
+  --brand-accent-strong: var(--gold-400);
+  --brand-secondary:     var(--blue-400);
+
+  /* Surfaces */
+  --bg:            var(--sand-50);
+  --bg-subtle:     var(--sand-100);
+  --bg-muted:      var(--sand-200);
+  --surface:       #ffffff;
+  --surface-raised:#ffffff;
+  --surface-inverse: var(--green-900);
+  --border:        var(--sand-300);
+  --border-strong: var(--sand-400);
+
+  /* Text */
+  --text:          var(--ink-900);
+  --text-muted:    var(--sand-600);
+  --text-subtle:   var(--sand-500);
+  --text-on-brand: var(--sand-50);
+  --text-on-accent:var(--ink-900);
+  --link:          var(--green-600);
+  --link-hover:    var(--green-700);
+
+  /* Focus ring — visible, brand-tinted, accessible */
+  --focus-ring: 0 0 0 3px rgba(224, 184, 76, 0.55);
+
+  /* ---------------------------------------------------------------------
+   * 3. Typography — clean, modern, premium. Inter/Montserrat when present,
+   *    graceful fallback to the platform's best sans (SF Pro on Apple).
+   * ------------------------------------------------------------------ */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text",
+               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Montserrat", "Inter", -apple-system, BlinkMacSystemFont,
+                  "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono", "Fira Code", ui-monospace,
+               Menlo, Consolas, monospace;
+
+  /* Type scale — 1.200 (minor third), 16px base */
+  --text-xs:   0.694rem;
+  --text-sm:   0.833rem;
+  --text-base: 1rem;
+  --text-md:   1.2rem;
+  --text-lg:   1.44rem;
+  --text-xl:   1.728rem;
+  --text-2xl:  2.074rem;
+  --text-3xl:  2.488rem;
+  --text-4xl:  2.986rem;
+  --text-5xl:  3.583rem;
+
+  --leading-tight:   1.15;
+  --leading-snug:    1.3;
+  --leading-normal:  1.6;
+  --leading-relaxed: 1.75;
+
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-caps:   0.12em; /* for small eyebrow/label caps */
+
+  /* ---------------------------------------------------------------------
+   * 4. Spacing — 4px base rhythm.
+   * ------------------------------------------------------------------ */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.5rem;
+  --space-6:  2rem;
+  --space-7:  3rem;
+  --space-8:  4rem;
+  --space-9:  6rem;
+  --space-10: 8rem;
+
+  /* ---------------------------------------------------------------------
+   * 5. Radii, shadows, motion.
+   * ------------------------------------------------------------------ */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-pill: 999px;
+
+  /* Soft, warm, layered — studio lighting, not hard drop shadows */
+  --shadow-sm: 0 1px 2px rgba(43, 39, 33, 0.06),
+               0 1px 3px rgba(43, 39, 33, 0.08);
+  --shadow-md: 0 4px 12px rgba(43, 39, 33, 0.08),
+               0 2px 4px rgba(43, 39, 33, 0.06);
+  --shadow-lg: 0 12px 32px rgba(43, 39, 33, 0.12),
+               0 4px 8px rgba(43, 39, 33, 0.06);
+  --shadow-xl: 0 24px 60px rgba(43, 39, 33, 0.16),
+               0 8px 16px rgba(43, 39, 33, 0.08);
+
+  /* Signature warm gradients (data viz, heroes, accents) */
+  --gradient-warm:  linear-gradient(135deg, var(--gold-300) 0%, var(--gold-400) 100%);
+  --gradient-earth: linear-gradient(135deg, var(--green-500) 0%, var(--green-700) 100%);
+  --gradient-dawn:  linear-gradient(135deg, var(--gold-200) 0%, var(--green-500) 60%, var(--blue-500) 100%);
+
+  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast:   140ms;
+  --duration-normal: 240ms;
+  --duration-slow:   420ms;
+
+  /* Layout */
+  --container:      72rem;
+  --container-wide: 84rem;
+  --container-text: 42rem;
+}
+
+/* -----------------------------------------------------------------------
+ * Dark mode — the same warmth, dimmed. Greens deepen, gold stays the
+ * point of light, grounds go to warm charcoal rather than pure black.
+ * -------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:            #14120e;
+    --bg-subtle:     #1b1813;
+    --bg-muted:      #241f18;
+    --surface:       #1e1a14;
+    --surface-raised:#241f18;
+    --surface-inverse: var(--sand-50);
+    --border:        #322b21;
+    --border-strong: #453c2e;
+
+    --text:          var(--sand-100);
+    --text-muted:    var(--sand-400);
+    --text-subtle:   var(--sand-500);
+    --text-on-brand: var(--sand-50);
+    --link:          var(--gold-300);
+    --link-hover:    var(--gold-200);
+
+    --brand-primary:       var(--green-400);
+    --brand-primary-hover: var(--green-300);
+    --brand-primary-soft:  #17231b;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.55);
+  }
+}
+
+/* Explicit theme override hook — lets a toggle force a theme and win over
+ * the OS preference in both directions. */
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg:            #14120e;
+  --bg-subtle:     #1b1813;
+  --bg-muted:      #241f18;
+  --surface:       #1e1a14;
+  --surface-raised:#241f18;
+  --surface-inverse: var(--sand-50);
+  --border:        #322b21;
+  --border-strong: #453c2e;
+  --text:          var(--sand-100);
+  --text-muted:    var(--sand-400);
+  --text-subtle:   var(--sand-500);
+  --text-on-brand: var(--sand-50);
+  --link:          var(--gold-300);
+  --link-hover:    var(--gold-200);
+  --brand-primary:       var(--green-400);
+  --brand-primary-hover: var(--green-300);
+  --brand-primary-soft:  #17231b;
+}
