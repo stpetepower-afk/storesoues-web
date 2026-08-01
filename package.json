@@ -1,0 +1,14 @@
+{
+  "name": "hallelujah-one-command-center",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Hallelujah ONE Command Center — economic mobility operating system dashboard.",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

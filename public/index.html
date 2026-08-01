@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hallelujah ONE — Command Center</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%236ea8fe'/%3E%3Ctext x='50' y='68' font-size='54' font-family='Arial' font-weight='bold' fill='%230b0f1a' text-anchor='middle'%3EH1%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">H1</div>
+        <div>
+          <h1>HALLELUJAH ONE</h1>
+          <span>Command Center</span>
+        </div>
+      </div>
+      <a class="nav-item active"><span class="dot"></span> Overview</a>
+      <a class="nav-item" href="#residents"><span class="dot"></span> Resident Metrics</a>
+      <a class="nav-item" href="#funding"><span class="dot"></span> Funding Pipeline</a>
+      <a class="nav-item" href="#partners"><span class="dot"></span> Partner CRM</a>
+      <a class="nav-item" href="#grants"><span class="dot"></span> Grant Calendar</a>
+      <a class="nav-item" href="#h3o"><span class="dot"></span> H3O Production</a>
+      <a class="nav-item" href="#workforce"><span class="dot"></span> Workforce Pipeline</a>
+      <a class="nav-item" href="#ai"><span class="dot"></span> AI Briefing</a>
+      <div class="nav-foot">
+        St. Petersburg, FL<br />
+        Economic mobility operating system.<br />
+        <em>Housing · Workforce · Independence</em>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h2 id="hello">Command Center</h2>
+          <div class="sub" id="today"></div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <span class="pill badge-sample">Sample data</span>
+          <span class="pill"><span class="live"></span> Live</span>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="grid kpis" id="kpis"></div>
+
+      <!-- Row: Funding + Resident status -->
+      <div class="section">
+        <div class="grid cols-2">
+          <div class="card" id="funding">
+            <h3>Funding Pipeline</h3>
+            <div class="card-sub">Weighted by probability · <span id="fund-total"></span></div>
+            <div id="fund-bars"></div>
+          </div>
+          <div class="card" id="residents">
+            <h3>Resident Status</h3>
+            <div class="card-sub">Across the mobility pathway</div>
+            <div style="display:flex; gap:20px; align-items:center;">
+              <div id="donut"></div>
+              <div class="legend" id="donut-legend"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row: Grants + Partners -->
+      <div class="section">
+        <div class="grid cols-2b">
+          <div class="card" id="grants">
+            <h3>Grant Countdown Engine</h3>
+            <div class="card-sub">Time to the next deadlines</div>
+            <div id="deadlines"></div>
+          </div>
+          <div class="card" id="partners">
+            <h3>Partner CRM</h3>
+            <div class="card-sub">Relationship pipeline</div>
+            <table>
+              <thead><tr><th>Partner</th><th>Status</th><th>Next step</th></tr></thead>
+              <tbody id="partner-rows"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row: H3O + Workforce -->
+      <div class="section">
+        <div class="grid cols-2b">
+          <div class="card" id="h3o">
+            <h3>H3O Enterprise — Production</h3>
+            <div class="card-sub" id="h3o-sub"></div>
+            <div id="h3o-chart"></div>
+          </div>
+          <div class="card" id="workforce">
+            <h3>Workforce Pipeline</h3>
+            <div class="card-sub">Housing → Training → Credential → Employment → Income stability</div>
+            <div id="funnel"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Chief of Staff -->
+      <div class="section">
+        <div class="card" id="ai">
+          <h3>AI Chief of Staff</h3>
+          <div class="card-sub">Ask about priorities, funders, or the pipeline. Powered by your chat widget.</div>
+          <div class="chat">
+            <div class="chat-body" data-chat-body></div>
+            <div class="chat-input">
+              <input data-chat-input placeholder="Ask the Chief of Staff…" />
+              <button data-chat-send>Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="/dashboard.js"></script>
+</body>
+</html>

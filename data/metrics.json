@@ -1,0 +1,9 @@
+{
+  "_meta": { "status": "SAMPLE", "note": "Placeholder KPIs. Wire to real intake/case-management data." },
+  "kpis": [
+    { "id": "residents", "label": "Residents Housed", "value": 42, "target": 60, "unit": "", "trend": 8, "icon": "home" },
+    { "id": "placements", "label": "Job Placements (YTD)", "value": 27, "target": 50, "unit": "", "trend": 5, "icon": "briefcase" },
+    { "id": "funding", "label": "Funding Secured", "value": 615000, "target": 1500000, "unit": "$", "trend": 120000, "icon": "dollar" },
+    { "id": "retention", "label": "90-Day Retention", "value": 78, "target": 85, "unit": "%", "trend": 3, "icon": "shield" }
+  ]
+}

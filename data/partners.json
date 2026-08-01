@@ -1,0 +1,10 @@
+{
+  "_meta": { "status": "SAMPLE", "note": "Illustrative CRM. Replace with real contacts and status." },
+  "partners": [
+    { "name": "Homeless Leadership Alliance of Pinellas", "type": "Government / CoC", "status": "Priority Outreach", "next": "Request FY2026 pathway guidance" },
+    { "name": "CareerSource Pinellas", "type": "Workforce", "status": "Active Conversation", "next": "Validate housing→credential→employment model" },
+    { "name": "City of St. Petersburg", "type": "Government", "status": "Introduced", "next": "Community grant briefing" },
+    { "name": "Pinellas Community Foundation", "type": "Philanthropy", "status": "Application Submitted", "next": "Follow up on review timeline" },
+    { "name": "Apple / AWS (Infrastructure)", "type": "Technology", "status": "Positioning", "next": "Frame as community operating system, seek infra partner" }
+  ]
+}

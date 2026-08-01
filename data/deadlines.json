@@ -1,0 +1,9 @@
+{
+  "_meta": { "status": "SAMPLE", "note": "Illustrative deadlines. Replace with real grant dates — the countdown reads these." },
+  "deadlines": [
+    { "name": "HUD CoC NOFO — Letter of Intent", "date": "2026-09-15", "org": "HUD" },
+    { "name": "CareerSource Partnership MOU", "date": "2026-08-29", "org": "CareerSource Pinellas" },
+    { "name": "City Community Grant — Application Due", "date": "2026-10-01", "org": "City of St. Petersburg" },
+    { "name": "Pinellas Community Foundation — Report", "date": "2026-08-20", "org": "PCF" }
+  ]
+}

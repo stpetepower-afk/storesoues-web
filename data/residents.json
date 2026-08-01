@@ -1,0 +1,10 @@
+{
+  "_meta": { "status": "SAMPLE", "note": "No real personal data. Replace with de-identified case data only." },
+  "stages": [
+    { "stage": "Intake", "count": 14 },
+    { "stage": "Transitional Housing", "count": 42 },
+    { "stage": "Training / Career Launch", "count": 23 },
+    { "stage": "Employed", "count": 27 },
+    { "stage": "Income Stable (Exited)", "count": 11 }
+  ]
+}

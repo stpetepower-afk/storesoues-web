@@ -1,0 +1,10 @@
+{
+  "_meta": { "status": "SAMPLE", "note": "Illustrative pipeline. Replace amounts and stages with real opportunities." },
+  "pipeline": [
+    { "source": "HUD CoC / Homeless Leadership Alliance", "amount": 450000, "stage": "Identified", "probability": 0.4 },
+    { "source": "CareerSource Pinellas (Workforce)", "amount": 200000, "stage": "In Conversation", "probability": 0.55 },
+    { "source": "City of St. Petersburg — Community Grant", "amount": 150000, "stage": "Application Drafting", "probability": 0.5 },
+    { "source": "Pinellas Community Foundation", "amount": 100000, "stage": "Submitted", "probability": 0.65 },
+    { "source": "Private / Faith Partner Gifts", "amount": 265000, "stage": "Committed", "probability": 1.0 }
+  ]
+}
