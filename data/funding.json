@@ -1,0 +1,10 @@
+{
+  "_meta": { "status": "ACTIVE", "note": "Capital War Room from the Master Handoff. Amounts for HUD/USDA are the funder's stated ranges; local pools (Penny IV, CDBG-DR, CRA TIF) are county/city-wide totals, NOT the ministry's request — confirm actual ask amounts before sharing." },
+  "pipeline": [
+    { "source": "HUD CoC FY2026", "amount": 500000, "stage": "Engaging (HLA of Pinellas)", "probability": 0.4 },
+    { "source": "USDA REAP Q4", "amount": 250000, "stage": "Identified", "probability": 0.35 },
+    { "source": "City of St. Petersburg (CDBG-DR / Sunrise)", "amount": 150000, "stage": "Rolling — drafting", "probability": 0.4 },
+    { "source": "Pinellas Community Foundation", "amount": 100000, "stage": "Submitted", "probability": 0.65 },
+    { "source": "Private / Faith Partner Gifts", "amount": 265000, "stage": "Committed", "probability": 1.0 }
+  ]
+}

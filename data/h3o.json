@@ -1,0 +1,12 @@
+{
+  "_meta": { "status": "SAMPLE", "note": "Illustrative H3O enterprise production figures." },
+  "units": "cases / month",
+  "series": [
+    { "month": "Mar", "produced": 120 },
+    { "month": "Apr", "produced": 180 },
+    { "month": "May", "produced": 240 },
+    { "month": "Jun", "produced": 310 },
+    { "month": "Jul", "produced": 360 }
+  ],
+  "capacity": 500
+}

@@ -1,0 +1,17 @@
+{
+  "_meta": { "status": "FRAMEWORK", "note": "PLACEHOLDER metrics demonstrating the panel. Not measured yet — replace with real values once loops are instrumented (see 11_LOOP_ENGINEERING/FEEDBACK_SYSTEM.md)." },
+  "headline": [
+    { "label": "Active Loops", "value": "9", "note": "designed" },
+    { "label": "Loops Running", "value": "1", "note": "reads real data" },
+    { "label": "Instrumented", "value": "0%", "note": "observation not wired yet" },
+    { "label": "Decisions Logged", "value": "3", "note": "in DECISION_HISTORY.md" }
+  ],
+  "topLoops": [
+    { "name": "Mac House Resident Journey", "status": "design", "readiness": 20 },
+    { "name": "H3O Production Economics", "status": "design", "readiness": 15 },
+    { "name": "Grant Success Rate", "status": "design", "readiness": 25 },
+    { "name": "Fleet Route Optimization", "status": "design", "readiness": 10 },
+    { "name": "Partner Engagement", "status": "design", "readiness": 15 }
+  ],
+  "insight": "Illustrative only: once the Resident Journey loop is instrumented, this panel will surface real patterns here (e.g. which credential timing correlates with stability). No such measurement exists yet."
+}

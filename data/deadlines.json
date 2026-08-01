@@ -1,0 +1,9 @@
+{
+  "_meta": { "status": "ACTIVE", "note": "Capital War Room deadlines from the Master Handoff (Aug 1, 2026). Confirm exact NOFO/application dates with each funder before relying on them." },
+  "deadlines": [
+    { "name": "HUD CoC FY2026 — engage Homeless Leadership Alliance", "date": "2026-08-27", "org": "HUD CoC" },
+    { "name": "CareerSource Partnership MOU", "date": "2026-08-29", "org": "CareerSource Pinellas" },
+    { "name": "City Community Grant (Sunrise / CDBG-DR)", "date": "2026-10-01", "org": "City of St. Petersburg" },
+    { "name": "USDA REAP Q4", "date": "2026-11-01", "org": "USDA" }
+  ]
+}
