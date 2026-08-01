@@ -1,4 +1,5 @@
 import { createChatWidget } from "/src/lib/chatWidget.js";
+import { initVoice } from "/voice.js";
 
 const $ = (sel) => document.querySelector(sel);
 const fmt = (n) => n.toLocaleString("en-US");
@@ -289,6 +290,7 @@ function initGlobal() {
     renderLoops(loops);
     renderSkills(skills);
     mountChat(org);
+    initVoice({ org: org, metrics: metrics, residents: residents, funding: funding, deadlines: deadlines, h3o: h3o, career: career, loops: loops });
     initGlobal();
   } catch (e) {
     document.querySelector(".main").insertAdjacentHTML(

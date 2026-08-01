@@ -2,12 +2,13 @@
  * Strategy: cache the app shell + data on install; serve cache-first with a
  * background network refresh so the dashboard opens instantly and works with
  * no connection. Bump CACHE when shipping changes to invalidate old caches. */
-const CACHE = "hallelujah-one-v1";
+const CACHE = "hallelujah-one-v2";
 const SHELL = [
   "/",
   "/index.html",
   "/styles.css",
   "/dashboard.js",
+  "/voice.js",
   "/manifest.webmanifest",
   "/icon.svg",
   "/src/lib/chatWidget.js",

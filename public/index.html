@@ -155,6 +155,33 @@
         </div>
       </div>
 
+      <!-- Voice Command -->
+      <div class="section">
+        <div class="card" id="voice">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+            <div>
+              <h3>🎙️ Voice Command</h3>
+              <div class="card-sub">Tap the mic and ask — answers come from your live dashboard data, spoken aloud.</div>
+            </div>
+            <span class="pill" id="v-ready"><span class="live"></span> <span data-v-label>Speak to the Chief of Staff</span></span>
+          </div>
+          <div class="v-trans" data-v-trans>Tap the microphone and speak…</div>
+          <div class="v-out" data-v-out></div>
+          <div class="v-controls">
+            <button class="v-mic" data-v-btn aria-label="Start voice command">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4"/></svg>
+              <span>Speak to AI Chief</span>
+            </button>
+            <div class="v-chips">
+              <button class="v-chip" data-v-ask="today's briefing">📋 Briefing</button>
+              <button class="v-chip" data-v-ask="housing status">🏠 Housing</button>
+              <button class="v-chip" data-v-ask="deadlines">💰 Deadlines</button>
+              <button class="v-chip" data-v-ask="career launch pilot">💛 Pilot</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- AI Chief of Staff -->
       <div class="section">
         <div class="card" id="ai">
