@@ -13,12 +13,17 @@ The vision for 3548 5th Ave S begins with a simple conviction: **the fourplex is
 project — it is the first physical node** of an integrated Human Empowerment Operating
 System.
 
-The design language is **coastal Florida modern**, expressed through a **modern Japanese
-design sensibility** — clean lines, natural materials, generous light, and disciplined
-restraint. Reference points include SANAA, Kengo Kuma, and MUJI: architecture that feels
-calm, dignified, and quietly advanced rather than ornate.
+The design language is **upscale urban contemporary** — a three-story building with clean
+rectilinear massing and a flat roof, clad in **warm tan stacked-stone (ledgestone) veneer**
+with **floor-to-ceiling black steel-framed windows**, a set-back **white-stucco penthouse**
+opening onto a **rooftop terrace**, and a signature **cantilevered black canopy**. At grade,
+a manicured lawn with a checkerboard concrete-paver-and-grass walkway, black planters, and
+low black horizontal-slat fencing. (Detailed render direction lives in `PRODUCTION_BRIEF.md`,
+matched to the client's reference.)
 
-The intent is *luxury affordable housing* — attainable, never institutional.
+The graphic and presentation language stays **modern Japanese / restrained** (SANAA · Kengo
+Kuma · MUJI) — calm, dignified, quietly advanced. The intent throughout is *luxury affordable
+housing* — attainable, never institutional.
 
 ---
 

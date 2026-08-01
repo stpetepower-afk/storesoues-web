@@ -45,19 +45,36 @@ language lives in the framing, typography, titles, and layout around them.
 
 **Tool:** Meshy — first-pass massing model.
 
+### Reference aesthetic (from client)
+
+The client provided a reference of the target look. Match these specifics:
+
+- **Massing:** three-story contemporary building, clean rectilinear form, **flat roof**.
+- **Primary material:** warm tan / brown **natural thin stacked-stone (ledgestone) veneer** — the signature material across the main volume.
+- **Windows:** **floor-to-ceiling black steel-framed windows** with fine grid mullions.
+- **Top level:** a **set-back white-stucco penthouse** with black trim, full-height glass opening onto a **large rooftop terrace** — modern outdoor lounge furniture, artificial turf, potted palms/planters, low horizontal black metal railings.
+- **Signature detail:** a **dramatic cantilevered black-clad canopy** wrapping the middle level.
+- **Ground plane:** manicured lawn with a **checkerboard concrete-paver-and-grass walkway**, black planters, gravel borders, low black horizontal-slat fencing.
+- **Palette:** warm stacked-stone + black steel + white stucco + green turf; upscale urban contemporary.
+
 ### Master prompt
 
 ```
 Modern sustainable four-unit workforce housing community in St. Petersburg, Florida.
-Two-story contemporary fourplex designed for economic mobility. Each residence has
-private entrances, balconies, large energy-efficient windows, natural wood accents,
-tropical landscaping, native Florida plants, community garden beds, solar panel roof
-system, green roof elements, rainwater collection features, accessible pathways,
-bicycle storage, EV charging stations, and a welcoming pedestrian courtyard.
-Architecture inspired by coastal Florida modern design with luxury affordable housing
-principles. Include community gathering space, shaded outdoor seating, fruit trees,
-native landscaping, and smart home technology elements. Photorealistic architectural
-visualization style.
+Three-story contemporary building with clean rectilinear massing and a flat roof.
+Exterior clad in warm tan and brown natural thin stacked-stone (ledgestone) veneer,
+paired with floor-to-ceiling black steel-framed windows with fine grid mullions. A
+set-back top-floor penthouse in crisp white stucco with black trim opens through
+full-height glass onto a large rooftop terrace with modern outdoor lounge furniture,
+artificial turf, potted palms and planters, and low horizontal black metal railings.
+A dramatic cantilevered black-clad canopy wraps the middle level. At ground level, a
+manicured lawn with a checkerboard concrete-paver-and-grass walkway, black planters,
+gravel borders, and low black horizontal-slat fencing. Private entrances and balconies,
+energy-efficient windows, solar panels integrated on the flat roof, native Florida and
+tropical landscaping, community garden beds, EV charging stations, bicycle storage,
+accessible pathways, and smart home technology. Luxury affordable-housing principles;
+upscale urban contemporary meets coastal Florida modern. Warm golden-hour light.
+Photorealistic architectural visualization, aerial three-quarter drone view.
 ```
 
 ### Required exports
