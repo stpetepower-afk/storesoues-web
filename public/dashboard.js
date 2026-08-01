@@ -156,12 +156,32 @@ function renderFunnel(residents) {
     .join("");
 }
 
+/* ---------- Loop Intelligence ---------- */
+function renderLoops(data) {
+  $("#loop-stats").innerHTML = data.headline
+    .map(
+      (s) => `<div class="loop-stat"><div class="v">${s.value}</div><div class="l">${s.label}</div><div class="n">${s.note}</div></div>`
+    )
+    .join("");
+  $("#loop-bars").innerHTML = data.topLoops
+    .map(
+      (l) => `<div class="bar-row">
+        <div class="name">${l.name}<div class="stage-tag">${l.status}</div></div>
+        <div class="bar-track"><div class="bar-fill" style="width:${l.readiness}%"></div></div>
+        <div class="amt">${l.readiness}%</div>
+      </div>`
+    )
+    .join("");
+  $("#loop-insight").textContent = data.insight;
+}
+
 /* ---------- Command Skills ---------- */
 const SKILL_ICONS = {
   doc: "M6 2h9l5 5v15H6zM14 2v6h6",
   brief: "M4 7h16v13H4zM9 7V4h6v3",
   mail: "M3 6h18v12H3zM3 6l9 7 9-7",
   chart: "M4 20V10M10 20V4M16 20v-8M22 20H2",
+  loop: "M17 2l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 22l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3",
 };
 function renderSkills(data) {
   $("#skills-grid").innerHTML = data.skills
@@ -185,7 +205,10 @@ function mountChat(org) {
     endpoint: "/api/chat",
     systemPrompt:
       `You are the AI Chief of Staff for ${org.organization}, an economic mobility operating system in ${org.location}. ` +
-      `Mission: ${org.mission} Be concise, practical, and action-oriented. Help prioritize funders, partners, and grant deadlines.`,
+      `Mission: ${org.mission} Be concise, practical, and action-oriented. Help prioritize funders, partners, and grant deadlines. ` +
+      `When giving a briefing, use the six-part Loop format: 1) Current State, 2) New Signals Detected, ` +
+      `3) Pattern Recognition, 4) Recommended Action, 5) Expected Outcome, 6) Learning Captured. ` +
+      `Only state numbers that are supported by data; if a figure is a target or placeholder, say so. Never present placeholder metrics as measured fact.`,
     greeting:
       "I'm your Chief of Staff. Ask me about today's priorities, a funder, or the pipeline. " +
       "(Live answers require an ANTHROPIC_API_KEY; otherwise I run in offline mode.)",
@@ -195,9 +218,9 @@ function mountChat(org) {
 /* ---------- boot ---------- */
 (async function boot() {
   try {
-    const [org, metrics, residents, funding, partners, deadlines, h3o, skills] = await Promise.all([
+    const [org, metrics, residents, funding, partners, deadlines, h3o, skills, loops] = await Promise.all([
       load("org"), load("metrics"), load("residents"), load("funding"),
-      load("partners"), load("deadlines"), load("h3o"), load("skills"),
+      load("partners"), load("deadlines"), load("h3o"), load("skills"), load("loops"),
     ]);
     renderHeader(org);
     renderKpis(metrics);
@@ -207,6 +230,7 @@ function mountChat(org) {
     renderPartners(partners);
     renderH3O(h3o);
     renderFunnel(residents);
+    renderLoops(loops);
     renderSkills(skills);
     mountChat(org);
   } catch (e) {
