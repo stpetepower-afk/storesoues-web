@@ -1,0 +1,49 @@
+# Human Review Workflow Configuration
+# Proof Layer: every AI recommendation requires human approval before action.
+# Status: design of record — the workflow engine that consumes this is not yet built.
+workflow:
+  name: "Hallelujah ONE AI Review Console"
+  version: "1.0"
+  description: "AI recommendations require human approval before action"
+
+  stages:
+    - id: "ai_recommendation"
+      description: "AI generates recommendation"
+      next: "human_review"
+    - id: "human_review"
+      description: "Human reviews recommendation"
+      options:
+        - action: "approve"
+          next: "execute"
+        - action: "modify"
+          next: "ai_revision"
+        - action: "reject"
+          next: "archive"
+    - id: "ai_revision"
+      description: "AI refines based on feedback"
+      next: "human_review"
+    - id: "execute"
+      description: "Execute approved action"
+      next: "measure"
+    - id: "measure"
+      description: "Measure outcome"
+      next: "learn"
+    - id: "learn"
+      description: "Improve AI for future"
+      next: "end"
+
+  reviewer_roles:
+    - role: "case_manager"
+      permissions: ["view_resident", "review_ai", "approve_minor", "modify"]
+    - role: "supervisor"
+      permissions: ["approve_major", "escalate", "override"]
+    - role: "executive"
+      permissions: ["final_approval", "policy_change"]
+
+  escalation_rules:
+    - condition: "high_risk_recommendation"
+      escalate_to: "supervisor"
+    - condition: "disagreement_between_ai_and_human"
+      escalate_to: "executive"
+    - condition: "outcome_unexpected"
+      escalate_to: "learning_loop"
