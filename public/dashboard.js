@@ -228,6 +228,48 @@ function mountChat(org) {
   });
 }
 
+/* ---------- Work-from-anywhere: local context + offline ---------- */
+function initGlobal() {
+  // Timezone + live local clock (detected from the device — works anywhere).
+  let zone = "local";
+  try {
+    zone = Intl.DateTimeFormat().resolvedOptions().timeZone || "local";
+  } catch { /* older browsers */ }
+  const zoneEl = $("#geo-zone");
+  const clockEl = $("#geo-clock");
+  if (zoneEl) zoneEl.textContent = zone.replace(/_/g, " ");
+  function tick() {
+    if (clockEl) {
+      clockEl.textContent = new Date().toLocaleTimeString([], {
+        hour: "2-digit", minute: "2-digit",
+      });
+    }
+  }
+  tick();
+  setInterval(tick, 15000);
+
+  // Real online/offline status.
+  const dot = $("#net-dot");
+  const label = $("#net-label");
+  function setNet() {
+    const on = navigator.onLine;
+    if (label) label.textContent = on ? "Online" : "Offline · cached";
+    if (dot) dot.style.background = on ? "var(--accent-2)" : "var(--gold)";
+  }
+  setNet();
+  window.addEventListener("online", setNet);
+  window.addEventListener("offline", setNet);
+
+  // Register the service worker for offline capability.
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/sw.js").catch(() => {
+        /* offline registration is best-effort */
+      });
+    });
+  }
+}
+
 /* ---------- boot ---------- */
 (async function boot() {
   try {
@@ -247,6 +289,7 @@ function mountChat(org) {
     renderLoops(loops);
     renderSkills(skills);
     mountChat(org);
+    initGlobal();
   } catch (e) {
     document.querySelector(".main").insertAdjacentHTML(
       "afterbegin",
