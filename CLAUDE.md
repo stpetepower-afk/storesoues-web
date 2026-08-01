@@ -43,8 +43,11 @@ widget._getHistory();        // returns a copy of the message history (test help
 
 ### Required DOM contract
 
-`root` must contain three elements identified by `data-*` attributes; the widget
-queries them and will throw if `input`/`sendBtn` are missing:
+`root` must contain three elements identified by `data-*` attributes. All three
+are required — the widget queries them at construction and will throw if any is
+missing (`[data-chat-input]`/`[data-chat-send]` are dereferenced immediately by
+`setSending`; `[data-chat-body]` is dereferenced by `addMessage`/`showTyping`,
+which run as soon as a `greeting` is shown or the first message is sent):
 
 - `[data-chat-body]`  — message log container (messages are appended here)
 - `[data-chat-input]` — text input the user types into
