@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HALLELUJAH ONE™ — Vision Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0B0C; --bg2:#0F0F11; --ink:#F4F4F2;
+    --muted:rgba(244,244,242,0.55); --faint:rgba(244,244,242,0.30);
+    --line:rgba(244,244,242,0.13); --line2:rgba(244,244,242,0.06);
+    --sig:#FF3242; --sig-dim:rgba(255,50,66,0.13);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#000;}
+  body{font-family:'Space Grotesk','Noto Sans JP',system-ui,Arial,sans-serif;color:var(--ink);}
+  .jp{font-family:'Noto Sans JP',sans-serif;}
+  .mono{font-family:'Space Mono',ui-monospace,monospace;}
+
+  @page{ size:1280px 720px; margin:0; }
+  .slide{
+    position:relative; width:1280px; height:720px; overflow:hidden;
+    background:var(--bg); padding:72px 88px; page-break-after:always;
+    display:flex; flex-direction:column;
+  }
+  .slide:last-child{page-break-after:auto;}
+
+  /* shared chrome */
+  .chrome{position:absolute;top:26px;left:88px;right:88px;display:flex;justify-content:space-between;
+    font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);}
+  .pg{position:absolute;bottom:26px;right:88px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.14em;color:var(--faint);}
+  .pg b{color:var(--sig);}
+  .foot{position:absolute;bottom:26px;left:88px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;color:var(--faint);}
+  .grid{position:absolute;inset:0;background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 85% 80% at 50% 45%,#000 30%,transparent 100%);}
+
+  .ey{display:flex;align-items:center;gap:14px;margin-bottom:26px;}
+  .ey::before{content:"";width:26px;height:1px;background:var(--sig);}
+  .ey .n{font-family:'Space Mono',monospace;font-size:13px;color:var(--sig);letter-spacing:0.08em;}
+  .ey .l{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);}
+  .ey .jp{font-size:13px;color:var(--faint);letter-spacing:0.14em;}
+
+  h1{font-weight:600;font-size:104px;line-height:.9;letter-spacing:-0.045em;}
+  h1 .tm{font-size:.26em;vertical-align:super;color:var(--muted);font-weight:400;}
+  h2{font-weight:500;font-size:52px;line-height:1.06;letter-spacing:-0.02em;max-width:19ch;}
+  h2 em{font-style:normal;color:var(--sig);}
+  .lead{font-size:21px;font-weight:300;color:var(--muted);max-width:60ch;line-height:1.5;margin-top:22px;}
+  .mid{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;}
+
+  .kbig{position:absolute;font-family:'Noto Sans JP',sans-serif;font-weight:300;color:rgba(244,244,242,0.045);line-height:.8;user-select:none;z-index:0;}
+
+  /* cover */
+  .cover .os{display:flex;flex-wrap:wrap;gap:9px 16px;margin-top:26px;font-family:'Space Mono',monospace;font-size:15px;color:var(--muted);}
+  .cover .os b{color:var(--ink);font-weight:400;}
+  .cover .os .p{color:var(--sig);}
+  .cover .sub{font-family:'Noto Sans JP',sans-serif;font-size:22px;color:var(--ink);margin-top:24px;letter-spacing:0.02em;}
+  .cover .meta{display:flex;gap:40px;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);}
+  .cover .meta div{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);}
+  .cover .meta b{display:block;color:var(--ink);font-weight:400;font-size:15px;margin-top:6px;letter-spacing:0.03em;}
+
+  /* feeling */
+  .words{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;max-width:60ch;}
+  .words span{border:1px solid var(--line);padding:14px 28px;font-size:26px;letter-spacing:0.01em;}
+  .notrow{margin-top:34px;font-family:'Space Mono',monospace;font-size:15px;color:var(--muted);letter-spacing:0.04em;}
+  .notrow b{color:var(--ink);}
+
+  /* two-col cards */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:14px;}
+  .card{border:1px solid var(--line);padding:34px 36px;}
+  .card .ct{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--sig);margin-bottom:20px;}
+  .card.r .ct{color:var(--ink);}
+  .br{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--line2);font-size:18px;font-weight:300;color:var(--muted);}
+  .br:last-child{border-bottom:none;} .br .x{font-family:'Space Mono',monospace;font-size:12px;color:var(--faint);}
+  .r .rl{font-size:18px;font-weight:300;color:var(--muted);margin-bottom:22px;}
+  .pillrow{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;}
+  .pillrow .pill{border:1px solid var(--line);padding:10px 16px;font-size:16px;}
+  .pillrow .p{color:var(--sig);font-family:'Space Mono',monospace;}
+
+  /* asset grid (renders/interior) */
+  .assets{display:grid;gap:20px;margin-top:14px;}
+  .assets.three{grid-template-columns:repeat(3,1fr);}
+  .assets.two{grid-template-columns:repeat(2,1fr);}
+  .asset{position:relative;height:300px;border:1px solid var(--line);overflow:hidden;
+    background-size:cover;background-position:center;}
+  .asset.tall{height:340px;}
+  .asset::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,11,12,0.92),transparent 55%);}
+  .asset .cap{position:absolute;left:16px;bottom:14px;right:16px;z-index:2;}
+  .asset .cap .t{font-size:17px;font-weight:500;}
+  .asset .cap .d{font-size:12.5px;color:var(--muted);font-weight:300;margin-top:3px;}
+  .asset .slot{position:absolute;top:12px;left:12px;z-index:2;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);border:1px solid var(--line);padding:4px 8px;background:rgba(11,11,12,0.5);}
+
+  /* mobility narr */
+  .narr{font-family:'Noto Sans JP',sans-serif;font-weight:300;font-size:34px;line-height:1.3;color:var(--ink);max-width:24ch;margin-top:22px;}
+  .narr b{color:var(--sig);font-weight:500;}
+
+  /* roadmap */
+  .phases{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);margin-top:16px;}
+  .ph{padding:30px 32px;border-right:1px solid var(--line);}
+  .ph:last-child{border-right:none;} .ph.now{background:var(--sig-dim);}
+  .ph .pn{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.14em;color:var(--sig);}
+  .ph.b .pn,.ph.c .pn{color:var(--faint);}
+  .ph h3{font-size:24px;font-weight:500;margin:14px 0 3px;}
+  .ph .yr{font-family:'Space Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px;}
+  .ph ul{list-style:none;} .ph li{font-size:15px;font-weight:300;color:var(--muted);padding:7px 0;border-top:1px solid var(--line2);display:flex;gap:9px;}
+  .ph li::before{content:"→";color:var(--sig);opacity:.7;} .ph.now li::before{content:"✓";}
+
+  /* philosophy */
+  .flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:30px;}
+  .flow .s{font-family:'Space Mono',monospace;font-size:19px;letter-spacing:0.05em;padding:14px 24px;border:1px solid var(--line);}
+  .flow .a{color:var(--sig);font-family:'Space Mono',monospace;font-size:19px;}
+  .bridge{margin-top:34px;font-family:'Space Mono',monospace;font-size:15px;letter-spacing:0.06em;color:var(--muted);}
+  .bridge b{color:var(--ink);}
+
+  /* closing */
+  .closing{align-items:center;justify-content:center;text-align:center;
+    background:radial-gradient(70% 60% at 50% 55%,rgba(255,50,66,0.16),transparent 60%),#08080A;}
+  .closing .mark{font-weight:700;font-size:96px;letter-spacing:-0.045em;line-height:.95;position:relative;z-index:2;}
+  .closing .mark .tm{font-size:.24em;vertical-align:super;font-weight:400;color:var(--muted);}
+  .closing .lc{margin-top:20px;font-family:'Noto Sans JP',sans-serif;font-size:20px;color:var(--sig);letter-spacing:0.14em;z-index:2;position:relative;}
+  .closing .os2{margin-top:8px;font-family:'Space Mono',monospace;font-size:14px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);z-index:2;position:relative;}
+  .closing .key{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-weight:300;font-size:22px;color:var(--ink);max-width:34ch;z-index:2;position:relative;}
+
+  .disc{position:absolute;left:88px;right:88px;bottom:48px;font-family:'Space Mono',monospace;font-size:12px;line-height:1.65;color:rgba(244,244,242,0.52);letter-spacing:0.02em;text-align:center;z-index:2;}
+</style>
+</head>
+<body>
+
+<!-- 01 COVER -->
+<section class="slide cover">
+  <div class="grid"></div>
+  <div class="kbig jp" style="right:-30px;top:40px;font-size:520px;">一</div>
+  <div class="chrome"><span>HALLELUJAH ONE™</span><span>概念 / CONCEPT · v1.0</span></div>
+  <div class="mid">
+    <h1>HALLELUJAH&nbsp;ONE<span class="tm">™</span></h1>
+    <div class="sub jp">希望 — A Human Empowerment Operating System.</div>
+    <div class="os"><b>Housing</b><span class="p">+</span><b>Mobility</b><span class="p">+</span><b>Technology</b><span class="p">+</span><b>Community</b><span class="p">+</span><b>Opportunity</b></div>
+    <div class="meta">
+      <div>Site<b>3548 5th Ave S</b></div>
+      <div>City<b>St. Petersburg, FL</b></div>
+      <div>Node 01<b>Sustainable Fourplex</b></div>
+      <div>Status<b>Vision · Stakeholder Briefing</b></div>
+    </div>
+  </div>
+  <div class="foot">A STOREHOUSE FOR EVERY NEED</div>
+  <div class="pg"><b>01</b> / 12</div>
+</section>
+
+<!-- 02 THE VISION -->
+<section class="slide">
+  <div class="grid"></div>
+  <div class="chrome"><span>The Vision</span><span>3548 5TH AVE S</span></div>
+  <div class="mid">
+    <div class="ey"><span class="n">01</span><span class="l">The Vision</span><span class="jp">構想</span></div>
+    <h2>A four-unit sustainable workforce housing community — integrated with mobility, food, technology, and <em>human empowerment.</em></h2>
+    <p class="lead">Not apartments. Not construction. Not real estate. A window into what we are building toward — and the first physical node of a system built to scale.</p>
+  </div>
+  <div class="pg"><b>02</b> / 12</div>
+</section>
+
+<!-- 03 WHAT YOU SHOULD FEEL -->
+<section class="slide">
+  <div class="grid"></div>
+  <div class="chrome"><span>The Feeling</span><span>体験</span></div>
+  <div class="mid">
+    <div class="ey"><span class="n">02</span><span class="l">What You Should Feel</span><span class="jp">尊厳</span></div>
+    <div class="words">
+      <span>Dignity</span><span>Belonging</span><span>Sustainability</span><span>Safety</span><span>Opportunity</span><span>Community</span>
+    </div>
+    <div class="notrow">Most early-stage projects show spreadsheets and zoning maps. <b>People fund what they can see.</b></div>
+  </div>
+  <div class="pg"><b>03</b> / 12</div>
+</section>
+
+<!-- 04 THE WHY -->
+<section class="slide why">
+  <div class="chrome"><span>The Why · Mission Context</span><span>課題と応答</span></div>
+  <div class="mid">
+    <div class="ey"><span class="n">03</span><span class="l">The Why</span><span class="jp">起点</span></div>
+    <h2 style="font-size:40px;margin-bottom:8px;">The fourplex is not the project. It is the <em>first physical node.</em></h2>
+    <div class="cols">
+      <div class="card">
+        <div class="ct">Challenge — Interconnected Barriers</div>
+        <div class="br"><span class="x">01</span>Housing affordability</div>
+        <div class="br"><span class="x">02</span>Transportation access</div>
+        <div class="br"><span class="x">03</span>Workforce mobility</div>
+        <div class="br"><span class="x">04</span>Digital access</div>
+        <div class="br"><span class="x">05</span>Economic opportunity</div>
+      </div>
+      <div class="card r">
+        <div class="ct">Response — An Integrated System</div>
+        <div class="rl">HALLELUJAH ONE™ answers them together, not one at a time.</div>
+        <div class="pillrow">
+          <span class="pill">Housing</span><span class="p">+</span><span class="pill">Mobility</span><span class="p">+</span><span class="pill">Technology</span><span class="p">+</span><span class="pill">Community</span><span class="p">+</span><span class="pill">Opportunity</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg"><b>04</b> / 12</div>
+</section>
+
+<!-- 05 ARCHITECTURE -->
+<section class="slide">
+  <div class="chrome"><span>Architecture</span><span>建築</span></div>
+  <div class="mid">
+    <div class="ey"><span class="n">04</span><span class="l">Architecture — Stacked Stone · Black Steel · Glass</span><span class="jp">建築</span></div>
+    <div class="assets three">
+      <div class="asset" style="background-image:url('../02_ARCHITECTURE/Front View.jpg'),linear-gradient(135deg,#1a1a1f,#0b0b0c);"><span class="slot">02_ARCH / Front</span><div class="cap"><div class="t">Front View</div><div class="d">Stacked stone · black steel windows · private entrances</div></div></div>
+      <div class="asset" style="background-image:url('../02_ARCHITECTURE/Side View.jpg'),linear-gradient(135deg,#191a1e,#0b0b0c);"><span class="slot">02_ARCH / Side</span><div class="cap"><div class="t">Side View</div><div class="d">Cantilevered canopy · rooftop terrace · flat solar roof</div></div></div>
+      <div class="asset" style="background-image:url('../02_ARCHITECTURE/Aerial View.jpg'),linear-gradient(135deg,#1b1b20,#0b0b0c);"><span class="slot">02_ARCH / Aerial</span><div class="cap"><div class="t">Aerial View</div><div class="d">Checkerboard paver lawn · site layout</div></div></div>
+    </div>
+  </div>
+  <div class="pg"><b>05</b> / 12</div>
+</section>
+
+<!-- 06 COMMUNITY EXPERIENCE -->
+<section class="slide">
+  <div class="chrome"><span>Community Experience</span><span>共同体</span></div>
+  <div class="mid">
+    <div class="ey"><span class="n">05</span><span class="l">Community Experience — People, Not Buildings</span><span class="jp">共同体</span></div>
+    <div class="assets two">
+      <div class="asset tall" style="background-image:url('../03_COMMUNITY_EXPERIENCE/Garden.jpg'),radial-gradient(circle at 30% 40%,rgba(255,50,66,0.12),transparent 55%),linear-gradient(135deg,#191a1e,#0b0b0c);"><span class="slot">03_COMM / Garden</span><div class="cap"><div class="t">Garden</div><div class="d">Raised community beds · fruit trees · native landscaping</div></div></div>
+      <div class="asset tall" style="background-image:url('../03_COMMUNITY_EXPERIENCE/Gathering Space.jpg'),radial-gradient(circle at 70% 40%,rgba(255,50,66,0.12),transparent 55%),linear-gradient(135deg,#1b1b20,#0b0b0c);"><span class="slot">03_COMM / Gathering</span><div class="cap"><div class="t">Gathering Space</div><div class="d">Shaded seating · the human interaction layer</div></div></div>
+    </div>
+  </div>
+  <div class="pg"><b>06</b> / 12</div>
+</section>
+
+<!-- 07 INTERIOR -->
+<section class="slide">
+  <div class="chrome"><span>Interior</span><span>室内</span></div>
+  <div class="mid">
+    <div class="ey"><span class="n">06</span><span class="l">Interior — Attainable Luxury</span><span class="jp">室内</span></div>
+    <div class="assets three">
+      <div class="asset" style="background-image:url('../04_INTERIOR/Living Room.jpg'),linear-gradient(135deg,#1a1a1f,#0b0b0c);"><span class="slot">04_INT / Living</span><div class="cap"><div class="t">Living Room</div><div class="d">Natural light · wood · smart-home hub</div></div></div>
+      <div class="asset" style="background-image:url('../04_INTERIOR/Kitchen.jpg'),linear-gradient(135deg,#191a1e,#0b0b0c);"><span class="slot">04_INT / Kitchen</span><div class="cap"><div class="t">Kitchen</div><div class="d">Attainable-luxury finishes · efficient</div></div></div>
+      <div class="asset" style="background-image:url('../04_INTERIOR/Bedroom.jpg'),linear-gradient(135deg,#1b1b20,#0b0b0c);"><span class="slot">04_INT / Bedroom</span><div class="cap"><div class="t">Bedroom</div><div class="d">Calm, dignified personal sanctuary</div></div></div>
+    </div>
+  </div>
+  <div class="pg"><b>07</b> / 12</div>
+</section>
+
+<!-- 08 ECONOMIC MOBILITY -->
+<section class="slide">
+  <div class="grid"></div>
+  <div class="kbig jp" style="left:-20px;bottom:-80px;font-size:360px;">道</div>
+  <div class="chrome"><span>Economic Mobility</span><span>道</span></div>
+  <div class="mid">
+    <div class="ey"><span class="n">07</span><span class="l">Economic Mobility</span><span class="jp">道 · The Path</span></div>
+    <h2>Not just housing. <em>A pathway forward.</em></h2>
+    <p class="narr">"Connected mobility, digital resources, and community support — moving people from survival <b>toward stability.</b>"</p>
+    <p class="lead" style="margin-top:24px;">EV fast-charging (Tesla Supercharger-class, proposed) · future autonomous-vehicle zone · community transportation access · digital learning area · shared community resources.</p>
+  </div>
+  <div class="pg"><b>08</b> / 12</div>
+</section>
+
+<!-- 09 ROADMAP -->
+<section class="slide">
+  <div class="chrome"><span>Concept Evolution Roadmap</span><span>発展の道筋</span></div>
+  <div class="mid">
+    <div class="ey"><span class="n">08</span><span class="l">Concept Evolution Roadmap</span><span class="jp">発展の道筋</span></div>
+    <h2 style="font-size:38px;margin-bottom:6px;">Ambition, held to a <em>responsible</em> process.</h2>
+    <div class="phases">
+      <div class="ph now"><div class="pn">PHASE 01 · 2026</div><h3>Concept Visualization</h3><div class="yr">You are here</div><ul><li>Community vision</li><li>Stakeholder alignment</li><li>Funding conversations</li></ul></div>
+      <div class="ph b"><div class="pn">PHASE 02 · 2026–2027</div><h3>Professional Design</h3><div class="yr">Development</div><ul><li>Architect engagement</li><li>Engineering studies</li><li>Site refinement</li><li>Cost validation</li></ul></div>
+      <div class="ph c"><div class="pn">PHASE 03 · FUTURE</div><h3>Implementation</h3><div class="yr">Execution</div><ul><li>Construction documents</li><li>Permitting</li><li>Development execution</li></ul></div>
+    </div>
+  </div>
+  <div class="pg"><b>09</b> / 12</div>
+</section>
+
+<!-- 10 PHILOSOPHY -->
+<section class="slide">
+  <div class="grid"></div>
+  <div class="chrome"><span>The Living Compass™</span><span>羅針盤</span></div>
+  <div class="mid">
+    <div class="ey"><span class="n">09</span><span class="l">The Living Compass™</span><span class="jp">羅針盤</span></div>
+    <h2>An operating system for how a community <em>moves forward.</em></h2>
+    <div class="flow">
+      <span class="s">OBSERVE</span><span class="a">→</span><span class="s">IMAGINE</span><span class="a">→</span><span class="s">BUILD</span><span class="a">→</span><span class="s">MEASURE</span><span class="a">→</span><span class="s">IMPROVE</span>
+    </div>
+    <div class="bridge">VISION → EMOTION → PARTNERSHIP → FUNDING → EXECUTION &nbsp;·&nbsp; <b>the visualization is the bridge.</b></div>
+  </div>
+  <div class="pg"><b>10</b> / 12</div>
+</section>
+
+<!-- 11 CONTEXT & MOMENTUM -->
+<section class="slide">
+  <div class="grid"></div>
+  <div class="chrome"><span>Context & Momentum</span><span>基盤 · INSTITUTION</span></div>
+  <div class="mid">
+    <div class="ey"><span class="n">10</span><span class="l">Context & Momentum</span><span class="jp">基盤</span></div>
+    <h2 style="font-size:40px;margin-bottom:6px;">Not a program. <em>An institution.</em></h2>
+    <div class="cols" style="grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px;">
+      <div class="card">
+        <div class="ct">Location · Public Context</div>
+        <div style="font-family:'Space Grotesk';font-size:44px;font-weight:600;letter-spacing:-0.03em;margin-bottom:10px;">$8.1B</div>
+        <div style="font-size:15px;font-weight:300;color:var(--muted);line-height:1.5;">Adjacent to the <b style="color:var(--ink);font-weight:400;">Gas Plant District</b> — St. Petersburg's $8.1B redevelopment.</div>
+      </div>
+      <div class="card">
+        <div class="ct">Funding Pathways · In Pursuit</div>
+        <div class="pillrow" style="margin-bottom:14px;"><span class="pill">NACA</span><span class="pill">FCLF</span><span class="pill">CRUTs</span></div>
+        <div style="font-size:15px;font-weight:300;color:var(--muted);line-height:1.5;">Prioritized, high-impact capital pathways — <b style="color:var(--ink);font-weight:400;">actively pursued</b>, not yet committed.</div>
+      </div>
+      <div class="card">
+        <div class="ct">Mobility · Proposed</div>
+        <div style="font-family:'Space Grotesk';font-size:24px;font-weight:500;line-height:1.15;margin-bottom:10px;">Tesla Supercharger-class EV fast-charging</div>
+        <div style="font-size:15px;font-weight:300;color:var(--muted);line-height:1.5;">A community charging anchor — <b style="color:var(--ink);font-weight:400;">proposed</b> infrastructure.</div>
+      </div>
+    </div>
+    <div style="margin-top:26px;font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:var(--faint);">CONFIDENCE KEY · Public context · targeted pathways in pursuit · proposed infrastructure — <b style="color:var(--muted);">not committed funding</b>.</div>
+  </div>
+  <div class="pg"><b>11</b> / 12</div>
+</section>
+
+<!-- 12 CLOSING -->
+<section class="slide closing">
+  <div class="kbig jp" style="font-size:560px;left:50%;top:50%;transform:translate(-50%,-50%);">光</div>
+  <div class="chrome"><span>HALLELUJAH ONE™</span><span>光 · LIGHT</span></div>
+  <div class="mid" style="align-items:center;">
+    <div class="mark">HALLELUJAH ONE<span class="tm">™</span></div>
+    <div class="lc jp">The Living Compass™ · 羅針盤</div>
+    <div class="os2">Human Empowerment Operating System</div>
+    <div class="key">"This is not a construction document. It is a window into what we are building toward."</div>
+  </div>
+  <div class="disc">Conceptual visualization of proposed development. Final design, engineering, and construction documents will be developed through professional architectural and engineering processes during project advancement.</div>
+</section>
+
+</body>
+</html>
