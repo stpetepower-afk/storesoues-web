@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hallelujah ONE™ — Handoff</title>
+  <meta name="description" content="Hallelujah ONE™ — a single verifiable operating system connecting housing, mobility, workforce, and technology." />
+  <link rel="stylesheet" href="src/styles/tokens.css" />
+  <link rel="stylesheet" href="src/styles/base.css" />
+  <link rel="stylesheet" href="src/styles/components.css" />
+  <style>
+    /* Page-local layout for the handoff front door. iPad/boardroom-friendly:
+       large touch targets, generous spacing, reads cleanly on a big screen. */
+    .wrap { max-width: var(--container); margin-inline: auto; padding-inline: var(--space-5); }
+
+    .hero {
+      padding: var(--space-9) 0 var(--space-8);
+      background:
+        radial-gradient(120% 90% at 85% -10%, color-mix(in srgb, var(--gold-200) 45%, transparent), transparent 60%),
+        radial-gradient(120% 90% at -10% 110%, color-mix(in srgb, var(--green-500) 22%, transparent), transparent 55%),
+        var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero h1 { font-size: clamp(2.75rem, 7vw, var(--text-5xl)); }
+    .hero .lead { font-size: var(--text-lg); max-width: 40rem; margin-top: var(--space-4); }
+    .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+
+    .section { padding: var(--space-8) 0; border-bottom: 1px solid var(--border); }
+    .section__head { max-width: var(--container-text); margin-bottom: var(--space-6); }
+
+    .triad { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+    .triad .card { display: flex; flex-direction: column; gap: var(--space-3); }
+    .triad .card__body { flex: 1; }
+    .triad__num { font-family: var(--font-display); font-size: var(--text-sm); font-weight: var(--weight-bold); color: var(--brand-accent-strong); letter-spacing: var(--tracking-caps); }
+    .triad .badge { align-self: flex-start; }
+
+    .devices { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+    .device { display: grid; gap: var(--space-2); padding: var(--space-5); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-sm); }
+    .device__icon { font-size: var(--text-2xl); }
+    .device__name { font-family: var(--font-display); font-weight: var(--weight-semibold); }
+    .device__role { font-size: var(--text-sm); color: var(--text-muted); }
+
+    .package { list-style: none; padding: 0; display: grid; gap: var(--space-2); max-width: 44rem; }
+    .package li { display: flex; gap: var(--space-3); align-items: baseline; padding: var(--space-3) var(--space-4); border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); }
+    .package__id { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--brand-accent-strong); font-weight: var(--weight-semibold); }
+    .package__done { margin-left: auto; font-size: var(--text-xs); color: var(--success); font-weight: var(--weight-semibold); white-space: nowrap; }
+
+    .quote {
+      max-width: var(--container-text);
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      line-height: var(--leading-snug);
+      letter-spacing: var(--tracking-tight);
+      border-left: 4px solid var(--brand-accent-strong);
+      padding-left: var(--space-5);
+      color: var(--text);
+      text-wrap: balance;
+    }
+    .quote cite { display: block; margin-top: var(--space-4); font-family: var(--font-sans); font-size: var(--text-sm); font-style: normal; color: var(--text-muted); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+
+    footer.page { padding: var(--space-8) 0; color: var(--text-muted); font-size: var(--text-sm); }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Hallelujah ONE™ · Handoff Package v1.0</p>
+      <h1>One verifiable operating system.</h1>
+      <p class="lead">
+        Most organizations solve one problem at a time. Hallelujah ONE™ connects
+        the entire pathway — housing, mobility, workforce, and technology — into
+        a single, measurable operating model for St. Petersburg.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn-primary" href="dashboard/">Open the Command Center</a>
+        <a class="btn btn-ghost" href="brand/">View the Visual Identity</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- The triad -->
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="eyebrow">01 — The Triad</p>
+          <h2>Engineered infrastructure, not a concept</h2>
+          <p class="lead">Three connected pieces you can show, prove, and run.</p>
+        </div>
+        <div class="triad">
+          <article class="card">
+            <span class="triad__num">01</span>
+            <h3 class="card__title">Digital Twin</h3>
+            <p class="card__body">The immersive, scalable future of St. Petersburg — from the city to Mac House and beyond.</p>
+            <span class="badge badge--accent">Vision</span>
+          </article>
+          <article class="card">
+            <span class="triad__num">02</span>
+            <h3 class="card__title">Command Center MVP</h3>
+            <p class="card__body">Live operational control across housing, mobility, workforce, H3O™, funding, and CoC-facing impact.</p>
+            <a class="badge" href="dashboard/">Open dashboard →</a>
+          </article>
+          <article class="card">
+            <span class="triad__num">03</span>
+            <h3 class="card__title">Apple Ecosystem</h3>
+            <p class="card__body">MacBook to build, iPad for the boardroom, Mac Mini in reserve as an always-on local AI node.</p>
+            <span class="badge badge--blue">Strategy</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Device strategy -->
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="eyebrow">02 — Device Strategy</p>
+          <h2>The right screen for each moment</h2>
+        </div>
+        <div class="devices">
+          <div class="device">
+            <span class="device__icon" aria-hidden="true">💻</span>
+            <span class="device__name">MacBook</span>
+            <span class="device__role">Builder station — iterate fast, no hardware dependency, demo anywhere.</span>
+          </div>
+          <div class="device">
+            <span class="device__icon" aria-hidden="true">📱</span>
+            <span class="device__name">iPad</span>
+            <span class="device__role">Boardroom-ready touch interface for the partner conversation.</span>
+          </div>
+          <div class="device">
+            <span class="device__icon" aria-hidden="true">🖥️</span>
+            <span class="device__name">Mac Mini</span>
+            <span class="device__role">In reserve — the always-on local AI node, same codebase, later.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Package contents -->
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="eyebrow">03 — Package Contents</p>
+          <h2>Handoff Package v1.0</h2>
+        </div>
+        <ul class="package">
+          <li><span class="package__id">01</span> 3D Experience Storyboard (St. Pete → Mac House &amp; beyond)</li>
+          <li><span class="package__id">02</span> Developer Architecture Map (design system + static deploy) <span class="package__done">✓ live</span></li>
+          <li><span class="package__id">03</span> Dashboard Data Schema (JSON-backed telemetry structure) <span class="package__done">✓ live</span></li>
+          <li><span class="package__id">04</span> MacBook Setup Checklist (builder-station operations)</li>
+          <li><span class="package__id">05</span> iPad Presentation Mode (boardroom-ready touch interface)</li>
+          <li><span class="package__id">06</span> Mac Mini Future Node Config (always-on local AI core)</li>
+          <li><span class="package__id">07</span> Monday Partner Demonstration Script (pitch &amp; positioning)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Positioning -->
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="eyebrow">04 — Boardroom Positioning</p>
+          <h2>The invitation</h2>
+        </div>
+        <blockquote class="quote">
+          “We aren’t just pitching an idea; we have engineered the infrastructure.
+          Hallelujah ONE™ connects the entire pathway into a single verifiable
+          operating system — and we’re inviting you to be a strategic activation partner.”
+          <cite>Monday partner demonstration</cite>
+        </blockquote>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page">
+    <div class="wrap">
+      <p><strong>Hallelujah ONE™</strong> — Handoff Package v1.0 · Elevated Clarity.</p>
+      <p style="margin-top: var(--space-2);">
+        <a href="dashboard/">Command Center</a> ·
+        <a href="brand/">Visual Identity</a> ·
+        Seed → Scale → National Expansion.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
