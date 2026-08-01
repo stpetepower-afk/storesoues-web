@@ -380,6 +380,71 @@
 .countdown__unit { font-size: var(--text-sm); color: var(--text-muted); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
 .countdown__action { font-size: var(--text-sm); color: var(--text-muted); }
 
+/* ---- Module 6: Housing Stability (Community Impact Layer) ------------ */
+.hs-statement {
+  max-width: none;
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--text-muted);
+  border-left: 3px solid var(--brand-accent-strong);
+  padding-left: var(--space-4);
+}
+.hs-grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+.hs-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  gap: var(--space-4);
+}
+.hs-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.hs-panel__title {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-md);
+}
+.hs-panel__metrics {
+  display: grid;
+  gap: var(--space-3);
+}
+.hs-metric {
+  display: grid;
+  gap: var(--space-2);
+}
+.hs-metric__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.hs-metric__label {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+.hs-metric__value {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.hs-note {
+  max-width: none;
+  font-size: var(--text-sm);
+  color: var(--text-subtle);
+  font-style: italic;
+}
+
 .dash__footer {
   max-width: var(--container-wide);
   margin: 0 auto;

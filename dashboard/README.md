@@ -12,6 +12,7 @@ design system. Five modules, one shareable link, no backend required.
 | 3 | Partner CRM | Relationships grouped by sector (Government, Healthcare, Corporate, Technology, Community) |
 | 4 | Impact & Operations | Mac House, Workforce, Mobility, H3O™ — stat cards with progress bars |
 | 5 | Deadline Countdown | High-visibility clocks, **computed live** from deadline dates (urgent < 30 days) |
+| 6 | Housing Stability · Community Impact Layer | HUD/CoC-facing metrics beside internal Hallelujah ONE™ outcomes — one system, both audiences. Positions Mac House as a high-performing CoC participant with funder-ready pathway language |
 
 ## Files
 

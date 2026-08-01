@@ -82,4 +82,33 @@ export const data = {
     mobility:   { total_trips: 143, fleet_status: "Active", fleet_uptime: 96 },
     h3o:        { revenue: 8420, units: 124, unit_target: 150 },
   },
+
+  // Community Impact Layer — the HUD-facing housing view. Positions Mac House
+  // as a high-performing participant inside the FL-502 Continuum of Care, not a
+  // replacement for it. One system serves both the reviewer and internal ops.
+  housing_stability: {
+    // Funder-ready framing (structured support, not a guarantee).
+    pathway_statement:
+      "Mac House provides a structured 12–18 month pathway designed to support residents in achieving housing stability, increased income, and greater independence.",
+    coc_note: "A high-performing participant inside the FL-502 Continuum of Care.",
+    // What HUD / CoC reviewers need to see.
+    hud_facing: [
+      { label: "Current residents", value: "37" },
+      { label: "Entry dates recorded", value: "37 / 37", meter: 100 },
+      { label: "Housing assessments completed", value: "34 / 37", meter: 92 },
+      { label: "Case management milestones met", value: "78%", meter: 78 },
+      { label: "Supportive services delivered (MTD)", value: "212" },
+      { label: "Permanent housing exits (YTD)", value: "14" },
+      { label: "Housing retention rate (12-mo)", value: "89%", meter: 89 },
+    ],
+    // Deeper impact the internal system tracks in the same records.
+    internal: [
+      { label: "Credential progress", value: "16 / 30", meter: 53 },
+      { label: "Employment readiness", value: "71%", meter: 71 },
+      { label: "Transportation access", value: "96%", meter: 96 },
+      { label: "Financial capability", value: "64%", meter: 64 },
+      { label: "Digital literacy growth", value: "+38%", meter: 68 },
+      { label: "Entrepreneurship participation", value: "9 residents", meter: 24 },
+    ],
+  },
 };

@@ -181,6 +181,39 @@ function renderImpact() {
   return module("04", "Impact & Operations Metrics", "Live", el("div", { class: "stat-grid" }, cards));
 }
 
+/* ---- Module 6: Housing Stability (Community Impact Layer) ------------ */
+function renderHousingStability() {
+  const hs = data.housing_stability;
+
+  const metricRow = (m) =>
+    el("div", { class: "hs-metric" }, [
+      el("div", { class: "hs-metric__top" }, [
+        el("span", { class: "hs-metric__label", text: m.label }),
+        el("span", { class: "hs-metric__value", text: m.value }),
+      ]),
+      m.meter != null ? bar(m.meter, 100, "bar__fill--green") : null,
+    ]);
+
+  const panel = (title, tag, tagClass, metrics) =>
+    el("div", { class: "hs-panel" }, [
+      el("div", { class: "hs-panel__head" }, [
+        el("span", { class: "hs-panel__title", text: title }),
+        el("span", { class: `badge ${tagClass}`, text: tag }),
+      ]),
+      el("div", { class: "hs-panel__metrics" }, metrics.map(metricRow)),
+    ]);
+
+  const body = [
+    el("p", { class: "hs-statement", text: hs.pathway_statement }),
+    el("div", { class: "hs-grid" }, [
+      panel("HUD / CoC-facing", "Reporting-ready", "badge--blue", hs.hud_facing),
+      panel("Hallelujah ONE™ internal impact", "Deeper outcomes", "badge--accent", hs.internal),
+    ]),
+    el("p", { class: "hs-note" }, [el("span", { "aria-hidden": "true", text: "🤝 " }), hs.coc_note]),
+  ];
+  return module("06", "Housing Stability · Community Impact Layer", "One system · both audiences", body);
+}
+
 /* ---- module shell ---------------------------------------------------- */
 let moduleSeq = 0;
 function module(num, title, meta, body) {
@@ -214,6 +247,7 @@ export function mountDashboard(root) {
     renderBriefing(),
     renderCountdowns(),
     renderImpact(),
+    renderHousingStability(),
     renderWarRoom(),
     renderPartners(),
   );
