@@ -1,0 +1,13 @@
+# Netlify configuration for the Hallelujah ONE site.
+# Static files are served from the repo root; serverless code lives in netlify/functions.
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Route the widget's /api/chat calls to the Netlify Function, so the assistant
+# responds on Netlify the same way it does on Vercel's auto-detected /api routes.
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
