@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<script>document.documentElement.setAttribute("data-theme","dark");</script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Instagram Analytics</title>
+<style>
+  :root {
+    --bg: #f3f4f6; --surface: #ffffff; --surface-2: #eef0f3;
+    --ink: #20141f; --ink-2: #54505a; --muted: #8a8791;
+    --line: #e6e7ec; --brand: #2d1b3d; --accent: #b8860b; --accent-soft: #d4a72c;
+    --series: #b8860b; --series-fill: rgba(45,27,61,0.06);
+    --cat-1: #2c7db8; --cat-2: #b8860b; --cat-3: #9e4e86;
+    --good: #2e8b6f; --warn: #c68a16; --crit: #c4553b;
+    --shadow: 0 8px 24px rgba(45,27,61,0.08);
+    --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #190e22; --surface: #241430; --surface-2: #2c1a3a;
+      --ink: #f3ecdf; --ink-2: #c9bbae; --muted: #9a8c93;
+      --line: #3a2a46; --brand: #e6c25a; --accent: #e6c25a; --accent-soft: #d4a72c;
+      --series: #e6c25a; --series-fill: rgba(230,194,90,0.16);
+      --cat-1: #3c93cb; --cat-2: #be860e; --cat-3: #b4699b;
+      --good: #45b391; --warn: #e0a83a; --crit: #d97a63;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f3f4f6; --surface: #ffffff; --surface-2: #eef0f3;
+    --ink: #20141f; --ink-2: #54505a; --muted: #8a8791;
+    --line: #e6e7ec; --brand: #2d1b3d; --accent: #b8860b; --accent-soft: #d4a72c;
+    --series: #b8860b; --series-fill: rgba(45,27,61,0.06);
+    --cat-1: #2c7db8; --cat-2: #b8860b; --cat-3: #9e4e86;
+    --good: #2e8b6f; --warn: #c68a16; --crit: #c4553b;
+    --shadow: 0 8px 24px rgba(45,27,61,0.08);
+  }
+  :root[data-theme="dark"] {
+    --bg: #190e22; --surface: #241430; --surface-2: #2c1a3a;
+    --ink: #f3ecdf; --ink-2: #c9bbae; --muted: #9a8c93;
+    --line: #3a2a46; --brand: #e6c25a; --accent: #e6c25a; --accent-soft: #d4a72c;
+    --series: #e6c25a; --series-fill: rgba(230,194,90,0.16);
+    --cat-1: #3c93cb; --cat-2: #be860e; --cat-3: #b4699b;
+    --good: #45b391; --warn: #e0a83a; --crit: #d97a63;
+    --shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans);
+    line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 28px 22px 64px; }
+  h1,h2,h3 { font-family: var(--serif); font-weight: 700; margin: 0; line-height: 1.15; }
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  /* Header */
+  header.top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+  .brandmark { display: flex; align-items: center; gap: 12px; }
+  .dot { width: 15px; height: 15px; border-radius: 50%; background: var(--accent-soft); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-soft) 26%, transparent); flex: none; }
+  header.top h1 { font-size: 1.7rem; letter-spacing: .2px; }
+  .sub { color: var(--muted); font-size: .9rem; margin-top: 2px; }
+  .head-actions { display: flex; gap: 8px; align-items: center; }
+
+  button { font-family: var(--sans); cursor: pointer; border-radius: 999px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--ink); padding: 9px 15px; font-size: .86rem; font-weight: 600;
+    transition: background .15s, border-color .15s, transform .1s; }
+  button:hover { border-color: var(--accent-soft); }
+  button:active { transform: translateY(1px); }
+  button:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 2px; }
+  button.primary { background: var(--brand); color: #fff; border-color: var(--brand); }
+  :root[data-theme="dark"] button.primary, @media (prefers-color-scheme: dark){ }
+  button.ghost { background: transparent; }
+  .icon-btn { width: 40px; height: 40px; padding: 0; display: inline-grid; place-items: center; font-size: 1rem; }
+
+  /* Data panel */
+  details.data { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; margin-bottom: 22px; box-shadow: var(--shadow); overflow: hidden; }
+  details.data > summary { list-style: none; cursor: pointer; padding: 15px 20px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+  details.data > summary::-webkit-details-marker { display: none; }
+  details.data > summary .chev { margin-left: auto; color: var(--muted); transition: transform .2s; }
+  details.data[open] > summary .chev { transform: rotate(180deg); }
+  .data-body { padding: 4px 20px 20px; display: grid; gap: 14px; }
+  textarea { width: 100%; min-height: 120px; resize: vertical; border-radius: 12px; border: 1px solid var(--line);
+    background: var(--surface-2); color: var(--ink); padding: 12px 14px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .82rem; line-height: 1.45; }
+  textarea:focus { outline: none; border-color: var(--accent-soft); }
+  .data-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: end; }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; }
+  .field input { width: 180px; padding: 9px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); font-family: var(--sans); font-size: .9rem; }
+  .field input:focus { outline: none; border-color: var(--accent-soft); }
+  .hint { color: var(--muted); font-size: .82rem; }
+  .err { color: var(--crit); font-size: .82rem; font-weight: 600; min-height: 1em; }
+
+  /* KPI tiles */
+  .kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 22px; }
+  .tile { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; box-shadow: var(--shadow); }
+  .tile .k-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; }
+  .tile .k-val { font-family: var(--serif); font-size: 1.9rem; margin-top: 6px; letter-spacing: .2px; }
+  .tile .k-sub { font-size: .78rem; color: var(--ink-2); margin-top: 3px; }
+
+  /* Cards / charts */
+  .grid { display: grid; gap: 18px; }
+  .g-2 { grid-template-columns: 1.5fr 1fr; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px 16px; box-shadow: var(--shadow); }
+  .card h2 { font-size: 1.05rem; }
+  .card .card-sub { color: var(--muted); font-size: .8rem; margin: 2px 0 12px; }
+  svg { display: block; width: 100%; overflow: visible; }
+  .axis text { fill: var(--muted); font-size: 10px; font-family: var(--sans); }
+  .grid-line { stroke: var(--line); stroke-width: 1; }
+  .series-line { fill: none; stroke: var(--series); stroke-width: 2; }
+  .series-area { fill: var(--series-fill); }
+  .end-dot { fill: var(--series); }
+
+  .barrow { display: grid; grid-template-columns: 92px 1fr auto; align-items: center; gap: 10px; margin: 9px 0; font-size: .86rem; }
+  .barrow .bl { color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bartrack { background: var(--surface-2); border-radius: 6px; height: 16px; overflow: hidden; }
+  .barfill { height: 100%; border-radius: 6px; }
+  .barrow .bv { color: var(--ink); font-weight: 700; }
+
+  /* Top posts table */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+  th, td { text-align: left; padding: 11px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+  th { font-size: .7rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); border-top: none; font-weight: 700; }
+  td.num, th.num { text-align: right; }
+  .rank { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .cap { color: var(--ink-2); max-width: 320px; }
+  .chip { display: inline-block; font-size: .68rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; letter-spacing: .04em; }
+  a.postlink { color: var(--accent); text-decoration: none; font-weight: 600; white-space: nowrap; }
+  a.postlink:hover { text-decoration: underline; }
+
+  /* Steps panel */
+  .steps { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px 22px; box-shadow: var(--shadow); margin-top: 20px; }
+  .steps ol { margin: 10px 0 0; padding-left: 20px; }
+  .steps li { margin: 8px 0; color: var(--ink-2); }
+  .steps code { background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; font-size: .82rem; }
+  .callout { border-left: 3px solid var(--accent-soft); background: var(--surface-2); border-radius: 0 10px 10px 0; padding: 10px 14px; margin-top: 14px; font-size: .85rem; color: var(--ink-2); }
+
+  /* Tooltip */
+  #tip { position: fixed; pointer-events: none; z-index: 50; background: var(--brand); color: #fff; padding: 8px 11px; border-radius: 9px; font-size: .78rem; line-height: 1.35; box-shadow: 0 8px 22px rgba(0,0,0,.28); opacity: 0; transition: opacity .1s; max-width: 240px; }
+  :root[data-theme="dark"] #tip { color: #1a0f24; }
+
+  .foot { margin-top: 26px; color: var(--muted); font-size: .78rem; text-align: center; }
+
+  @media (max-width: 900px) { .kpis { grid-template-columns: repeat(2,1fr); } .g-2 { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brandmark">
+      <span class="dot" aria-hidden="true"></span>
+      <div>
+        <h1>Instagram Analytics</h1>
+        <div class="sub" id="handle">Paste your Apify scrape below — showing sample data</div>
+      </div>
+    </div>
+    <div class="head-actions">
+      <button class="icon-btn ghost" id="themeBtn" title="Toggle light / dark" aria-label="Toggle theme">◐</button>
+    </div>
+  </header>
+
+  <details class="data" id="dataPanel">
+    <summary>Load your data <span class="chev" aria-hidden="true">▾</span></summary>
+    <div class="data-body">
+      <div class="hint">Paste the JSON array from Apify's <strong>Instagram Post Scraper</strong> (the whole dataset export). The dashboard maps likes, comments, views, type, date, and hashtags automatically.</div>
+      <textarea id="jsonIn" placeholder='[{"type":"Image","likesCount":1234,"commentsCount":56,"timestamp":"2026-07-01T15:00:00Z","caption":"...","url":"https://instagram.com/p/....","hashtags":["stpete"]}, ...]'></textarea>
+      <div class="data-row">
+        <div class="field">
+          <label for="followers">Follower count</label>
+          <input id="followers" type="number" min="0" placeholder="e.g. 12000" />
+        </div>
+        <button class="primary" id="loadBtn">Render dashboard</button>
+        <button class="ghost" id="sampleBtn">Load sample</button>
+        <button class="ghost" id="clearBtn">Clear</button>
+      </div>
+      <div class="err" id="err"></div>
+    </div>
+  </details>
+
+  <section class="kpis" id="kpis"></section>
+
+  <div class="grid g-2" style="margin-bottom:18px">
+    <div class="card">
+      <h2>Engagement over time</h2>
+      <div class="card-sub" id="eng-sub">Likes + comments per post</div>
+      <div id="lineChart"></div>
+    </div>
+    <div class="card">
+      <h2>By format</h2>
+      <div class="card-sub">Share of posts, average engagement each</div>
+      <div id="formatChart"></div>
+    </div>
+  </div>
+
+  <div class="grid g-2" style="margin-bottom:18px">
+    <div class="card">
+      <h2>Top hashtags</h2>
+      <div class="card-sub">Most-used tags across your posts</div>
+      <div id="hashChart"></div>
+    </div>
+    <div class="card">
+      <h2>Best posting days</h2>
+      <div class="card-sub">Average engagement by weekday</div>
+      <div id="dayChart"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Top posts</h2>
+    <div class="card-sub">Ranked by total engagement</div>
+    <div class="table-wrap">
+      <table id="topTable">
+        <thead><tr><th>#</th><th>Date</th><th>Format</th><th class="num">Likes</th><th class="num">Comments</th><th class="num">Engagement</th><th>Caption</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="steps">
+    <h2>Wire it to live data</h2>
+    <ol>
+      <li>Create a free <strong>Apify</strong> account at <code>apify.com</code> — it includes ~$5/mo of free credit.</li>
+      <li>Run the <strong>Instagram Post Scraper</strong> actor on a public profile; a run costs cents. Export the dataset as <strong>JSON</strong>.</li>
+      <li>Paste that JSON into the panel above, add your follower count, and hit <strong>Render dashboard</strong>.</li>
+      <li>For auto-updating data: in claude.ai go to <strong>Settings → Connectors → Add custom connector</strong> and paste Apify's MCP server URL, then ask Claude to refresh this dashboard from it.</li>
+    </ol>
+    <div class="callout"><strong>Tip:</strong> add a custom connector rather than a one-off prebuilt run — the connector re-fetches fresh data each time you ask, so the dashboard stays current instead of freezing on the day you built it. Instagram thumbnails aren't shown here because this page can't load remote images — posts link out instead.</div>
+  </div>
+
+  <div class="foot">Built with Claude · engagement rate = (avg likes + avg comments) ÷ followers. Figures are only as good as the scrape.</div>
+</div>
+
+<div id="tip" role="status"></div>
+
+<script>
+"use strict";
+const $ = (s) => document.querySelector(s);
+const fmt = (n) => n >= 1000 ? (n/1000).toFixed(n>=100000?0:1).replace(/\.0$/,'') + "k" : String(Math.round(n));
+const fmtFull = (n) => Math.round(n).toLocaleString();
+const tip = $("#tip");
+function showTip(html, x, y){ tip.innerHTML = html; tip.style.opacity = 1; tip.style.left = Math.min(x+14, innerWidth-250)+"px"; tip.style.top = (y+14)+"px"; }
+function hideTip(){ tip.style.opacity = 0; }
+
+/* ---------- Theme ---------- */
+$("#themeBtn").addEventListener("click", () => {
+  const cur = document.documentElement.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : cur === "light" ? "dark"
+    : (matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
+  document.documentElement.setAttribute("data-theme", next);
+  if (state.posts.length) render();
+});
+const cssv = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+/* ---------- Parsing ---------- */
+function pick(o, keys, d){ for (const k of keys){ if (o[k] !== undefined && o[k] !== null) return o[k]; } return d; }
+function normFormat(t){
+  const s = String(t||"").toLowerCase();
+  if (s.includes("side") || s.includes("carousel") || s.includes("album")) return "Carousel";
+  if (s.includes("video") || s.includes("reel") || s.includes("clip")) return "Reel";
+  return "Photo";
+}
+function extractHashtags(o){
+  let h = pick(o, ["hashtags"], null);
+  if (Array.isArray(h) && h.length) return h.map(x => String(x).replace(/^#/,"").toLowerCase());
+  const cap = String(pick(o,["caption","text"],""));
+  return (cap.match(/#[\w]+/g) || []).map(x => x.slice(1).toLowerCase());
+}
+function parsePosts(raw){
+  let arr = raw;
+  if (!Array.isArray(arr)) arr = raw.items || raw.data || raw.results || raw.posts || null;
+  if (!Array.isArray(arr)) throw new Error("Expected a JSON array of posts (or an object with an items/data array).");
+  const posts = arr.map((o) => {
+    const likes = +pick(o, ["likesCount","likes","likeCount","edge_liked_by"], 0) || 0;
+    const comments = +pick(o, ["commentsCount","comments","commentCount"], 0) || 0;
+    const views = +pick(o, ["videoViewCount","videoPlayCount","igPlayCount","viewCount","playCount"], 0) || 0;
+    const ts = pick(o, ["timestamp","takenAt","taken_at_timestamp","time"], null);
+    let date = ts ? new Date(typeof ts === "number" ? (ts < 1e12 ? ts*1000 : ts) : ts) : null;
+    if (date && isNaN(+date)) date = null;
+    const shortCode = pick(o, ["shortCode","shortcode","code"], null);
+    const url = pick(o, ["url","postUrl","permalink"], shortCode ? "https://www.instagram.com/p/"+shortCode+"/" : null);
+    return { likes, comments, views, date, format: normFormat(pick(o,["type","productType","mediaType","__typename"],"")),
+      caption: String(pick(o,["caption","text"],"")).replace(/\s+/g," ").trim(),
+      hashtags: extractHashtags(o), url, eng: likes + comments,
+      followers: +pick(o, ["ownerFollowersCount","followersCount"], 0) || 0 };
+  }).filter(p => p.likes || p.comments || p.views || p.date);
+  if (!posts.length) throw new Error("No usable posts found — check that likes/comments/date fields are present.");
+  return posts;
+}
+
+/* ---------- State + sample ---------- */
+const state = { posts: [], followers: 0, handle: "" };
+function sampleData(){
+  const base = new Date("2026-05-05T16:00:00Z").getTime();
+  const day = 86400000;
+  const rows = [
+    ["Photo", 1820, 74, 3, "Groundbreaking day in the Gas Plant District — the future starts here ✨ #stpete #community", ["stpete","community","hallelujahone"]],
+    ["Reel", 5240, 210, 41200, "Walkthrough of the first 4-plex 🏠 building generational ownership", ["housing","ownership","naca"]],
+    ["Carousel", 2960, 133, 0, "Six pillars, one institution. Swipe through the model →", ["vision","sixpillars"]],
+    ["Photo", 1510, 58, 0, "Financial empowerment workshop was packed 🙌", ["financialliteracy","community"]],
+    ["Reel", 8710, 402, 88600, "Supercharger site reveal ⚡ the district is going electric", ["ev","tesla","stpete"]],
+    ["Photo", 1340, 47, 0, "Sunrise over 5th Ave S 🌅", ["stpetersburg","florida"]],
+    ["Carousel", 3380, 165, 0, "AI Skills Academy — first cohort graduation 🎓", ["aiskills","education","future"]],
+    ["Reel", 6120, 288, 61300, "Fleet phase 0: it begins 🚗", ["tesla","fleet","innovation"]],
+    ["Photo", 1685, 63, 0, "Community garden taking root 🌱", ["urbanag","community","stpete"]],
+    ["Photo", 1420, 51, 0, "Board meeting — locking Monday's plan 📋", ["leadership"]],
+    ["Reel", 9450, 470, 102400, "The vision, in 90 seconds. This is just the beginning.", ["vision","stpete","hallelujahone"]],
+    ["Carousel", 4020, 198, 0, "Before / after: what belonging looks like", ["transformation","community"]],
+    ["Photo", 1990, 82, 0, "Partners on site today 🤝", ["partnership","gasplantdistrict"]],
+    ["Reel", 7280, 351, 74900, "Every metric ties back to a family ❤️", ["impact","community","stpete"]],
+  ];
+  return rows.map((r,i) => ({ type: r[0], likesCount: r[1], commentsCount: r[2], videoViewCount: r[3],
+    timestamp: new Date(base + i*day*2.3).toISOString(), caption: r[4], hashtags: r[5],
+    shortCode: "SAMPLE"+i, ownerFollowersCount: 24800 }));
+}
+
+/* ---------- KPIs ---------- */
+function renderKpis(){
+  const p = state.posts, n = p.length;
+  const sum = (f) => p.reduce((a,x)=>a+f(x),0);
+  const avgL = sum(x=>x.likes)/n, avgC = sum(x=>x.comments)/n;
+  const totalViews = sum(x=>x.views);
+  const er = state.followers ? ((avgL+avgC)/state.followers*100) : null;
+  const tiles = [
+    ["Posts", String(n), "in this dataset"],
+    ["Avg likes", fmt(avgL), fmtFull(avgL)+" per post"],
+    ["Avg comments", fmt(avgC), fmtFull(avgC)+" per post"],
+    ["Engagement rate", er!=null ? er.toFixed(2)+"%" : "—", er!=null ? "of "+fmtFull(state.followers)+" followers" : "add follower count"],
+    ["Video views", totalViews ? fmt(totalViews) : "—", totalViews ? fmtFull(totalViews)+" total" : "no video data"],
+  ];
+  $("#kpis").innerHTML = tiles.map(t =>
+    `<div class="tile"><div class="k-label">${t[0]}</div><div class="k-val tnum">${t[1]}</div><div class="k-sub">${t[2]}</div></div>`).join("");
+}
+
+/* ---------- Line chart (engagement over time) ---------- */
+function renderLine(){
+  const host = $("#lineChart");
+  const pts = state.posts.filter(p=>p.date).sort((a,b)=>a.date-b.date);
+  if (pts.length < 2){ host.innerHTML = '<p class="hint">Not enough dated posts to plot a trend.</p>'; return; }
+  const W = host.clientWidth || 640, H = 240, m = {t:14,r:14,b:26,l:44};
+  const iw = W-m.l-m.r, ih = H-m.t-m.b;
+  const xs = pts.map(p=>+p.date), ys = pts.map(p=>p.eng);
+  const xMin=Math.min(...xs), xMax=Math.max(...xs), yMax=Math.max(...ys)*1.1;
+  const X = (v)=> m.l + (xMax===xMin?0.5:(v-xMin)/(xMax-xMin))*iw;
+  const Y = (v)=> m.t + ih - (v/yMax)*ih;
+  let grid="", ticks="";
+  for (let i=0;i<=3;i++){ const gy=m.t+ih-(i/3)*ih, val=(yMax*i/3);
+    grid += `<line class="grid-line" x1="${m.l}" y1="${gy}" x2="${W-m.r}" y2="${gy}"/>`;
+    ticks += `<text x="${m.l-8}" y="${gy+3}" text-anchor="end">${fmt(val)}</text>`; }
+  const line = pts.map((p,i)=>`${i?'L':'M'}${X(xs[i]).toFixed(1)},${Y(ys[i]).toFixed(1)}`).join(" ");
+  const area = `M${X(xs[0]).toFixed(1)},${(m.t+ih)} `+pts.map((p,i)=>`L${X(xs[i]).toFixed(1)},${Y(ys[i]).toFixed(1)}`).join(" ")+` L${X(xs[xs.length-1]).toFixed(1)},${m.t+ih} Z`;
+  const dfmt = (d)=> new Date(d).toLocaleDateString(undefined,{month:"short",day:"numeric"});
+  let dots="";
+  pts.forEach((p,i)=>{ dots += `<circle cx="${X(xs[i]).toFixed(1)}" cy="${Y(ys[i]).toFixed(1)}" r="${i===pts.length-1?5:8}" fill="${i===pts.length-1?'var(--series)':'transparent'}" class="hpt" data-i="${i}"/>`; });
+  host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" class="axis" role="img" aria-label="Engagement over time line chart">
+    ${grid}<path class="series-area" d="${area}"/><path class="series-line" d="${line}"/>${dots}${ticks}
+    <text x="${m.l}" y="${H-6}" text-anchor="start">${dfmt(xMin)}</text>
+    <text x="${W-m.r}" y="${H-6}" text-anchor="end">${dfmt(xMax)}</text>
+  </svg>`;
+  host.querySelectorAll(".hpt").forEach(el=>{
+    el.style.cursor="pointer";
+    el.addEventListener("mousemove",(e)=>{ const p=pts[+el.dataset.i];
+      showTip(`<strong>${dfmt(+p.date)}</strong> · ${p.format}<br>${fmtFull(p.likes)} likes · ${fmtFull(p.comments)} comments`, e.clientX, e.clientY); });
+    el.addEventListener("mouseleave", hideTip);
+  });
+}
+
+/* ---------- Format breakdown (categorical, direct-labeled) ---------- */
+function renderFormat(){
+  const host = $("#formatChart");
+  const order = ["Photo","Reel","Carousel"];
+  const colors = { Photo:"var(--cat-1)", Reel:"var(--cat-2)", Carousel:"var(--cat-3)" };
+  const groups = {};
+  order.forEach(f=> groups[f] = state.posts.filter(p=>p.format===f));
+  const maxAvg = Math.max(1, ...order.map(f=> groups[f].length ? groups[f].reduce((a,x)=>a+x.eng,0)/groups[f].length : 0));
+  host.innerHTML = order.map(f=>{
+    const g = groups[f], count = g.length;
+    const avg = count ? g.reduce((a,x)=>a+x.eng,0)/count : 0;
+    const pct = state.posts.length ? Math.round(count/state.posts.length*100) : 0;
+    const w = Math.max(2, avg/maxAvg*100);
+    return `<div class="barrow"><span class="bl">${f} · ${pct}%</span>
+      <span class="bartrack"><span class="barfill" style="width:${w}%;background:${colors[f]}"></span></span>
+      <span class="bv tnum">${fmt(avg)}</span></div>`;
+  }).join("") + `<div class="hint" style="margin-top:8px">Bar length = average engagement per post of that format.</div>`;
+}
+
+/* ---------- Hashtags (single-series bars) ---------- */
+function renderHash(){
+  const host = $("#hashChart");
+  const counts = {};
+  state.posts.forEach(p=> p.hashtags.forEach(h=> counts[h]=(counts[h]||0)+1));
+  const top = Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,7);
+  if (!top.length){ host.innerHTML = '<p class="hint">No hashtags found in these captions.</p>'; return; }
+  const max = top[0][1];
+  host.innerHTML = top.map(([h,c])=>{
+    const w = Math.max(4, c/max*100);
+    return `<div class="barrow"><span class="bl">#${h}</span>
+      <span class="bartrack"><span class="barfill" style="width:${w}%;background:var(--series)"></span></span>
+      <span class="bv tnum">${c}</span></div>`;
+  }).join("");
+}
+
+/* ---------- Best posting days ---------- */
+function renderDays(){
+  const host = $("#dayChart");
+  const names = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  const acc = names.map(()=>({s:0,n:0}));
+  state.posts.forEach(p=>{ if(p.date){ const d=p.date.getDay(); acc[d].s+=p.eng; acc[d].n++; } });
+  const avgs = acc.map(a=> a.n ? a.s/a.n : 0);
+  const max = Math.max(1,...avgs);
+  if (!avgs.some(v=>v)){ host.innerHTML='<p class="hint">No dated posts to analyze.</p>'; return; }
+  host.innerHTML = names.map((nm,i)=>{
+    const w = acc[i].n ? Math.max(3, avgs[i]/max*100) : 0;
+    const best = avgs[i]===max && acc[i].n;
+    return `<div class="barrow"><span class="bl">${nm}${acc[i].n?'':' ·—'}</span>
+      <span class="bartrack"><span class="barfill" style="width:${w}%;background:${best?'var(--series)':'var(--accent-soft)'};opacity:${best?1:.6}"></span></span>
+      <span class="bv tnum">${acc[i].n?fmt(avgs[i]):'—'}</span></div>`;
+  }).join("");
+}
+
+/* ---------- Top posts table ---------- */
+function renderTable(){
+  const tb = $("#topTable tbody");
+  const top = [...state.posts].sort((a,b)=>b.eng-a.eng).slice(0,8);
+  const fc = { Photo:"var(--cat-1)", Reel:"var(--cat-2)", Carousel:"var(--cat-3)" };
+  tb.innerHTML = top.map((p,i)=>{
+    const d = p.date ? p.date.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"2-digit"}) : "—";
+    const cap = p.caption ? (p.caption.length>90 ? p.caption.slice(0,90)+"…" : p.caption) : "—";
+    const link = p.url ? `<a class="postlink" href="${p.url}" target="_blank" rel="noopener">View ↗</a>` : "";
+    const chipCol = fc[p.format];
+    return `<tr>
+      <td class="rank">${i+1}</td><td class="tnum">${d}</td>
+      <td><span class="chip" style="color:${chipCol};background:color-mix(in srgb, ${chipCol} 16%, transparent)">${p.format}</span></td>
+      <td class="num tnum">${fmtFull(p.likes)}</td><td class="num tnum">${fmtFull(p.comments)}</td>
+      <td class="num tnum"><strong>${fmtFull(p.eng)}</strong></td>
+      <td class="cap">${cap}</td><td>${link}</td></tr>`;
+  }).join("");
+}
+
+function render(){ renderKpis(); renderLine(); renderFormat(); renderHash(); renderDays(); renderTable(); }
+
+/* ---------- Load flows ---------- */
+function loadPosts(rawPosts, followers, handle){
+  state.posts = parsePosts(rawPosts);
+  const detected = state.posts.find(p=>p.followers)?.followers || 0;
+  state.followers = followers || detected || 0;
+  if (state.followers && !$("#followers").value) $("#followers").value = state.followers;
+  $("#handle").textContent = handle || (state.posts.length + " posts loaded" + (state.followers?" · "+fmtFull(state.followers)+" followers":""));
+  render();
+}
+$("#loadBtn").addEventListener("click", ()=>{
+  $("#err").textContent = "";
+  const txt = $("#jsonIn").value.trim();
+  if (!txt){ $("#err").textContent = "Paste your Apify JSON first, or hit Load sample."; return; }
+  let data; try { data = JSON.parse(txt); } catch(e){ $("#err").textContent = "That isn't valid JSON. Export the Apify dataset as JSON and paste the whole array."; return; }
+  try { loadPosts(data, +$("#followers").value||0, ""); $("#dataPanel").open = false; }
+  catch(e){ $("#err").textContent = e.message; }
+});
+$("#sampleBtn").addEventListener("click", ()=>{
+  $("#err").textContent=""; $("#jsonIn").value="";
+  loadPosts(sampleData(), 24800, "Sample data · @hallelujah.one");
+  $("#dataPanel").open = false;
+});
+$("#clearBtn").addEventListener("click", ()=>{ $("#jsonIn").value=""; $("#followers").value=""; $("#err").textContent=""; });
+
+/* boot with sample so the page is never empty */
+loadPosts(sampleData(), 24800, "Sample data · @hallelujah.one — paste your scrape to replace");
+addEventListener("resize", ()=>{ if(state.posts.length){ renderLine(); } });
+</script>
+
+</body>
+</html>
