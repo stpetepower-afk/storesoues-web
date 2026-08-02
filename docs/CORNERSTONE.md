@@ -1,6 +1,7 @@
-# Hallelujah ONE — Project Bible
+# Hallelujah ONE — The Cornerstone
 
-*Single source of truth for the Hallelujah ONE initiative. This document consolidates
+*The foundational document and single source of truth for the Hallelujah ONE initiative.
+This document consolidates
 the vision, model, roadmap, and open work into one place so the ministry team,
 developers, and partners all work from the same page.*
 

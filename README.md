@@ -19,7 +19,7 @@ api/chat.js                Vercel serverless endpoint  (POST /api/chat)
 netlify/functions/chat.js  Netlify Function (same endpoint via redirect)
 netlify.toml               Netlify build + /api/chat redirect
 docs/
-  PROJECT-BIBLE.md         Single source of truth (vision, model, roadmap, blueprint)
+  CORNERSTONE.md           Single source of truth (vision, model, roadmap, blueprint)
   presentations/           Stakeholder deck(s)
 ```
 
@@ -76,4 +76,4 @@ The repo is wired to auto-deploy on push:
 ## Brand
 
 Palette: aubergine `#47243D` · gold `#C6972F` · cream `#F5EFE6`. Serif display, sans body.
-See `docs/PROJECT-BIBLE.md` for the full vision and roadmap.
+See `docs/CORNERSTONE.md` for the full vision and roadmap.
