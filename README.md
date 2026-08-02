@@ -11,10 +11,12 @@ small serverless function.
 
 ```
 index.html                 Landing page (hero, vision, model, roadmap, CTA, chat launcher)
+supercharger.html          Interactive Supercharger ROI calculator (3548 5th Ave S)
 src/
-  styles/site.css          Brand styling + chat widget styles
+  styles/site.css          Brand styling + chat widget + calculator styles
   lib/chatWidget.js        Reusable, accessible chat widget engine (client)
   lib/chatCore.js          Shared server logic for the assistant
+  lib/superchargerModel.js Pure ROI calculation (payback, NPV, margins)
 api/chat.js                Vercel serverless endpoint  (POST /api/chat)
 netlify/functions/chat.js  Netlify Function (same endpoint via redirect)
 netlify.toml               Netlify build + /api/chat redirect

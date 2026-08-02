@@ -98,10 +98,17 @@ Drawn from the tactical checklist. Owners are placeholders — assign real names
 ## 6. Technical Blueprint — The Web Presence
 
 ### What exists today
+- `index.html` + `src/styles/site.css` — the live landing page.
 - `src/lib/chatWidget.js` — a reusable, accessible, non-streaming chat-widget engine
   intended to power Hallelujah Ministries assistants. It renders messages safely
   (no HTML injection), caps history, handles timeouts, and exposes a small API.
   It expects a `POST /api/chat` endpoint returning `{ text }`.
+- `api/chat.js` + `netlify/functions/chat.js` — the assistant endpoint (real Claude
+  when `ANTHROPIC_API_KEY` is set, scripted fallback otherwise).
+- `supercharger.html` + `src/lib/superchargerModel.js` — an interactive ROI calculator
+  for the 3548 5th Ave S charging site: editable assumptions with live payback, NPV,
+  net operating income, and margin. **Figures are illustrative — replace the default
+  assumptions with quoted numbers before using the output externally.**
 
 ### What's needed for an MVP site
 1. **Landing page (`index.html`)** — mounts the chat widget, presents the vision,

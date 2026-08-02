@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Supercharger ROI — Hallelujah ONE</title>
+  <meta name="description" content="Interactive ROI model for the Hallelujah ONE EV charging site at 3548 5th Ave S, St. Petersburg." />
+  <link rel="stylesheet" href="/src/styles/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/#top">
+      <span class="brand-mark" aria-hidden="true"></span>
+      HALLELUJAH&nbsp;ONE
+    </a>
+    <nav class="nav">
+      <a href="/#vision">Vision</a>
+      <a href="/#model">Model</a>
+      <a href="/#roadmap">Roadmap</a>
+      <a href="/#partner" class="nav-cta">Partner with us</a>
+    </nav>
+  </header>
+
+  <section class="calc-hero">
+    <div class="wrap">
+      <p class="eyebrow">Charging Infrastructure &middot; 3548 5th Ave S, St. Petersburg</p>
+      <h1>Supercharger ROI Model</h1>
+      <p class="calc-lede">
+        Adjust the assumptions on the left; the projections update live. Defaults are
+        illustrative placeholders &mdash; replace them with quoted figures before sharing.
+      </p>
+    </div>
+  </section>
+
+  <main class="wrap calc-main">
+    <!-- INPUTS -->
+    <form id="calc-form" class="calc-inputs" aria-label="ROI assumptions">
+      <fieldset>
+        <legend>Build</legend>
+        <label>Number of stalls <input type="number" name="stalls" min="0" step="1" /></label>
+        <label>Install cost / stall ($) <input type="number" name="installPerStall" min="0" step="500" /></label>
+        <label>Site make-ready ($) <input type="number" name="siteFixedCost" min="0" step="1000" /></label>
+      </fieldset>
+      <fieldset>
+        <legend>Usage</legend>
+        <label>Energy / session (kWh) <input type="number" name="energyPerSession" min="0" step="1" /></label>
+        <label>Sessions / stall / day <input type="number" name="sessionsPerStallDay" min="0" step="0.5" /></label>
+        <label>Uptime (0&ndash;1) <input type="number" name="uptime" min="0" max="1" step="0.01" /></label>
+      </fieldset>
+      <fieldset>
+        <legend>Economics</legend>
+        <label>Price to driver ($/kWh) <input type="number" name="pricePerKwh" min="0" step="0.01" /></label>
+        <label>Utility energy cost ($/kWh) <input type="number" name="costPerKwh" min="0" step="0.01" /></label>
+        <label>Demand charge ($/month) <input type="number" name="demandChargeMonthly" min="0" step="50" /></label>
+        <label>O&amp;M (% of capex/yr) <input type="number" name="omPctOfCapex" min="0" max="1" step="0.01" /></label>
+      </fieldset>
+      <fieldset>
+        <legend>Analysis</legend>
+        <label>Horizon (years) <input type="number" name="analysisYears" min="1" step="1" /></label>
+        <label>Discount rate (0&ndash;1) <input type="number" name="discountRate" min="0" max="1" step="0.01" /></label>
+      </fieldset>
+      <button type="button" id="calc-reset" class="btn btn--ghost btn--sm">Reset to defaults</button>
+    </form>
+
+    <!-- RESULTS -->
+    <section class="calc-results" aria-live="polite">
+      <div class="stat-row">
+        <div class="stat">
+          <span class="stat-value" id="r-payback">&mdash;</span>
+          <span class="stat-label">Simple payback</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="r-npv">&mdash;</span>
+          <span class="stat-label" id="r-npv-label">NPV</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="r-noi">&mdash;</span>
+          <span class="stat-label">Net operating income / yr</span>
+        </div>
+      </div>
+
+      <table class="calc-table">
+        <tbody>
+          <tr><th>Total capital cost</th><td id="r-capex">&mdash;</td></tr>
+          <tr><th>Energy delivered / yr</th><td id="r-energy">&mdash;</td></tr>
+          <tr><th>Gross revenue / yr</th><td id="r-gross">&mdash;</td></tr>
+          <tr><th>&ndash; Utility energy cost / yr</th><td id="r-ecost">&mdash;</td></tr>
+          <tr><th>&ndash; Demand charges / yr</th><td id="r-demand">&mdash;</td></tr>
+          <tr><th>&ndash; Operations &amp; maintenance / yr</th><td id="r-om">&mdash;</td></tr>
+          <tr class="calc-total"><th>Net operating income / yr</th><td id="r-noi2">&mdash;</td></tr>
+          <tr><th>Gross margin</th><td id="r-margin">&mdash;</td></tr>
+          <tr><th id="r-cum-label">Cumulative net</th><td id="r-cum">&mdash;</td></tr>
+        </tbody>
+      </table>
+
+      <p class="calc-note">
+        Illustrative model for planning only. Figures depend entirely on the assumptions
+        above and are not a quote, appraisal, or guarantee of returns.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="brand brand--footer"><span class="brand-mark" aria-hidden="true"></span> HALLELUJAH&nbsp;ONE</span>
+      <span class="footer-note">Hallelujah Ministries &middot; Faith. Capital. Community. Built as one.</span>
+    </div>
+  </footer>
+
+  <script src="/src/lib/superchargerModel.js"></script>
+  <script>
+    (function () {
+      var api = window.HallelujahSupercharger;
+      var form = document.getElementById("calc-form");
+      var defaults = api.DEFAULTS;
+
+      var usd = function (n) { return "$" + Math.round(n).toLocaleString(); };
+      var usd0 = function (n) { return "$" + Math.round(n).toLocaleString(); };
+      var kwh = function (n) { return Math.round(n).toLocaleString() + " kWh"; };
+      var pct = function (n) { return (n * 100).toFixed(1) + "%"; };
+      var set = function (id, v) { document.getElementById(id).textContent = v; };
+
+      function readInputs() {
+        var out = {};
+        Object.keys(defaults).forEach(function (k) {
+          var el = form.elements[k];
+          if (el && el.value !== "") out[k] = parseFloat(el.value);
+        });
+        return out;
+      }
+
+      function fillDefaults() {
+        Object.keys(defaults).forEach(function (k) {
+          if (form.elements[k]) form.elements[k].value = defaults[k];
+        });
+      }
+
+      function render() {
+        var r = api.computeRoi(readInputs());
+        set("r-payback", r.simplePaybackYears ? r.simplePaybackYears.toFixed(1) + " yrs" : "never");
+        set("r-npv", usd(r.npv));
+        set("r-npv-label", "NPV @ " + Math.round(r.inputs.discountRate * 100) + "% (" + r.inputs.analysisYears + " yr)");
+        set("r-noi", usd0(r.netOperatingIncome));
+        set("r-capex", usd(r.capex));
+        set("r-energy", kwh(r.annualEnergyKwh));
+        set("r-gross", usd(r.grossRevenue));
+        set("r-ecost", usd(r.energyCost));
+        set("r-demand", usd(r.demandCostAnnual));
+        set("r-om", usd(r.omAnnual));
+        set("r-noi2", usd(r.netOperatingIncome));
+        set("r-margin", pct(r.grossMargin));
+        set("r-cum-label", "Cumulative net (" + r.inputs.analysisYears + " yr, undiscounted)");
+        set("r-cum", usd(r.cumulativeNet));
+      }
+
+      fillDefaults();
+      render();
+      form.addEventListener("input", render);
+      document.getElementById("calc-reset").addEventListener("click", function () {
+        fillDefaults();
+        render();
+      });
+    })();
+  </script>
+</body>
+</html>
