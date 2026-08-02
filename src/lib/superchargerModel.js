@@ -9,15 +9,18 @@
  * computeRoi(inputs) -> derived metrics (annual revenue, costs, payback, NPV).
  */
 
+// Defaults reflect the Hallelujah ONE stated infrastructure figures for 3548 5th Ave S:
+// 4 stalls, ~$180K capex, ~$272K/yr target revenue. Usage is a busy-urban-site
+// assumption tuned to that revenue target — still an ASSUMPTION, not a quote.
 const DEFAULTS = {
-  stalls: 8,                 // number of charging stalls
-  installPerStall: 42000,    // $ hardware + install per stall (assumption)
-  siteFixedCost: 150000,     // $ make-ready / switchgear / trenching (assumption)
+  stalls: 4,                 // number of charging stalls (stated)
+  installPerStall: 35000,    // $ hardware + install per stall (assumption)
+  siteFixedCost: 40000,      // $ make-ready / switchgear / trenching (assumption)
   pricePerKwh: 0.42,         // $ charged to the driver, per kWh
   costPerKwh: 0.14,          // $ utility energy cost, per kWh
   demandChargeMonthly: 800,  // $ utility demand charge per month
   energyPerSession: 40,      // kWh delivered per charging session
-  sessionsPerStallDay: 6,    // sessions per stall per day
+  sessionsPerStallDay: 12,   // sessions per stall per day (busy-urban assumption)
   uptime: 0.95,              // fraction of time the site is available (0-1)
   omPctOfCapex: 0.05,        // annual operations & maintenance, as % of capex
   analysisYears: 10,         // horizon for cumulative / NPV

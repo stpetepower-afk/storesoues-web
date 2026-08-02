@@ -9,6 +9,21 @@ developers, and partners all work from the same page.*
 > or assets that already exist. Sections marked **Target** or **Draft** are working
 > assumptions that need real numbers or a decision before they go to partners. Don't
 > present a Target figure as fact without confirming it first.
+>
+> **Companion:** The canonical operating doctrine (Master Superpower Prompt v3.1) lives
+> verbatim in [`MASTER-PROMPT.md`](./MASTER-PROMPT.md). This Cornerstone is the working
+> expansion of it.
+
+---
+
+## 0. The Doctrine
+
+> "Hallelujah Ministries is a permanent institution empowering individuals and families
+> through education, career development, technology, and community support — creating
+> generational sovereignty, not temporary assistance."
+
+**Brand promise:** "Helping people discover their strengths, develop skills, and navigate
+the future with confidence — for generations."
 
 ---
 
@@ -47,18 +62,57 @@ If a task can't be traced to a step in the Compass, it's drift — cut it or ref
 
 ---
 
-## 3. The Model — Four Connected Engines
+## 3. The Model — Six Pillars
 
-The engines reinforce each other. Infrastructure revenue and community lending fund
-housing; counseling converts housing into ownership; the nonprofit makes the whole model
-fundable.
+The authoritative program model is six branded pillars. Each turns a starting condition
+into lasting capability.
 
-| # | Engine | Description | Status |
-|---|--------|-------------|--------|
-| A | **Housing & Ownership** | Acquire and steward multi-family assets, starting with a 4-plex, that build equity for resident families. | Target |
-| B | **Charging Infrastructure** | EV / Tesla Supercharger capacity as a revenue anchor and a forward-looking signal for the district. | Draft — feasibility needed |
-| C | **Financial Empowerment** | NACA-certified homeownership counseling that turns renters into owners. | Target — certification pending |
-| D | **Institutional Backbone** | A 501(c)(3) nonprofit (IRS Form 1023) plus lending partnerships (FCLF) that make everything fundable. | In progress |
+| Pillar | Focus |
+|--------|-------|
+| **Career Launch™** | Skills → Employment |
+| **Housing Stability™** | Shelter → Foundation |
+| **Financial Empowerment™** | Knowledge → Ownership |
+| **AI Skills Academy™** | Learn → Lead |
+| **Community Impact Network™** | Connection → Growth |
+| **Entrepreneur & Ownership Pathways™** | Create → Own |
+
+> **Site-alignment note:** The live landing page currently presents an earlier
+> four-engine framing (Housing, Charging Infrastructure, Financial Empowerment,
+> Institutional Backbone). Updating the page to these Six Pillars is a tracked
+> alignment task (see §9).
+
+### Institutional anchors
+
+| Element | Detail |
+|---------|--------|
+| Legal | 508(c)(1)(A) Ministry + Wyoming Trust |
+| Physical | 3548 5th Ave S., St. Petersburg, FL |
+| Context | Historic Gas Plant District ($8.1B transformation) |
+
+### Fleet
+
+| Phase | Vehicle | Timeline |
+|-------|---------|----------|
+| 0 | Tesla 3 / Y / S / X | Now |
+| 1 | Zoox Robotaxi | 6–12 mo |
+| 2 | Tesla Cybercab | 12–24 mo |
+| 3 | Cybertruck | Phased |
+
+### Infrastructure
+
+- **Superchargers** (4 stalls): ~$180K capex · target revenue ~$272K/year
+  (model it live in the [Supercharger ROI calculator](../supercharger.html)).
+- **Solar:** Tesla Solar Roof + Powerwalls + SPAN Panel.
+- **Water:** Altitude Water Machines.
+- **Food:** Green Roof + Micro-Gardening.
+
+### NACA 4-plex strategy
+
+| Element | Detail |
+|---------|--------|
+| Terms | 0% down, 0 closing costs, no PMI, below-market fixed rate |
+| Path | NACA Affiliate → key leader purchase → Ministry lease |
+| Loan limit | Up to ~$1.47M for a 4-unit (Pinellas) |
 
 ---
 
@@ -74,8 +128,20 @@ cheaper, mission-aligned capital that funds everything after.
 - **Phase 3 — Scale:** Reinvest returns into additional units and district partnerships
   to compound community equity.
 
-> **Open item:** No dollar targets are recorded yet. Add confirmed figures per phase
-> before this goes into any investor package.
+> **Open item:** Per-phase dollar targets are still not locked. The infrastructure and
+> NACA figures above are the ministry's stated numbers — confirm them against quotes
+> before any investor package.
+
+### Funding matrix
+
+| Source | Potential | Status |
+|--------|-----------|--------|
+| Federal ITC (Direct Pay) | 30% of solar / storage | Active |
+| USDA REAP | Up to $500k | Paused — monitor |
+| EPA EJ Grants | $500k | Active |
+| St. Pete Urban Ag | $150k | Active |
+| Duke Energy Credits | One-time + off-peak | Active |
+| FCLF | Florida CDFI financing | Active |
 
 ---
 
@@ -112,8 +178,11 @@ Drawn from the tactical checklist. Owners are placeholders — assign real names
 
 ### What's needed for an MVP site
 1. **Landing page (`index.html`)** — mounts the chat widget, presents the vision,
-   the four engines, and a clear call to partner. Warm, high-end aesthetic matching
-   the deck palette (deep aubergine `#47243D`, warm gold `#C6972F`, cream `#F5EFE6`).
+   the model, and a clear call to partner. **Design-system note:** the page and deck
+   currently use working values (aubergine `#47243D`, gold `#C6972F`, cream `#F5EFE6`,
+   Georgia/system fonts). The official *Sanctuary Premium* system is aubergine `#2D1B3D`,
+   gold `#D4A72C`, cream `#FAF7F0`, **Fraunces** headings + **Inter** body — aligning to
+   it is a tracked task (see §9).
 2. **Widget host markup** — the container elements the widget queries for
    (`[data-chat-body]`, `[data-chat-input]`, `[data-chat-send]`) plus styles for
    `.msg`, `.typing-dot`, etc.
@@ -150,12 +219,33 @@ We're inviting capital partners, civic allies, and advisors to build it with us.
 
 ---
 
-## 8. Things To Verify Before External Use
+## 8. Monday Narrative & Trust Filter
 
-- [ ] Gas Plant District acreage figure (deck cites ~86 acres — confirm current source).
-- [ ] Per-phase capital targets (currently none recorded).
+**7-shot narrative** (see [`MASTER-PROMPT.md`](./MASTER-PROMPT.md) for the full beat sheet):
+The Arrival → The Approach → The Heart → The Innovation → The Garden → The People → The Vision.
+
+**Close:** *"We are not asking you to fund a building. We are asking you to invest in a
+model — one that proves faith, technology, and community are the same force."*
+
+**Trust filter** — build only when every answer is yes; otherwise redesign: increases human
+capability? · protects dignity? · creates independence? · measurable impact? · proudly
+explainable? · strengthens the institution for the next generation?
+
+---
+
+## 9. Things To Verify / Align Before External Use
+
+**Verify (don't present as fact until confirmed):**
+- [ ] Gas Plant District figures (deck cites ~86 acres; doctrine cites $8.1B transformation) — confirm sources.
+- [ ] Supercharger economics (~$180K capex, ~$272K/yr revenue) against real quotes + a utilization study.
+- [ ] NACA loan limit (~$1.47M, Pinellas 4-unit) and current program terms.
+- [ ] Funding-matrix amounts and statuses (esp. USDA REAP "paused").
 - [ ] Real owner names for every roadmap row.
-- [ ] Any impact numbers before they appear in a partner deck.
+
+**Align (tracked build tasks):**
+- [ ] Update the site + deck to the official *Sanctuary Premium* palette and Fraunces/Inter fonts.
+- [ ] Reframe the landing page's model section from four engines to the **Six Pillars**.
+- [ ] Add solar + NACA 4-plex tabs to the Supercharger ROI calculator.
 
 ---
 
