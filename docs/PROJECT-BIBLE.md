@@ -119,9 +119,10 @@ Drawn from the tactical checklist. Owners are placeholders — assign real names
 - [x] Stub `/api/chat` so the widget works end-to-end (scripted fallback with no key).
 - [x] Wire the real Claude endpoint behind an env-var API key (`ANTHROPIC_API_KEY`,
       optional `ANTHROPIC_MODEL`; falls back to the scripted responder when unset).
-- [ ] Add a build/dev script and a minimal README.
-- [ ] Add a Netlify function + redirect (or point the widget at the Netlify path) so
-      the assistant also responds on the Netlify preview, not just Vercel.
+- [x] Add a minimal README (`README.md`). *(No build script needed — the site is static.)*
+- [x] Add a Netlify function + redirect (`netlify/functions/chat.js` + `netlify.toml`) so
+      the assistant also responds on the Netlify preview, not just Vercel. Both platforms
+      now share one implementation in `src/lib/chatCore.js`.
 
 The landing page (`index.html` + `src/styles/site.css`) presents the vision, the four
 engines, the roadmap, and a partnership CTA, and mounts the chat assistant as a floating
