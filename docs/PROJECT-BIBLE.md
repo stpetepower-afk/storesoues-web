@@ -114,11 +114,19 @@ Drawn from the tactical checklist. Owners are placeholders — assign real names
 4. **Deploy target** — static host for the page; serverless function for the endpoint.
 
 ### Suggested first developer tasks
-- [ ] Add `index.html` with the widget container and brand styling.
-- [ ] Extract shared CSS into `src/styles/`.
-- [ ] Stub `/api/chat` (mock reply) so the widget works end-to-end locally.
-- [ ] Wire the real Claude endpoint behind an env-var API key.
+- [x] Add `index.html` with the widget container and brand styling.
+- [x] Extract shared CSS into `src/styles/site.css`.
+- [x] Stub `/api/chat` so the widget works end-to-end (scripted fallback with no key).
+- [x] Wire the real Claude endpoint behind an env-var API key (`ANTHROPIC_API_KEY`,
+      optional `ANTHROPIC_MODEL`; falls back to the scripted responder when unset).
 - [ ] Add a build/dev script and a minimal README.
+- [ ] Add a Netlify function + redirect (or point the widget at the Netlify path) so
+      the assistant also responds on the Netlify preview, not just Vercel.
+
+The landing page (`index.html` + `src/styles/site.css`) presents the vision, the four
+engines, the roadmap, and a partnership CTA, and mounts the chat assistant as a floating
+launcher. It was verified in a headless browser: page loads clean, widget mounts, greeting
+renders, and a sent message round-trips through `/api/chat`.
 
 ---
 
