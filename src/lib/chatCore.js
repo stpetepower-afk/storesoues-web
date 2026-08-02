@@ -61,22 +61,34 @@ function scriptedReply(messages) {
   if (/partner|invest|fund|donate|give|support/.test(q)) {
     return "We're inviting capital partners, civic allies, and advisors to build with us. The best first step is a short conversation — email stpetepower@gmail.com and we'll set a time.";
   }
-  if (/hous|4-?plex|own|rent|equity/.test(q)) {
-    return "Housing & Ownership is our first engine: we acquire and steward multi-family assets — beginning with a 4-plex — so resident families build real equity, not just pay rent.";
+  if (/hous|4-?plex|own|rent|equity|shelter/.test(q)) {
+    return "Housing Stability turns shelter into a foundation — we steward multi-family assets, beginning with a 4-plex, so resident families build real equity instead of only paying rent.";
   }
-  if (/charg|tesla|supercharger|ev\b/.test(q)) {
-    return "Charging infrastructure — EV and Supercharger capacity — is a revenue anchor for the model and a forward-looking signal for the district.";
+  if (/\bai\b|academy|learn|tech|automation/.test(q)) {
+    return "The AI Skills Academy helps people go from learning to leading — building the technical fluency to thrive in an AI-shaped economy.";
   }
-  if (/counsel|naca|financ|homebuy|homeown/.test(q)) {
-    return "Financial Empowerment means NACA-certified homeownership counseling that helps turn renters into owners, and owners into long-term stewards.";
+  if (/career|job|employ|skill|work|hire/.test(q)) {
+    return "Career Launch moves people from skills to employment — practical training that leads to real jobs and lasting income.";
   }
-  if (/gas plant|district|st\.? ?pete|neighborhood/.test(q)) {
-    return "The Historic Gas Plant District was once a thriving Black community and is now the site of a generational redevelopment. Hallelujah ONE exists to make sure the next chapter keeps ownership and wealth in local hands.";
+  if (/entrepreneur|business|start|founder|ownership pathway/.test(q)) {
+    return "Entrepreneur & Ownership Pathways move people from create to own — supporting them to build and own businesses, not just work in them.";
   }
-  if (/vision|mission|who|what is|about/.test(q)) {
-    return "Hallelujah ONE builds belonging, not just buildings. We unite ministry, capital strategy, and technical precision to build lasting community wealth in St. Petersburg's Gas Plant District.";
+  if (/counsel|naca|financ|homebuy|homeown|money|credit/.test(q)) {
+    return "Financial Empowerment turns knowledge into ownership — including NACA-certified homeownership counseling that helps renters become owners and owners become stewards.";
   }
-  return "Thank you for reaching out. I can tell you about our vision, our four-engine model (housing, charging infrastructure, financial empowerment, and our institutional backbone), or how to partner with us. What would you like to explore?";
+  if (/communit|network|connect|neighbor/.test(q)) {
+    return "The Community Impact Network turns connection into growth — linking families, partners, and civic allies so progress compounds across the neighborhood.";
+  }
+  if (/gas plant|district|st\.? ?pete|3548|address|where/.test(q)) {
+    return "We're anchored at 3548 5th Ave S in St. Petersburg's Historic Gas Plant District — once a thriving Black community, now a generational redevelopment. Hallelujah ONE exists to keep ownership and wealth in local hands.";
+  }
+  if (/pillar|model|program|how.*work|what.*do/.test(q)) {
+    return "The model is six pillars: Career Launch, Housing Stability, Financial Empowerment, AI Skills Academy, Community Impact Network, and Entrepreneur & Ownership Pathways — each turning a starting point into lasting capability.";
+  }
+  if (/vision|mission|who|what is|about|purpose/.test(q)) {
+    return "Hallelujah Ministries is a permanent institution empowering families through education, career development, technology, and community — creating generational sovereignty, not temporary assistance. We build belonging, not just buildings.";
+  }
+  return "Thank you for reaching out. I can tell you about our doctrine, the six pillars (Career Launch, Housing Stability, Financial Empowerment, AI Skills Academy, Community Impact Network, and Entrepreneur & Ownership Pathways), or how to partner. What would you like to explore?";
 }
 
 module.exports = { generateReply, scriptedReply };
